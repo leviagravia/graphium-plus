@@ -1,0 +1,521 @@
+GRAPHIUM PLUS USER GUIDE
+========================
+
+Graphium Plus is Graphium Core with a compact native toolbar and a bounded local Workspace. It preserves the same single-document editor, guarded file writing, document identity, recovery, monitoring and representation semantics. Workspace is not a project/session manager, does not add tabs, and never becomes a second document or Save authority. The inherited Core behavior is documented below; the final sections describe the Plus toolbar and Workspace.
+
+1. THE BASIC MODEL
+------------------
+Each Graphium invocation opens one window for one document: one process owns one window and one active document. Launching Graphium again gets
+its own process/window; it does not take over an already-open Graphium document. Several
+command-line filenames are fanned out to separate processes/windows.
+
+The title reports the document name and exact savepoint relation:
+
+  Untitled (Saved) — Graphium
+  notes.txt (Modified) — Graphium
+
+Saved/Modified is the relation to one exact saved document state: both the monotonic text-state
+identity and the selected output representation must match. Undoing or redoing to the exact saved
+text state restores Saved only when Encoding and Line Endings also match the saved representation.
+Text equality on a different edit branch is not enough.
+
+2. FILE COMMANDS
+----------------
+New
+  Replaces the active document with a blank document after Save/Discard/Cancel protection
+  when the current document is Modified.
+
+Open…
+  Loads and validates the selected file before replacing the current document. A failed
+  Open leaves the current document untouched.
+
+Save
+  Uses guarded same-directory staging and late target revalidation. An unexpectedly changed
+  or replaced accepted file is not silently overwritten.
+
+Save As…
+  Writes to another path and rebinds the active document only after the physical commit
+  succeeds. Replacing an existing destination requires explicit consent. A successful first
+  Save or binding-changing Save As becomes the newest Recent path.
+
+Open Recent
+  Shows at most ten normalized logical file paths in MRU order. Selecting one goes through the
+  same Open and Save/Discard/Cancel protection as Open…. Recent is file history only: Graphium
+  does not restore cursor, encoding, selection, tabs or a prior session. Clear Recent is explicit.
+
+Save a Copy…
+  Writes the exact current live document using the active representation profile but leaves the
+  active document binding, savepoint, Saved/Modified relation, Undo/Redo and Recent unchanged.
+  The active path or another existing path to the same physical file is not a valid copy target.
+
+Save Version Copy…
+  Has the same non-binding semantics. For a named document Graphium creates the next
+  `<stem>_vNNNN<suffix>` in the active logical directory using max(existing)+1. Untitled uses an
+  explicit chooser suggested as `Untitled_v0001.txt`. This is an explicit copy command, not an
+  automatic backup system or version database.
+
+Properties…
+  Shows accepted logical/resolved identity and size/time together with the current selected
+  Encoding/BOM/Line Endings, Saved/Modified, writable state and link count. Check Now performs a fresh strong read-only observation and
+  reports whether the file is unchanged, content-changed, metadata-changed, replaced/retargeted,
+  missing or unavailable/unstable. It never accepts a new baseline or reloads the document.
+
+Quit
+  Protects Modified text with Save/Discard/Cancel.
+
+3. CONTENT NEUTRALITY
+---------------------
+Open and Save are not cleanup commands. Graphium does not silently trim spaces, add a final
+newline, change encoding/BOM, or normalize line endings merely because a file was opened or
+saved.
+
+The current foundation supports strict UTF-8 and BOM-aware UTF-8/UTF-16/UTF-32 families.
+Line endings are represented internally as LF while the accepted external representation
+is retained for Save. Mixed line endings require explicit consent before normalization when
+exact reproduction is no longer possible after editing.
+
+4. UNDO AND REDO
+----------------
+Graphium stores insertion/deletion deltas, not a complete document snapshot per keystroke.
+GTK user-action boundaries and structural continuity define normal edit groups; no wall-clock
+idle timer decides Undo semantics.
+
+Programmatic replacement uses the same delta authority. Replace All is one logical
+Undo step and one editor-state advance. If it cannot be completed safely, Graphium leaves
+buffer/history/savepoint authorities unchanged rather than leaving a partial replacement.
+
+5. EDIT COMMANDS
+----------------
+Undo / Redo
+  Move through native delta history while preserving exact Saved/Modified semantics.
+
+Cut / Copy / Paste / Delete / Select All
+  Use normal GTK editing behavior. The renderer-safety guard remains active for normal
+  typing, paste and deletion.
+
+6. SEARCH AND REPLACE
+---------------------
+Search is current-document and literal. It is intentionally not a regex, project or
+multi-file search platform.
+
+Find… (Ctrl+F)
+  Opens a compact in-window search bar. The query is single-line Unicode text. A suitable
+  single-line editor selection may prefill it. Searching does not modify the document,
+  create Undo history or change Saved/Modified.
+
+Find Next / Find Previous (F3 / Shift+F3)
+  Navigate to the next or previous occurrence and wrap once automatically. The current
+  occurrence is simply the native text selection. There is no eager highlight-all scan or
+  background search index. Once a query is known, F3/Shift+F3 remain real commands
+  even when the search bar is hidden.
+
+Match Case
+  When off, Graphium uses Unicode casefold matching with exact mapping back to original
+  editor character offsets, including length-changing folds such as German sharp-s. When
+  on, matching is exact codepoint literal comparison.
+
+Replace… (Ctrl+H)
+  Expands the same search bar with a single-line replacement field plus Replace and Replace
+  All. Replacement may be empty. Multi-line query/replacement, regular expressions, fuzzy
+  search, Whole Word mode and search-history storage are outside the current product scope.
+
+Replace
+  One activation either replaces the current exact match or acquires the next match and
+  replaces it. It is one Undo step. If there is no match, no editor-state identity is
+  allocated.
+
+Replace All
+  Graphium freezes all non-overlapping matches from the original source; inserted replacement
+  text does not recursively become a new match during the same command. The complete result
+  is calculated and checked against renderer safety before GTK mutation. Changes are applied
+  as one expected-delete/inverse-rollback delta transaction and therefore Undo as one unit.
+  An operation whose changed payload would exceed the bounded Undo budget is refused before
+  mutation rather than silently losing Undo.
+
+Escape closes the search bar and returns focus to the document.
+
+7. GO TO LINE
+-------------
+Go to Line… (Ctrl+G) accepts a 1-based line number bounded to the current document. It only
+moves the cursor/view; it does not modify text, history or Saved/Modified and does not create
+a bookmark/navigation-history subsystem.
+
+
+8. VIEW AND COMPACT STATUS
+--------------------------
+The View menu changes presentation only. These commands do not change document bytes,
+Undo history, Saved/Modified identity or encoding/EOL representation.
+
+Status Bar
+  Shows a compact event-driven status surface with 1-based line/column, accepted
+  encoding/EOL representation and Saved/Modified. It does not count words or scan the
+  complete document in the background. Visibility is persistent.
+
+Line Numbers
+  Shows logical line numbers in Gtk.TextView's native left border window. Only logical
+  lines currently intersecting the viewport are drawn. Wrapped visual continuations do
+  not receive extra line numbers. Graphium does not use GtkSourceView, a background line
+  index or a second synchronized scrolling widget. Visibility is persistent.
+
+Word Wrap
+  Uses GTK WORD_CHAR wrapping: prefer word boundaries and fall back to grapheme boundaries
+  when a word itself is too wide. The setting is persistent and does not insert line
+  breaks into the file.
+
+Font…
+  Chooses the persistent base font family and size for the editor view. Graphium applies
+  it with a view-local CSS provider; it is presentation state, not document state.
+
+Zoom In / Zoom Out / Reset Zoom
+  Zoom is transient magnification relative to the configured base font. Reset Zoom means
+  100%. Zoom is deliberately not stored as a document or persistent font change.
+
+Full Screen
+  F11 toggles transient full-screen window presentation. It is not session state.
+
+Toolbar
+  Graphium Plus adds a compact native toolbar as presentation only. See section 22 for the
+  exact button set, visibility behavior and Workspace toggle.
+
+9. DOCUMENT REPRESENTATION, SPELLING AND STATISTICS
+----------------------------------------
+Encoding
+  Selects the representation Graphium will use on the next Save: UTF-8, UTF-8 BOM, UTF-16 LE/BE
+  with BOM, or UTF-32 LE/BE with BOM. The choice does not rewrite the file immediately, does not
+  alter the text, and is not an Undo edit. A changed choice makes the document Modified until it is
+  saved or changed back to the saved representation. Graphium does not guess legacy encodings.
+
+Line Endings
+  Selects LF, CRLF or CR for the next Save. A mixed-EOL file remains reported as Mixed until you
+  explicitly choose a concrete line ending; that explicit choice is the normalization consent.
+  Normal Save never silently selects a different line-ending style.
+
+The Compact Status always projects the current selected representation, including an unsaved
+Encoding/Line Endings choice, together with Saved/Modified.
+
+Check Spelling… (F2)
+  Runs an explicit, on-demand spelling pass with the system Hunspell installation. The Dictionary selector
+  starts with System default and, when available, lists verified installed Hunspell dictionary IDs such as
+  it_IT, en_GB or en_US. Dictionary discovery happens only after you explicitly open Check Spelling. Choosing
+  another dictionary restarts the pass from the current document text; the choice lasts only for this spelling
+  dialog and does not change the document by itself. Unknown words are presented one at a time with bounded
+  suggestions and Replace, Ignore and Ignore All. Replace is a normal Graphium edit and therefore a normal
+  Undo step; the file on disk changes only after the ordinary Save command. Ignore All lasts only for the
+  current dictionary pass and is reset when you change dictionary. If Hunspell or a selected dictionary is
+  unavailable, Graphium reports that condition without changing the document. There is no live underline,
+  autocorrect, grammar checker, personal-dictionary manager or persistent spelling-language preference.
+
+Statistics…
+  Captures the current live buffer only when you request it and shows Lines, Words and Characters
+  for the document and for a non-empty selection. Characters are Unicode code points; words are
+  maximal non-whitespace runs; an empty document has zero lines. Graphium does not maintain live
+  counters, a statistics cache, worker or background scan.
+
+10. PAGE SETUP, PRINT PREVIEW AND PRINT
+----------------------------------------
+Page Setup…
+  Opens GTK's standard page setup surface. Graphium remembers the accepted paper/orientation/margins
+  in its own XDG configuration. Loading and saving this setting are lazy: normal quick-edit startup
+  does not initialize the print subsystem or read the Page Setup file.
+
+Print Preview
+  Ctrl+Shift+P opens GTK's native print preview for an exact snapshot of the current live text. A
+  Modified or Untitled document can be previewed without Save. The preview uses the persistent base
+  editor font, not transient Zoom, and does not print the screen line-number gutter or screen wrap.
+
+Print…
+  Ctrl+P opens GTK's standard print dialog. Graphium creates a fresh GTK print operation for each
+  invocation. Large jobs use GTK's native asynchronous completion and bounded incremental Pango
+  pagination, so Graphium does not perform the complete document layout inside one begin-print
+  callback. Only one Print/Page Setup/Preview operation may be active at a time. Text is measured at
+  the real printable width in logical-line-bounded chunks and paginated only between complete visual
+  Pango layout lines. Closing/cancelling printing does not alter the document,
+  Saved/Modified, Undo/Redo, Recent or its on-disk bytes.
+
+Graphium deliberately has no custom print-preview framework, syntax-print engine, Graphium print
+worker/thread, background print service or persistent printer-history platform.
+
+11. RENDERER SAFETY
+-------------------
+Large ordinary multiline documents keep normal editing and Undo. A different case is a
+pathological single logical line: validation demonstrated that very long unbroken lines can drive
+the Gtk.TextView rendering path into unacceptable responsiveness.
+
+Graphium therefore uses a conservative 20,000-Unicode-character interactive logical-line
+budget. An over-budget file is refused before Gtk.TextBuffer installation. Graphium never
+truncates the source, inserts line breaks/markers or silently rewrites it to make it fit.
+Normal insert/paste/newline-join edits cannot create an over-budget line. Replace All
+preflights the complete final result before using its programmatic transaction path.
+
+12. MULTIPLE FILES
+------------------
+Graphium remains single-document but not globally single-process. To keep two files open,
+open two Graphium windows. Each is independently owned by one process and one document.
+
+13. FILE SAFETY
+---------------
+The current product applies these invariants:
+
+* one physical writer authority;
+* no direct-write fallback;
+* staged same-directory writes and late revalidation;
+* Save As binds only after commit;
+* unexpected external replacement blocks ordinary Save;
+* symlink logical identity is preserved by the guarded writer;
+* hard-linked targets fail closed in the current policy;
+* failed Save keeps the document Modified;
+* late Save of an older state cannot clean a newer state;
+* search navigation cannot change Saved/Modified;
+* replacement is all-or-nothing with respect to its Graphium transaction authority;
+* Save a Copy / Version Copy reuse the sole guarded writer but never rebind or move savepoint;
+* Properties -> Check Now observes strongly but never refreshes the accepted baseline.
+
+Reload from Disk is a deliberate disk re-acceptance boundary. It never writes the file and never
+touches Recent. If the active document is Modified, Reload uses its own dedicated decision:
+Cancel, or Discard Changes and Reload. Reload never performs Save or Save As automatically.
+It fully loads and validates the current logical path before replacing the buffer; any failure leaves
+the active document unchanged. Ordinary Save remains separately guarded and fails closed when the
+accepted on-disk baseline has become stale.
+
+14. RELOAD FROM DISK
+--------------------
+File -> Reload from Disk (F5) explicitly re-accepts the file currently named by the active logical
+path. Reload is available only for a named document. For a Saved document, Graphium loads and
+validates the complete file before replacing the editor state. For a Modified document, the Reload
+dialog offers only Cancel and Discard Changes and Reload; Cancel preserves the modified buffer
+exactly, while Discard Changes and Reload deliberately abandons the in-memory edits and accepts the
+fresh disk state. Reload never invokes the physical writer and never changes Recent. A successful
+Reload becomes Saved and resets Undo/Redo to the newly loaded document.
+
+15. LIVE EXTERNAL-FILE MONITORING
+---------------------------------
+For a named local document, Graphium uses Gio file monitoring only as an interrupt source. A raw
+filesystem event is never accepted as document truth. After coalescing duplicate events, Graphium
+performs the same strong observation used by Check Now: logical/canonical identity, object topology,
+metadata and a full SHA-256 content fingerprint are compared with the accepted document baseline.
+The strong read runs outside the GTK main thread, with at most one observation in flight and no
+periodic polling or idle background hashing.
+
+Material external changes appear in one nonmodal information bar. Content changes and physical
+replacement/retargeting offer Reload from Disk; missing or unavailable/unstable files are reported
+without changing the buffer. Metadata-only change is informational. Graphium never auto-reloads and
+the monitor never silently replaces the accepted baseline. Open, Save, Save As and Reload suspend
+and rebind monitoring around their authoritative lifecycle transition so Graphium's own writes do not
+become false external-change warnings. For a directly symlink-opened document, monitoring covers both
+the accepted resolved target and replacement/retarget/removal of the logical symlink path.
+
+16. PERFORMANCE DISCIPLINE
+--------------------------
+Graphium targets lightweight quick-edit behavior. Search does no startup scan, idle scan, background indexing or eager match highlighting.
+View status is event-driven: it reads cursor/session metadata and does not scan the
+document. Line-number drawing is viewport-bounded. Persistent View settings are loaded once
+from a small XDG file and written only on explicit user changes. Recent state is lazy and
+bounded to ten paths; Statistics is O(n) only after explicit activation and has no live worker.
+Printing is likewise dormant at startup: its module/controller/Page Setup I/O are deferred until
+an explicit Page Setup/Preview/Print action.
+
+Performance qualification keeps common FIRST_VISIBLE and Graphium's exact internal FIRST_EDITABLE
+handshake as separate evidence. Direct mature-source and T480 qualification showed that the compared
+editors do not expose one homogeneous external file-loaded/editable lifecycle, so Graphium does not
+turn AT-SPI focus, text projection or accessibility mutation into a cross-product readiness metric.
+Cross-product timing uses FIRST_VISIBLE only; exact Graphium FIRST_EDITABLE remains product-owned.
+
+17. HELP AND KEYBOARD SHORTCUTS
+-------------------------------
+Help contains exactly User Guide, Keyboard Shortcuts and About. About includes author, copyright,
+GNU GPL v3.0-or-later, the product repository link and compact support information for the running
+Python, GTK and display backend; Graphium Plus has no separate diagnostics menu. Choose Help > Keyboard
+Shortcuts for the current accelerator list. Graphium Plus adds no new global accelerator, so the
+shortcut document is the inherited Core command list; Workspace and toolbar-only presentation
+actions remain mouse/menu driven. Accelerators are audited against the active Linux Mint/Cinnamon
+global bindings before release. Ctrl+Alt+L is reserved in the target environment and is not used by
+Graphium.
+
+18. WHAT THE CORE EDITOR DELIBERATELY DOES NOT ADD
+--------------------------------------------------
+The inherited Graphium Core editor deliberately has no toolbar or Workspace. Graphium Plus adds
+exactly those two bounded presentation surfaces: one compact native toolbar and one local Workspace.
+It still adds no GtkSourceView, syntax engine, tabs, session restoration, plugin platform, automatic
+backup, revision database/timeline, background statistics, global recent manager, custom print
+preview, print worker/service, persistent printer history, automatic reload, periodic filesystem
+polling, conflict/merge platform or custom theme platform. Appearance remains deliberately limited
+to System, Light and Dark.
+
+
+SEARCH SCALE SAFETY
+-------------------
+Find Next and Find Previous do not build a list of every occurrence. Case-insensitive
+Unicode search works one logical line at a time, so it does not keep a second folded copy
+of the entire document. Replace All is deliberately bounded: one activation can freeze at
+most 50,000 source matches and must also fit the Undo payload budget. If either bound would
+be exceeded, Graphium refuses the operation before changing the document. This does not
+limit ordinary Find Next/Previous.
+
+19. EXPLICIT TEXT TRANSFORMATIONS
+---------------------------------
+Edit -> Transform Text contains Uppercase, Lowercase, Duplicate Line / Selection, Move Lines Up,
+Move Lines Down and Trim Trailing Spaces. Uppercase/Lowercase require a selection. Duplicate and
+Move use the current line when there is no selection. Trim Trailing Spaces affects selected lines,
+or the whole document when there is no selection, and removes only ASCII spaces/tabs at line ends.
+These commands are never applied automatically on Open or Save. Uppercase uses Ctrl+U, Lowercase uses
+Ctrl+Shift+L, and Move Lines Up/Down use Alt+Up and Alt+Down; Duplicate Line / Selection and Trim Trailing
+Spaces remain menu-driven.
+
+20. TAB CONTROLS, APPEARANCE AND DESKTOP POLISH
+----------------------------------------------------
+Edit -> Tab Width offers 2, 3, 4, 8 and Other…; Other… accepts any width from 1 to 32. The default
+is 8. Changing Tab Width affects how literal TAB characters are displayed; it never rewrites
+existing text. Edit -> Insert Spaces Instead of Tabs is a direct checked command. When enabled, a
+normal Tab key inserts spaces to the next configured tab stop. Shift+Tab, Ctrl+Tab and Alt+Tab are
+not repurposed. Both settings persist across restarts.
+
+View -> Appearance contains System, Light and Dark. Appearance is changed and persisted only from
+this View submenu.
+
+Graphium remembers the latest normal window size after an accepted close. It does not remember
+window position, monitor, maximized state or fullscreen state.
+
+You can drag a local file onto Graphium to open it through the same guarded Open lifecycle used by
+File -> Open. If the active document is Modified, the normal Save/Discard/Cancel prompt still owns
+the decision. Dropped plain text remains normal text editing. Remote URIs and directories are not
+opened as documents.
+
+21. CRASH RECOVERY
+------------------
+Graphium keeps one private crash-recovery artifact for a Modified document. Recovery state is stored
+under the user's XDG state area; it never autosaves or overwrites the document being edited. The
+recovery write is delayed and coalesced, and no recovery thread or directory is created merely by
+starting Graphium with nothing to recover.
+
+After an interrupted Graphium process, the next launch may show **Recovered unsaved content**. One
+launch offers at most one recovery artifact. You can:
+
+  Recover Unsaved Content
+    Opens the recovered text as Modified. If the original named file still matches the exact accepted
+    baseline from before the interruption, Graphium safely re-establishes that fresh disk baseline and
+    keeps the recovered text above it as Modified. Undo/Redo starts empty.
+
+  Discard Recovery
+    Explicitly deletes that recovery artifact.
+
+  Start Without Recovering
+    Continues startup and leaves the recovery artifact untouched for a later launch.
+
+When Graphium was launched for a specific file, only recovery associated with that logical path may be
+offered. If the original file is missing, replaced, changed, or a symlink now points somewhere else,
+Graphium does not silently bind recovered text to it. The recovered content opens as an unbound
+Modified document; the original path is shown only as provenance and any later write requires the
+normal Save As choice. Untitled recovery likewise remains unbound.
+
+Recovery keeps the selected Encoding/BOM/Line Endings as unsaved representation state. It does not
+restore pre-crash Undo/Redo history, does not keep historical recovery versions, does not add a session
+browser, and does not create a recovery preference or menu.
+
+22. COMPACT TOOLBAR — GRAPHIUM PLUS
+------------------------------------
+The compact toolbar is a native GTK projection of existing Graphium commands. From left to right it
+contains New, Open, Save, Undo, Redo, Cut, Copy, Paste, Reload, Find and Replace, followed by the
+Workspace visibility toggle. The buttons call the same canonical window actions as the menus and
+keyboard shortcuts; the toolbar does not implement a second command, document or Save authority.
+
+Choose View -> Toolbar to show or hide the entire compact toolbar in the current window. Toolbar
+visibility is intentionally transient in Graphium Plus 0.0.1 and is not restored at startup. Hiding
+the toolbar never disables the corresponding menu commands or accelerators. The Workspace button at
+the end of the toolbar independently shows or hides the Workspace pane for the current window.
+
+Button sensitivity follows the existing Graphium action state. For example, Undo/Redo and clipboard
+actions remain governed by the same editor state used by the menus. No toolbar polling, worker,
+watcher or separate state service is created.
+
+23. WORKSPACE — GRAPHIUM PLUS
+-----------------------------
+Workspace is a bounded local folder tree shown to the left of the existing Graphium editor. It has
+one local root and never creates a second editor, document session or Save authority. Startup does
+not automatically reopen or scan a prior Workspace. Filesystem loading begins only after an explicit
+Workspace action.
+
+Open Folder
+  Binds one real local directory as the Workspace root. Symbolic-link roots are rejected.
+
+Recent
+  Lists up to eight recent Workspace roots. This is separate from Recent Files and does not restore
+  a document session. Recent Workspace state is read only when the user requests it.
+
+Tree navigation and opening
+  Directories load lazily when expanded. Hidden names are omitted. Folders are listed before files
+  and siblings use numeric-aware natural ordering, so chapter2.txt sorts before chapter10.txt.
+  Symlink rows are not expanded or opened. Native tree search searches only rows already loaded.
+
+  A single click selects a row; it does not open the file. Double-click or Enter on a regular .txt
+  or .md file opens that file inside Graphium Plus through the same canonical Open lifecycle used by
+  File -> Open, including Save/Discard/Cancel protection when the current document is Modified.
+  Other regular file types are delegated to the desktop default application only on explicit
+  activation.
+
+  In Light appearance the selected Workspace row remains visibly highlighted both while the tree has
+  keyboard focus and while focus is in the editor. This visual state does not change the underlying
+  selection authority.
+
+Right-click menu
+  Right-clicking a Workspace row selects that row and opens a context menu. Open with Graphium Plus
+  is enabled only for regular .txt/.md files and uses the same canonical Graphium Open lifecycle.
+  The menu also exposes Reveal in File Manager, New Text File, New Folder, Rename, Duplicate and Move
+  to Trash. These entries reuse the same Workspace callbacks/controllers as the icon buttons; there
+  is no second filesystem implementation behind the menu.
+
+Locate Active Document
+  Reveals and selects the active document when it belongs to the current Workspace, loading only the
+  necessary ancestor directories. It does not change the Workspace root, does not auto-follow later
+  document changes and preserves the editor's writing focus. If Workspace is hidden, an explicit
+  Locate operation shows it first.
+
+Refresh
+  Refresh is explicit. It rescans the bound root and lazily reconstructs only the directory branches
+  needed to restore surviving expansion state and the surviving selected relative path already held
+  in memory. It does not create persistent session state.
+
+New Text
+  Creates a new .txt or .md file without overwrite. If the current document is Modified, Graphium
+  resolves Save/Discard/Cancel before filesystem creation so Cancel cannot leave an unwanted empty
+  file. The new file then opens through the normal Graphium lifecycle.
+
+New Folder
+  Creates one folder inside the selected directory, or inside the selected file's parent. It does not
+  replace the active document and therefore does not invoke the document unsaved guard.
+
+Rename
+  Renames an inactive regular file or inactive directory within its current parent. The active
+  document and any directory containing it are protected from Workspace Rename. Strong pre-commit
+  identity checks fail closed if the selected filesystem object changes before commit.
+
+Duplicate
+  Duplicates one regular file as a sibling using the bytes saved on disk. Unsaved editor changes are
+  not copied, the source remains the active document, and the duplicate is not opened automatically.
+  The operation uses verified staging and a no-overwrite commit. Folder duplication is outside the
+  Workspace scope.
+
+Move to Trash
+  Moves an inactive regular file or inactive directory to the system Trash after explicit
+  confirmation. There is no permanent-delete fallback. The active document, a directory containing
+  it, the Workspace root and symbolic links are protected.
+
+Reveal in File Manager
+  With a Workspace item selected, Graphium Plus requests
+  org.freedesktop.FileManager1.ShowItems for that exact item's URI. With no selected item it requests
+  ShowFolders for the Workspace root. If FileManager1 is unavailable, Graphium Plus falls back to
+  opening the relevant directory and does not claim that the exact item was highlighted. Desktop
+  file-manager highlight appearance is controlled by that file manager, not by Graphium Plus.
+
+Show/Hide Workspace
+  The toolbar Workspace toggle shows or hides Workspace for the current window. Pane width and
+  Workspace visibility are intentionally not persisted.
+
+Partial-view diagnostics
+  If a directory can be only partially read, Workspace keeps the readable rows and reports the first
+  diagnostic in its status line; the full diagnostic set is available from the status tooltip. A
+  partial read does not silently become a complete-view claim.
+
+Workspace deliberately does not provide tabs, project/session ownership, global indexed search, Git
+UI, terminal, remote/VFS browsing, automatic filesystem watching, automatic follow-current-document,
+permanent deletion, multi-selection batch operations, recursive startup snapshots, an indexer, a
+database or a background Workspace worker.

@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+"""Install the minimal Graphium Plus desktop runtime projection."""
+from __future__ import annotations
+
+import argparse
+import os
+import shutil
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+DESKTOP_FILE = "io.github.leviagravia.GraphiumPlus.desktop"
+ICON_SOURCE = ROOT / "graphium_plus" / "data" / "icons" / "hicolor"
+
+def _absolute(value: str) -> Path:
+    return Path(os.path.abspath(os.path.expanduser(value)))
+
+def _staged(path: Path, destdir: Path | None) -> Path:
+    return path if destdir is None else destdir / path.relative_to(path.anchor)
+
+def _remove(path: Path) -> None:
+    if path.is_symlink() or path.is_file():
+        path.unlink()
+    elif path.exists():
+        shutil.rmtree(path)
+
+def install(prefix: Path, destdir: Path | None) -> None:
+    target_prefix = _staged(prefix, destdir)
+    private = target_prefix / "lib" / "graphium-plus"
+    public_bin = target_prefix / "bin" / "graphium-plus"
+    desktop = target_prefix / "share" / "applications" / DESKTOP_FILE
+
+    _remove(private)
+    private.mkdir(parents=True)
+    for package in ("graphium", "graphium_plus"):
+        shutil.copytree(
+            ROOT / package,
+            private / package,
+            ignore=shutil.ignore_patterns("__pycache__", "*.pyc", "*.pyo"),
+        )
+    (private / "bin").mkdir()
+    shutil.copy2(ROOT / "bin" / "graphium-plus", private / "bin" / "graphium-plus")
+    shutil.copytree(ROOT / "docs" / "user", private / "docs" / "user")
+    shutil.copy2(ROOT / "LICENSE", private / "LICENSE")
+
+    public_bin.parent.mkdir(parents=True, exist_ok=True)
+    _remove(public_bin)
+    public_bin.symlink_to(Path("../lib/graphium-plus/bin/graphium-plus"))
+
+    desktop.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(ROOT / "graphium_plus" / "data" / DESKTOP_FILE, desktop)
+
+    icon_root = target_prefix / "share" / "icons" / "hicolor"
+    for source in ICON_SOURCE.rglob("*"):
+        if source.is_file():
+            target = icon_root / source.relative_to(ICON_SOURCE)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, target)
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--prefix", default="~/.local", help="logical install prefix (default: ~/.local)")
+    parser.add_argument("--destdir", help="optional package-staging root")
+    args = parser.parse_args()
+    install(_absolute(args.prefix), _absolute(args.destdir) if args.destdir else None)
+    return 0
+
+if __name__ == "__main__":
+    raise SystemExit(main())

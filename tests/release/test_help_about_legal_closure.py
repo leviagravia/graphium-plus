@@ -57,11 +57,11 @@ class HelpAboutLegalClosureTests(unittest.TestCase):
     def test_about_uses_standard_metadata_and_keeps_support_information(self):
         source = (ROOT / "graphium/adapters/gtk/dialogs.py").read_text(encoding="utf-8")
         self.assertIn("Gtk.AboutDialog", source)
-        self.assertIn("dialog.set_authors([AUTHOR])", source)
-        self.assertIn("dialog.set_copyright(COPYRIGHT)", source)
+        self.assertIn("dialog.set_authors([identity.author])", source)
+        self.assertIn("dialog.set_copyright(identity.copyright)", source)
         self.assertIn("dialog.set_license_type(Gtk.License.GPL_3_0)", source)
-        self.assertIn("dialog.set_website(REPOSITORY_URL)", source)
-        self.assertIn("dialog.set_website_label(REPOSITORY_LABEL)", source)
+        self.assertIn("dialog.set_website(identity.repository_url)", source)
+        self.assertIn("dialog.set_website_label(identity.repository_label)", source)
         for marker in ("Python {sys.version_info.major}", "GTK {Gtk.get_major_version()}", "Display {backend}"):
             self.assertIn(marker, source)
         self.assertNotIn("Gtk.License.CUSTOM", source)
@@ -69,10 +69,10 @@ class HelpAboutLegalClosureTests(unittest.TestCase):
 
     def test_about_explicitly_projects_existing_application_icon_authority(self):
         source = (ROOT / "graphium/adapters/gtk/dialogs.py").read_text(encoding="utf-8")
-        self.assertIn("APPLICATION_ICON_NAME", source)
+        self.assertIn("identity.application_icon_name", source)
         self.assertIn("Gtk.IconTheme.get_default()", source)
-        self.assertIn("theme.has_icon(APPLICATION_ICON_NAME)", source)
-        self.assertIn("dialog.set_logo_icon_name(APPLICATION_ICON_NAME)", source)
+        self.assertIn("theme.has_icon(identity.application_icon_name)", source)
+        self.assertIn("dialog.set_logo_icon_name(identity.application_icon_name)", source)
         self.assertIn("Gtk.Window.get_default_icon_list()", source)
         self.assertIn("icon.get_width() == 48 and icon.get_height() == 48", source)
         self.assertIn("dialog.set_logo(icon)", source)

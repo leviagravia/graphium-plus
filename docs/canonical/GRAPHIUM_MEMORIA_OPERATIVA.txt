@@ -8421,3 +8421,2699 @@ T480_FUNCTIONAL_TESTS_THIS_SYNC=0
 MANUAL_TESTS_THIS_SYNC=0
 NEXT_STEP=GRAPHIUM_GITHUB_PUBLICATION_SURFACE_AND_FULL_HISTORY_HYGIENE_AUDIT
 FINAL_PHASE=G16_POST_PUBLICATION_CANONICAL_CONVERGENCE_TARGET_FROZEN
+
+
+===============================================================================
+POST-G16 / GITHUB PUBLIC CLOSURE ADDENDUM — 2026-08-27
+===============================================================================
+
+THIS ADDENDUM IS HANDOVER AUTHORITY FOR THE CURRENT POST-PUBLICATION STATE.
+It does not imply any post-G16 Graphium Core product mutation.
+
+1. GRAPHIIUM CORE FINAL STATE
+-----------------------------
+Core version: 0.0.16
+Core state: CLOSED / CERTIFIED / PUBLISHED / CANONICALLY_CONVERGED
+Do not open G17.
+Do not mutate Graphium Core merely for GitHub/public-surface work.
+
+G16 canonical publication:
+- publication commit:
+  b4b447423de8eb6f6d4022639497ca1f6b3daca6
+- publication tree:
+  90c651815400851ebcc0ff5300b2807261fb33fe
+- product tree:
+  e09d45ec07aad4956c0edead777cb61588eb758a
+
+G16 canonical post-publication convergence:
+- commit:
+  0c43be324ae5a4116d8f7290daface726c7697fc
+- tree:
+  f80649d1b529b2517876e5c6e274408358b24467
+
+GitHub public-surface commit:
+- commit:
+  8899c94006757c066c88739ff84bf8e1a6cb1b35
+- tree:
+  7992eeac3b85bd63da42a1641a25106ef09ee0a9
+- delta relative to converged Core:
+  README.md
+  assets/graphium.svg
+- Graphium product tree remains:
+  e09d45ec07aad4956c0edead777cb61588eb758a
+
+2. GITHUB PUBLIC STATE
+----------------------
+Repository:
+https://github.com/leviagravia/graphium
+
+Visibility:
+PUBLIC
+
+Branch:
+main
+
+HEAD = origin/main = real remote main:
+8899c94006757c066c88739ff84bf8e1a6cb1b35
+
+README SHA-256:
+4ecf8ea7b4cf9ea4ced9fa7c49bd86f90ca272698072fcd3c42f3b17f09e560b
+
+Public logo SHA-256:
+e5711782c106c88da6b13fe05f5c464619d1c12d65323d578c774bf1a6491e06
+
+Description:
+Fast, simple and safety-focused native GTK plain-text editor for Linux.
+
+Topics are SET semantics, not ordered-list semantics:
+desktop-application
+file-safety
+gplv3
+gtk3
+hunspell
+lightweight
+linux
+open-source
+plain-text
+pygobject
+python
+text-editor
+
+3. PUBLIC RELEASE
+-----------------
+Tag:
+v0.0.16
+
+Tag target:
+8899c94006757c066c88739ff84bf8e1a6cb1b35
+
+Release:
+https://github.com/leviagravia/graphium/releases/tag/v0.0.16
+
+Release ID:
+377827395
+
+Release state:
+published / non-draft / non-prerelease / Latest
+
+Asset:
+graphium_0.0.16-2_all.deb
+
+Asset ID:
+532316402
+
+Asset size:
+99660 bytes
+
+Asset SHA-256:
+c4649577837981fddc2cf6f5ace86a162ecb3b378b5fbd940a20d54f1c93de48
+
+Public asset:
+https://github.com/leviagravia/graphium/releases/download/v0.0.16/graphium_0.0.16-2_all.deb
+
+Final public verification:
+- anonymous repository access PASS
+- anonymous README access + SHA identity PASS
+- anonymous logo access + SHA identity PASS
+- anonymous release access PASS
+- anonymous .deb download + SHA identity PASS
+
+4. GITHUB HISTORY HYGIENE DECISION
+----------------------------------
+The 23 certified historical Core commits MUST NOT be rewritten merely to:
+- erase non-secret local `/home/luciano/...` provenance paths from historical
+  evidence; or
+- cosmetically replace historical placeholder author email metadata.
+
+No secret/private key/API credential was found by the full-history audit.
+Historical local paths were classified as non-secret development provenance.
+Future public-facing commits use repo-local identity:
+  leviagravia <leviagravia@zohomail.eu>
+
+5. RETIRED GITHUB WORKFLOW FAILURES
+-----------------------------------
+Several GitHub-surface harnesses failed. These were infrastructure/oracle
+failures, never Graphium product failures. See:
+GITHUB/FINAL_CLOSURE/RETIRED_GITHUB_PUBLICATION_FAILURES_DO_NOT_REUSE.md
+
+Do not reuse:
+- draft-by-tag verification before publication;
+- overconstrained immediate draft discovery;
+- ordered equality for repository topics;
+- wrapper flags not first checked against installed CLI capabilities.
+
+6. CURRENT NEXT PRODUCT LINE
+----------------------------
+Graphium Core is FROZEN.
+Graphium Plus: DEFINED_NOT_OPENED.
+Graphium Ultra: DEFINED_NOT_OPENED.
+
+The next product work, only after explicit user authorization, is:
+GRAPHIIUM PLUS — S0 SOURCE-FIRST AUDIT + CONTRACT FREEZE.
+
+Before any Plus implementation:
+- inspect relevant mature source directly;
+- reuse the mature corpus in this handover;
+- distinguish essential vs accidental complexity;
+- freeze Plus identity/scope/ownership and ADOPT/ADAPT/REJECT/DEFER decisions;
+- do not make Graphium depend on Calamus at runtime;
+- prefer source-first/static/headless evidence;
+- T480/manual tests only when indispensable.
+
+7. HANDOVER SELF-SUFFICIENCY
+----------------------------
+This final bundle contains:
+- exact final public source snapshot;
+- current canonical documents and this post-public addendum;
+- G16 certification evidence;
+- final .deb;
+- GitHub README/logo/final closure evidence;
+- mature editor corpus;
+- Plus/Ultra bootstrap;
+- Calamus source-access decision;
+- operational governance and retired-line warnings.
+
+A new chat should not ask the user to upload additional Graphium material
+before starting Plus-S0.
+
+
+===============================================================================
+ENTRY — PLUS-S1 CHAT-EMERGED TEST / T480 / CANDIDATE GOVERNANCE CLARIFICATION
+Date: 2026-08-28
+State: CANONICAL / BINDING / IMMEDIATE EFFECT / APPLIES TO PLUS AND ALL FUTURE GRAPHIIUM WORK
+===============================================================================
+
+CONTEXT
+-------
+During Graphium Plus-S1, two successive NON-CANDIDATE T480 True-GTK runs exposed
+qualification-oracle defects before a valid product conclusion could be drawn:
+
+  1. one scenario registered a Core Gtk.Application and then a Plus Gtk.Application
+     in the same process, violating the mature one-application-root-per-process
+     topology before the Plus window/toolbar was exercised;
+  2. the next scenario compared GtkToolButton.get_sensitive() with GAction.enabled,
+     while GTK3/Mousepad source proves that GtkToolButton forwards the actionable
+     binding to its internal GtkButton child, which is the widget whose sensitivity
+     GtkActionHelper updates.
+
+These failures are preserved as evidence that green test counts, fault-injection
+counts, or broad coverage are not sufficient proof when the oracle itself does not
+own the real product/toolkit boundary. The user therefore froze the following
+clarifications. They supplement, and where stricter supersede, prior test/T480
+practice. They do not weaken any existing safety, filesystem, GTK, identity,
+performance, packaging, Candidate or publication requirement.
+
+A. SANDBOX-FIRST TEST EXECUTION — MANDATORY
+-------------------------------------------
+  SANDBOX_FIRST_TEST_EXECUTION=MANDATORY
+  TEST_MEANINGFULLY_EXECUTABLE_IN_ASSISTANT_SANDBOX_MUST_RUN_THERE=YES
+  USER_PC_FOR_SANDBOX_CAPABLE_TEST=FORBIDDEN
+  T480_IS_NOT_A_CONVENIENCE_EXECUTION_HOST=YES
+
+Before asking the user to execute any test on the T480/PC, the assistant MUST record:
+
+  1. the exact product/property boundary to be proven;
+  2. why that property cannot be tested meaningfully in the assistant sandbox;
+  3. the minimal test scope required on the real machine;
+  4. why existing sandbox/headless/static evidence is insufficient;
+  5. that no broader or redundant T480 lane is being delegated merely for convenience.
+
+Examples of legitimate T480-only boundaries MAY include real GTK/display/session
+behavior, installed-desktop integration, real system service/tool integration,
+hardware/OS behavior, or packaging/install behavior only when the exact property
+cannot be reproduced meaningfully in the sandbox. The category name alone is not
+sufficient justification: if the relevant property can be tested meaningfully in
+the sandbox, it MUST be tested there and MUST NOT be delegated to the user.
+
+Manual testing remains last-resort evidence. A manual test is forbidden when an
+automated sandbox or automated T480 test can prove the same property faithfully.
+
+B. USER-PC / CANDIDATE DELIVERY — SAME-MESSAGE COMMAND IS MANDATORY
+-------------------------------------------------------------------
+The existing USER-PC COMMAND DELIVERY POLICY remains binding and is strengthened:
+
+  EVERY_USER_PC_TEST_REQUEST_INCLUDES_TERMINAL_COMMAND_SAME_MESSAGE=YES
+  TERMINAL_COMMAND_MUST_BE_COMPLETE_COPY_PASTE_READY=YES
+  TEST_PACKAGE_SHA256_AND_COMMAND_MUST_BE_DELIVERED_TOGETHER=YES
+  NO_USER_PC_TEST_REQUEST_WITHOUT_ITS_EXACT_LAUNCH_COMMAND=YES
+
+Additionally, whenever a Candidate is delivered for the user to download, install,
+execute, validate, or keep on the T480/PC, the SAME assistant message MUST include:
+
+  - the exact Candidate package link/name and SHA-256;
+  - the complete copy/paste-ready terminal command sequence;
+  - the exact extraction/install/run location appropriate to that Candidate;
+  - a fail-visible runner/command path that does not silently close on failure;
+  - any required instruction for leaving the Candidate installed/present on the PC.
+
+A Candidate package MUST NOT be delivered first with the terminal command deferred
+to a later message. If no user-PC execution is required, no terminal command is
+invented merely for ceremony.
+
+C. FAIL CLASSIFICATION BEFORE ANY REPAIR / RETRY
+------------------------------------------------
+  RETRY_UNTIL_GREEN=FORBIDDEN
+  BLIND_REISSUE=FORBIDDEN
+  PATCH_AND_RETRY_WITHOUT_SOURCE_AUDIT=FORBIDDEN
+  FAILURE_CLASSIFICATION_BEFORE_MUTATION=MANDATORY
+
+After any FAIL, STOP before changing product or test code. Determine source-first,
+using mature-source comparison where relevant, whether the evidence proves:
+
+  PRODUCT_FAIL
+  HARNESS_FAIL
+  ORACLE_FAIL
+  ENVIRONMENT_BOUNDARY_FAIL/BLOCKED
+  PACKAGING/TRANSPORT_FAIL
+  or another explicitly justified class.
+
+A wrong oracle MUST NOT be repaired by modifying the product to satisfy it. A
+product defect MUST NOT be relabelled as harness/oracle failure merely because a
+nearby test assumption was also weak. When both defects coexist, both are recorded.
+
+No automatic T480 retry is permitted. A later T480 execution is allowed only when
+it proves a materially corrected or previously untested real boundary, after local
+source-first requalification and explicit user authorization. It is not called a
+"retry" merely to evade this rule.
+
+D. ANTI-COSMETIC / ANTI-HAPPY-TEST RULE — DEFINITION
+----------------------------------------------------
+"Cosmetic action" in this governance means an action that makes qualification look
+better without making the evidence truer. It does NOT mean ordinary visual-product
+work such as fixing GUI layout, icon color/identity, spacing, ordering, contrast or
+other user-visible presentation when source/product analysis shows that change is
+actually required.
+
+The following qualification-cosmetic actions are FORBIDDEN:
+
+  - weakening an oracle because the product currently fails it;
+  - choosing only happy-path fixtures that avoid the discovered failure class;
+  - replacing a hostile/negative case with an easier passing case without a
+    source-grounded reason;
+  - adding parallel tests whose main purpose is to create more green counts;
+  - treating BLOCKED/INCOMPLETE/NOT-EXERCISED as PASS;
+  - testing implementation literals when the durable semantic owner is elsewhere;
+  - adding product-side synchronization, duplicate state, or workaround code solely
+    to satisfy a mistaken test observation;
+  - using coverage percentage, raw test count, or exact PASS count as a substitute
+    for proving the relevant property;
+  - retaining known-invalid oracle assumptions because changing them would disturb
+    historical counts or make the qualification less convenient.
+
+A test/oracle repair is valid only when source/toolkit/mature evidence proves that
+its previous observation boundary was wrong and the repaired oracle observes the
+real authority without weakening the intended product guarantee.
+
+E. TEST-VALUE / ANTI-MULTIPLICATION GATE
+----------------------------------------
+  TEST_COUNT_IS_NOT_A_QUALITY_METRIC=YES
+  TEST_LOC_IS_A_PERMANENT_COST=YES
+  HARNESS_LOC_IS_A_PERMANENT_COST=YES
+  DUPLICATE_PROPERTY_COVERAGE_DEFAULT=REJECT
+  GENERIC_TEST_FRAMEWORK_WITHOUT_PROVEN_NEED=REJECT
+
+Before adding a permanent test, scenario, helper, lane or harness abstraction, record:
+
+  1. UNIQUE PROPERTY — what durable property/failure class is not already owned;
+  2. REAL AUTHORITY — which product/toolkit/filesystem/runtime owner decides it;
+  3. FALSIFIABILITY — what realistic negative mutation/state would make it fail;
+  4. NON-DUPLICATION — why an existing Behavioral, Integration, True-GTK Desktop or
+     Packaging/Release authority cannot protect the same property;
+  5. COST — additional files/LOC/dependencies/runtime and whether existing test
+     infrastructure can be reduced or reused instead.
+
+If an existing permanent authority can be strengthened to own the property without
+creating a second authority, prefer that. Do not create a new scenario simply to
+separate each assertion into its own executable unit. Exact test counts remain
+informational/accounting evidence only; they are never an architectural quality
+objective.
+
+When a historical/obsolete test can be deleted or simplified after a stronger
+owner exists, prefer reduction rather than keeping both for reassurance.
+
+F. PRODUCT / HARNESS ANTI-BLOAT EXTENSION
+-----------------------------------------
+The Lightweight Budget and GS07 net-reductive governance apply equally to Plus and
+Ultra product code and qualification infrastructure.
+
+  UNUSED_GENERICITY=REJECT
+  FRAMEWORK_FOR_ONE_FEATURE=REJECT_BY_DEFAULT
+  DUPLICATED_METADATA_OR_STATE_AUTHORITY=REJECT
+  PRODUCT_LOC_AND_TEST_LOC_MUST_BE_REPORTED_AS_COST=YES
+  PASS_COUNTS_DO_NOT_OVERRIDE_BLOAT_FINDINGS=YES
+
+Do not add generic parameters, service layers, worker/job frameworks, compatibility
+wrappers, plugin systems, duplicated metadata, duplicated sensitivity/state paths,
+or reusable-looking abstractions unless a current demonstrated requirement needs
+them. "May be useful later" is insufficient.
+
+A source reduction that removes unnecessary authority/genericity is preferred over
+a green test that preserves the bloat. Conversely, LOC reduction MUST NOT be used
+to delete essential hostile/safety guarantees; structural simplification remains
+invalid if it weakens a real product guarantee.
+
+G. T480 MINIMALITY / EVIDENCE REUSE
+-----------------------------------
+Valid prior T480 evidence for an unchanged property remains usable historical/current
+support when exact source/property identity is preserved. Do not rerun an unchanged
+platform boundary merely because another nearby source/test file changed.
+
+A requested T480 lane MUST be the smallest lane that proves the unresolved real
+boundary. Full-suite T480 execution is forbidden when the unresolved property is
+narrow and the broader suites are already meaningfully executable/proven elsewhere.
+
+The assistant MUST NOT transfer routine CPU/time cost to the user's T480 when the
+same evidence can be produced in its sandbox.
+
+H. CANDIDATE / ATTEMPT GOVERNANCE REMAINS SEPARATE
+-------------------------------------------------
+No NON-CANDIDATE source/test repair, sandbox qualification or platform probe becomes
+a Candidate automatically. Candidate construction/declaration and any attempt
+consumption remain separately authorized under the existing governance. A harness
+or oracle failure before meaningful product execution does not become a product
+failure merely to preserve attempt accounting, and attempt accounting must never be
+used to soften a real product failure.
+
+BINDING SUMMARY MARKERS
+-----------------------
+  SANDBOX_FIRST_TEST_EXECUTION=YES
+  SANDBOX_CAPABLE_TEST_ON_T480=FORBIDDEN
+  T480_BOUNDARY_JUSTIFICATION_REQUIRED=YES
+  T480_SCOPE_MUST_BE_MINIMAL=YES
+  MANUAL_TEST_LAST_RESORT=YES
+
+  USER_PC_PACKAGE_SHA_COMMAND_SAME_MESSAGE=YES
+  CANDIDATE_DOWNLOAD_AND_TERMINAL_COMMAND_SAME_MESSAGE=YES
+  CANDIDATE_PC_LOCATION_AND_RUN_COMMAND_REQUIRED=YES
+
+  FAIL_CLASSIFY_SOURCE_FIRST_BEFORE_MUTATION=YES
+  RETRY_UNTIL_GREEN=FORBIDDEN
+  WRONG_ORACLE_PRODUCT_WORKAROUND=FORBIDDEN
+
+  HAPPY_TEST_COSMETIC_COVERAGE=FORBIDDEN
+  GUI_ICON_VISUAL_PRODUCT_REPAIR_WHEN_REAL=ALLOWED
+  TEST_COUNT_IS_NOT_QUALITY=YES
+  TEST_MULTIPLICATION_FOR_REASSURANCE=FORBIDDEN
+  TEST_HARNESS_LOC_COUNTS_AS_BLOAT_COST=YES
+  UNUSED_GENERICITY=REJECT
+
+  CANDIDATE_REQUIRES_SEPARATE_AUTHORIZATION=YES
+  GIT_MUTATION_BY_THIS_ENTRY=NO
+  PRODUCT_MUTATION_BY_THIS_ENTRY=NO
+
+
+===============================================================================
+ENTRY — GRAPHIIUM PLUS-S1 CLOSURE / TRUE-GTK PLATFORM PROOF
+Date: 2026-08-28
+State: CANONICAL / BINDING / PLUS OPEN / S1 CLOSED / NON-CANDIDATE
+===============================================================================
+
+AUTHORIZATION / EVIDENCE
+------------------------
+After the source-first mature re-audit and reduction, the user executed the single
+remaining NON-CANDIDATE platform boundary on the T480 exactly once. The qualified
+SOURCE is byte-identical to the source-first-reduced S1 authority; no product/test
+mutation occurred between that source audit and this platform execution.
+
+The user-provided terminal result was:
+
+  PACKAGE_VERIFY=PASS files=276
+  GTK3_PYTHON_PREFLIGHT=PASS
+  PLUS_TOOLBAR_TRUE_GTK=START
+  DESKTOP_SECTION=plus_toolbar START
+  DESKTOP_SECTION=plus_toolbar RESULT=PASS
+  PLUS_TOOLBAR_TRUE_GTK=PASS
+  PYCACHE_HYGIENE=PASS
+  PLUS_S1_T480_NONCANDIDATE=PASS
+
+SOURCE IDENTITY
+---------------
+  QUALIFIED_SOURCE_FILES=266
+  SOURCE_SHA256_MANIFEST_SHA256=4410728388a7cdd9f0eaaecc65872d58ecfc80065fb90452216dbbc68b2df905
+
+The same manifest hash was independently reproduced from both the source-first
+reduction package and the single T480 qualification package before closure.
+
+HISTORICAL FAILS — PRESERVED, NOT ERASED
+----------------------------------------
+T480 run 1 remains valid evidence of a harness-topology defect: the scenario tried
+to register Core and Plus Gtk.Application roots in one process before exercising
+Plus. T480 run 2 remains valid evidence of a wrong-owner GTK oracle: it compared
+GtkToolButton outer sensitivity with GAction.enabled while mature GTK3/Mousepad
+source established the actionable child Gtk.Button as the real sensitivity owner.
+Neither failure is rewritten as PASS and neither is a Candidate attempt.
+
+FINAL S1 PRODUCT CONTRACT PROVEN
+--------------------------------
+  PLUS_SEPARATE_IDENTITY=PASS
+  CORE_DEFAULT_IDENTITY_UNCHANGED=PASS
+  CORE_IMPORTS_PLUS=0
+  PLUS_XDG_NAMESPACE_SEPARATE=PASS
+  ACTIVE_DOCUMENT_AUTHORITY_COUNT=1
+  PHYSICAL_DOCUMENT_WRITER_AUTHORITY_COUNT=1
+  CANONICAL_COMMAND_AUTHORITY_COUNT=1
+  TOOLBAR_NATIVE_GTK3=PASS
+  TOOLBAR_ACTIONS=7
+  TOOLBAR_SEPARATORS=2
+  TOOLBAR_COMMAND_DUPLICATION=0
+  TOOLBAR_SENSITIVITY_SECOND_AUTHORITY=0
+  MENU_THEN_TOOLBAR_GUI_ORDER=PASS
+  PLUS_RED_ICON_GEOMETRY_IDENTITY=PASS
+  NEW_THREAD_PROCESS_STORAGE_FOR_TOOLBAR=0
+
+QUALIFICATION / GOVERNANCE
+--------------------------
+No sandbox-capable test is repeated on the T480. The only T480 execution used for
+closure was the unresolved real GTK/display boundary. No manual test was required.
+No Candidate is declared, no Candidate attempt is consumed, and no Git mutation is
+authorized or performed by this closure.
+
+  GRAPHIIUM_PLUS_STATUS=OPEN
+  PLUS_S0=PASS_CLOSED
+  PLUS_S1=PASS_CLOSED_NONCANDIDATE
+  PLUS_S1_TRUE_GTK=PASS
+  CANDIDATE=NO
+  ATTEMPT_CONSUMED=NO
+  GIT_MUTATION=NO
+
+NEXT SERIAL PRODUCT WORK
+------------------------
+The next serial Plus work is the Writing Workspace foundation. It must begin
+source-first and NON-CANDIDATE, using the bundled Calamus W79-W84 evidence as the
+primary historical authority, the exact final Graphium/Plus S1 owners as the host
+architecture, the mature editor corpus for corroboration, and Cistula only as a
+supplementary comparator when it demonstrably improves the design.
+
+Before Workspace implementation, freeze at minimum:
+  - one-root ownership and root lifecycle;
+  - lazy directory-expansion vs recursive snapshot decision;
+  - immutable item/current-item identity and stale-selection semantics;
+  - hidden/symlink/root-confinement rules;
+  - internal .txt/.md activation through Graphium canonical Open;
+  - non-text external activation boundary;
+  - presentation/controller separation;
+  - Recent Workspaces separation from Recent Files;
+  - startup/I-O/thread/process budget;
+  - hostile oracles that prove these properties without multiplying tests.
+
+NEXT_STEP=GRAPHIIUM_PLUS_S2_WRITING_WORKSPACE_FOUNDATION_SOURCE_FIRST_AUDIT_AND_CONTRACT_FREEZE
+
+
+===============================================================================
+ENTRY — GRAPHIIUM PLUS-S2 WRITING WORKSPACE FOUNDATION SOURCE-FIRST CONTRACT FREEZE
+Date: 2026-08-28
+State: CANONICAL / BINDING / PLUS OPEN / S0-S2 CLOSED / NON-CANDIDATE
+===============================================================================
+
+The user explicitly authorized the next step after Plus-S1 True-GTK PASS. S1 is
+closed NON-CANDIDATE on the exact 266-file qualified SOURCE manifest whose listing
+hash is `4410728388a7cdd9f0eaaecc65872d58ecfc80065fb90452216dbbc68b2df905`.
+No S1 evidence is rerun for this S2 audit.
+
+S2 is source-first only. Direct Graphium/Plus host owners, bundled Calamus W79-W84
+Workspace evidence, gedit/FeatherPad/Mousepad mature source and all 17 Cistula W03
+runtime modules were inspected. Cistula remains supplementary only.
+
+FROZEN FOUNDATION DECISIONS
+---------------------------
+  WORKSPACE_ROOT_AUTHORITY_COUNT=1
+  WORKSPACE_LOADING=LAZY_ON_DEMAND
+  RECURSIVE_FULL_ROOT_SNAPSHOT_DEFAULT=REJECT
+  CISTULA_GLOBAL_5000_ITEM_CAP_AUTO_COPY=REJECT
+  ARBITRARY_PERFORMANCE_THRESHOLD=FORBIDDEN
+  WORKSPACE_STARTUP_AUTO_RESTORE=NO
+  WORKSPACE_STARTUP_SCAN=NO
+  WORKSPACE_WATCHER=NO
+  WORKSPACE_BACKGROUND_WORKER=NO
+  WORKSPACE_MUTATIONS_IN_FOUNDATION=0
+
+  HIDDEN_NAMES=OMIT
+  SYMLINK_ROOT=REJECT
+  SYMLINK_EXPANSION=REJECT
+  SYMLINK_ACTIVATION=REJECT
+  ROOT_CONFINEMENT=REALPATH_COMMONPATH_REVALIDATED
+  STALE_ITEM_VALIDATION=REQUIRED
+
+  INTERNAL_TXT_MD_GATEWAY=GraphiumWindow.open_path
+  DIRECT_DOCUMENT_SESSION_ACCESS_FROM_WORKSPACE=FORBIDDEN
+  DIRECT_EDITOR_INITIALIZE_OPEN_FROM_WORKSPACE=FORBIDDEN
+  NON_TEXT_EXTERNAL_DELEGATION=EXPLICIT_ONLY
+
+  GUI_MAIN_SPLIT=Gtk.Paned_HORIZONTAL
+  WORKSPACE_PANE=LEFT
+  EXISTING_GRAPHIIUM_EDITOR=RIGHT
+  SECOND_EDITOR_BUFFER_SESSION_WRITER=FORBIDDEN
+  GENERIC_PANEL_PLUGIN_FRAMEWORK=REJECT
+
+  RECENT_WORKSPACES=SEPARATE_FROM_RECENT_FILES
+  RECENT_WORKSPACES_LIMIT=8_CISTULA_PRECEDENT
+  ACTIVE_ROOT_PERSISTENCE=NO_FIRST_BASELINE
+  PANE_VISIBILITY_PERSISTENCE=NO_FIRST_BASELINE
+  PANE_WIDTH_PERSISTENCE=NO_FIRST_BASELINE
+
+  FILTER=DEFER
+  MUTATIONS=DEFER_TO_LATER_SERIAL_SLICE
+  ACTIVE_DOCUMENT_TREE_AUTOSELECT=DEFER
+
+SANDBOX DIRECTIONAL PERFORMANCE EVIDENCE
+----------------------------------------
+A temporary non-product workload compared exact Cistula W03 recursive scanning with
+immediate-child lazy scanning on synthetic local trees. Approximate medians after
+warm-up: recursive 5,000-item bounded snapshot ~31 ms; lazy 100-row root ~0.10 ms;
+one 50-file expansion ~0.06 ms; flat 5,000 immediate children ~4.6 ms. These values
+are directional sandbox observations only, not certification limits. They support
+lazy loading and do not justify workers or copied thresholds.
+
+QUALIFICATION GOVERNANCE
+------------------------
+All GTK-free Workspace model/controller/filesystem/store tests that are meaningful
+in the assistant sandbox MUST run there in the implementation slice. T480 may be
+used only for an unresolved real GTK/display boundary such as actual Gtk.Paned/tree
+projection if the sandbox cannot meaningfully execute it. No exact test count is a
+quality target; no new harness is justified by S2.
+
+PLUS_S2=PASS_CLOSED_SOURCE_FIRST_CONTRACT_FREEZE
+PRODUCT_MUTATION=NO
+TEST_MUTATION=NO
+GIT_MUTATION=NO
+CANDIDATE=NO
+ATTEMPT_CONSUMED=NO
+NEXT_STEP=AWAIT_EXPLICIT_PLUS_S3_READ_ONLY_WORKSPACE_FOUNDATION_IMPLEMENTATION_AUTHORIZATION
+
+
+===============================================================================
+ENTRY — GRAPHIIUM PLUS CONSOLIDATED STRUCTURAL AUTHORITY AFTER S0-S3 + GEANY AUDIT
+Date: 2026-08-28
+State: CANONICAL / BINDING / CONSOLIDATED PLUS STRUCTURAL CONTRACT
+===============================================================================
+
+PURPOSE / PRECEDENCE
+--------------------
+This entry consolidates, in one place, all currently binding Graphium Plus structural
+choices established across Plus-S0, Plus-S1, Plus-S2 and the subsequent exact-source
+audits of Calamus W79-W84, gedit, Geany, Kate and Cistula. Historical entries remain
+valid evidence. Where a later finding refined an earlier DEFER/implementation choice,
+this consolidated entry is the current Plus authority.
+
+PRODUCT-LINE TOPOLOGY
+---------------------
+  PRODUCT_LINE=Graphium_Core_SUBSET_Graphium_Plus_SUBSET_Graphium_Ultra
+  PLUS_IS_RUNTIME_FEATURE_FLAG=NO
+  ULTRA_IS_RUNTIME_FEATURE_FLAG=NO
+  CORE_IMPORTS_PLUS=0
+  CORE_IMPORTS_ULTRA=0
+  PLUS_IMPORTS_ULTRA=0
+
+Graphium Core remains the frozen single-document native GTK editor. Graphium Plus is
+cumulative: Core + compact native toolbar + bounded local Workspace. Graphium Ultra
+is later cumulative Plus + Markdown capability. Core startup/runtime must never import
+or initialize Plus/Ultra code, scan Workspace files, touch Plus state or start Plus
+workers.
+
+PLUS REPOSITORY / IDENTITY / LINEAGE
+------------------------------------
+  PRODUCT_NAME=Graphium Plus
+  REPOSITORY_NAME=graphium-plus
+  REPOSITORY_REMOTE=https://github.com/leviagravia/graphium-plus.git
+  EXECUTABLE=graphium-plus
+  PYTHON_NAMESPACE=graphium_plus
+  DESKTOP_APPLICATION_ID=io.github.leviagravia.GraphiumPlus
+  APPLICATION_ICON_NAME=io.github.leviagravia.GraphiumPlus
+  XDG_NAMESPACE=graphium-plus
+  LICENSE=GPL-3.0-or-later
+  AUTHOR_COPYRIGHT_LICENSE=INHERIT_FROM_CORE
+  PLUS_VERSION=DEFER_UNTIL_RELEASE_VERSIONING
+
+The frozen preferred Git lineage is one-time cumulative lineage from exact public Core
+HEAD `8899c94006757c066c88739ff84bf8e1a6cb1b35`. Plus does NOT depend at runtime on a
+separately installed Graphium Core package, Calamus or Cistula. No Core submodule,
+generic plugin framework, edition registry or Core feature flag is introduced.
+Changes inside inherited `graphium/` are permitted only as minimal generic seams with
+Core-default equivalent behavior and zero Plus imports.
+
+ICON FAMILY
+-----------
+Graphium Plus uses the exact Graphium icon geometry, including hand-tuned
+16/24/32/48/scalable variants, with colorway change only. Plus dominant identity is
+red; S1 qualified the current red palette and geometry identity. Ultra later uses the
+same geometry with gold/yellow family color. No new logo family or generic icon
+framework.
+
+CORE/PLUS AUTHORITY COUNTS
+--------------------------
+At Plus runtime:
+  ACTIVE_DOCUMENT_AUTHORITY_COUNT=1
+  DOCUMENT_REPLACEMENT_LIFECYCLE_COUNT=1
+  PHYSICAL_DOCUMENT_WRITER_AUTHORITY_COUNT=1
+  CANONICAL_COMMAND_AUTHORITY_COUNT=1
+  EDITOR_BUFFER_AUTHORITY_COUNT=1
+
+The inherited Core owners remain authoritative:
+  DocumentSession              = sole active-document truth
+  FileLifecycleController      = sole New/Open/Close/replacement lifecycle
+  GuardedFileWriter            = sole physical document writer
+  Graphium command catalog     = sole menu/accelerator/toolbar command authority
+  GraphiumTextView/TextBuffer  = sole active editor buffer
+
+No Workspace object may become document identity, save authority, dirty/savepoint
+authority or recovery authority.
+
+COMPOSITION / GTK SHELL
+-----------------------
+S1 established the minimal product-line composition seams:
+  - immutable ProductIdentity with Core defaults;
+  - XDG namespace injection;
+  - application identity/window-factory composition;
+  - About/printing reuse rather than duplication;
+  - Plus-specific composition under `graphium_plus/`.
+
+The Core window must not be wholesale copied. A small explicit inherited editor-surface
+reference is permitted so Plus can compose the left Workspace with the existing editor
+without widget-tree heuristics or a generic panel/plugin framework.
+
+PLUS TOOLBAR — CLOSED S1 CONTRACT
+---------------------------------
+Native GTK3 compact icon toolbar:
+  New  Open  Save  |  Undo  Redo  |  Reload  Find
+
+Exact canonical action mapping:
+  win.new     -> document-new
+  win.open    -> document-open
+  win.save    -> document-save
+  win.undo    -> edit-undo
+  win.redo    -> edit-redo
+  win.reload  -> view-refresh
+  win.find    -> edit-find
+
+GTK toolbar is projection only. Buttons use GtkActionable/GAction binding. No toolbar
+callback owns command behavior and no second sensitivity calculation exists. The real
+GTK actionable child owns effective sensitivity per GTK3/Mousepad source. Qualified GUI
+order is Menu -> Toolbar -> main content -> Status. Toolbar is defining Plus surface,
+visible by default; style/visibility persistence/configuration remains deferred absent
+real user need.
+
+WORKSPACE TERMINOLOGY / UI NAME
+-------------------------------
+The architecture/domain name remains `Workspace` in source and contracts. The former
+UI phrase "Writing Workspace" is too long and is no longer structurally required.
+Current implementation working label is `Workspace`. Final one-word marketing/UI label
+may be changed without changing architecture; no structural contract depends on the
+visible label.
+
+WORKSPACE SOURCE AUTHORITY ORDER
+--------------------------------
+Primary implementation/safety authority order is frozen as:
+  1. exact current Graphium/Plus source and Core ownership graph;
+  2. Calamus W79 exact source = primary read-only Workspace baseline;
+  3. Calamus W80-W84 exact milestone deltas = mutation/safety provenance;
+  4. gedit File Browser = primary nested lazy GTK-tree comparator;
+  5. Geany File Browser/sidebar = one-directory scan/search/focus/context comparator;
+  6. Cistula W03 = simplification/state/mutation comparator;
+  7. Kate = selective tree/navigation UX/state comparator;
+  8. Mousepad/FeatherPad = lightweight/command/UI-complexity boundary comparators.
+
+No comparator becomes a runtime dependency. Calamus-specific academic features,
+Research Panel, bibliography/citations, document families, Source Notes/favourites
+coupling, historical Wxx compatibility glue and unrelated lifecycle ownership are
+REJECTED from Plus.
+
+WORKSPACE ROOT / LOADING MODEL
+------------------------------
+  WORKSPACE_ROOT_AUTHORITY_COUNT=1
+  ROOT_KIND=ONE_LOCAL_DIRECTORY
+  ROOT_SYMLINK=REJECT
+  REMOTE_VFS_MOUNT_BROWSER=REJECT
+  STARTUP_AUTO_RESTORE_ROOT=NO
+  STARTUP_WORKSPACE_SCAN=NO
+  WORKSPACE_WATCHER=NO
+  WORKSPACE_INDEXER=NO
+  WORKSPACE_BACKGROUND_WORKER=NO
+
+The read-only foundation uses a **one-directory-at-a-time synchronous local scanner**.
+This is now corroborated by exact Geany `plugins/filebrowser.c` + `src/utils.c`, where
+refresh enumerates only the current directory, and by gedit's nested on-expand loading.
+
+Frozen lazy behavior:
+  - bind root: validate root, scan immediate visible children only;
+  - directory row: expandable without scanning descendants;
+  - expand: revalidate current in-root non-symlink directory and scan only its immediate
+    children;
+  - collapse: zero filesystem operation;
+  - Refresh: explicit/manual only; rebuild root and only re-expand paths that were
+    already expanded in memory;
+  - no arbitrary global item cap copied from Cistula's recursive architecture;
+  - no permanent async/job framework unless a measured real directory boundary later
+    proves synchronous one-directory enumeration inadequate.
+
+Directory expansion/restoration state is in-memory navigation context only. It is not a
+session file and is not persisted across restart.
+
+WORKSPACE ITEM / STALE / CONFINEMENT MODEL
+------------------------------------------
+Items are immutable and minimal. Required semantic fields:
+  root
+  path
+  relative_path
+  name
+  is_directory
+  is_symlink
+  text_document
+  generation/current-snapshot identity
+
+Recursive-depth metadata is not carried merely because Calamus/Cistula recursive
+snapshots used it. GtkTreeIter/GtkTreePath/QModelIndex equivalents are projection-only,
+never filesystem identity.
+
+Ordering:
+  directories first -> name.casefold() -> original name
+
+Hidden names beginning with `.` are omitted in the first baseline. No hidden-files
+toggle is added.
+
+Symlink policy is fail-closed:
+  - symlink root rejected;
+  - symlink row may be displayed with a symlink icon;
+  - symlink directory never expanded;
+  - symlink file never internally or externally activated;
+  - expansion/activation rechecks current symlink/type/existence state.
+
+Confinement uses realpath/commonpath revalidation. Root rebinding/Refresh increments
+current generation; old row/item objects become stale and cannot act. A failed root
+transition preserves the previous valid root/tree. A failed Refresh preserves the
+previous successfully rendered authority where possible and reports stale/error state.
+
+WORKSPACE GUI / INTERACTION
+---------------------------
+Main Plus layout:
+  Menu
+  Toolbar
+  Gtk.Paned(HORIZONTAL)
+      left  = Workspace panel
+      right = existing inherited Graphium editor scroller
+  Status
+
+No second editor/view/buffer/window is created for Workspace.
+
+First read-only panel surface:
+  - Open Folder
+  - Recent
+  - Refresh
+  - Reveal
+  - bounded root-name/path projection
+  - single-selection Gtk.TreeView
+  - native GtkTreeView incremental search on **loaded rows only**
+  - Enter/double-click activation
+  - visible warning/error state
+
+Geany source promoted two details into the first baseline:
+  NATIVE_TREE_LOADED_ROW_SEARCH=ADOPT
+  EXPANDED_PATH_RESTORE_ON_MANUAL_REFRESH=ADOPT_IN_MEMORY_ONLY
+
+The following remain DEFERRED:
+  - follow/auto-select current document;
+  - dedicated Workspace focus keybinding;
+  - pane-width persistence;
+  - show/hide persistence;
+  - global filter/search;
+  - active-document highlight/locate action;
+  - drag/drop and broad context menus.
+
+The following are REJECTED for the first Plus product contract:
+  - free path-entry navigation / Up / Home outside the bound root;
+  - multi-selection/batch operations;
+  - project/session model;
+  - tabs/multi-document authority;
+  - Find-in-Files/indexed global search;
+  - Git UI/terminal/VFS/remote browser.
+
+WORKSPACE SEARCH / FILTER SEMANTICS
+-----------------------------------
+Geany's native GtkTreeView search is adopted because it acts only on rows already
+materialized and requires no global scan/index. A Cistula-style basename filter over the
+entire Workspace is NOT copied: with a lazy tree, a truly global filter would require a
+recursive scan or index and would undermine the loading model. Therefore:
+  LOADED_ROW_INCREMENTAL_SEARCH=YES
+  GLOBAL_WORKSPACE_FILTER=DEFER
+  GLOBAL_WORKSPACE_SEARCH_INDEX=REJECT_FIRST_BASELINE
+
+DOCUMENT ACTIVATION
+-------------------
+Editable `.txt`/`.md` activation must follow:
+  Workspace row
+    -> WorkspaceController activation plan
+    -> GraphiumPlusWindow
+    -> inherited GraphiumWindow.open_path(path)
+    -> external monitor suspend/rebind
+    -> canonical FileLifecycleController.open_document(path)
+    -> canonical Save/Discard/Cancel guard
+    -> existing DocumentSession/editor replacement on success only
+    -> Recent Files/projection/focus updates
+
+Workspace must not call DocumentSession, NativeEditorController.initialize_open or
+GuardedFileWriter directly. Cancelling unsaved replacement leaves active document
+unchanged even if Workspace selection remains selected.
+
+Non-text regular files may delegate explicitly to the desktop through narrow shell-free
+Gio default-application activation. Geany's configurable shell command/spawn model is
+REJECTED. Reveal delegates only to the selected item's containing directory or current
+Workspace root and never becomes document/mutation authority.
+
+RECENT WORKSPACES
+-----------------
+Recent Workspaces is convenience state distinct from Recent Files:
+  RECENT_WORKSPACES_FILE=graphium-plus XDG state/recent-workspaces.json
+  RECENT_WORKSPACES_LIMIT=8
+  ACTIVE_ROOT_PERSISTED=NO
+  DOCUMENT_SESSION_RESTORED=NO
+
+State contains only a schema plus recent root paths. Save uses a private temporary file,
+flush/fsync and atomic replace. Missing/symlink/invalid roots are hidden when recents are
+requested. Loading is lazy; no Workspace I/O occurs merely because Plus starts.
+
+READ-ONLY STATUS / COUNTS
+-------------------------
+A lazy tree must never present partial loaded counts as if they were total Workspace
+counts. Therefore Calamus W79's whole-snapshot `N files / N folders` status is REJECTED
+for the Plus lazy baseline. Only known local status/warnings may be shown.
+
+MUTATION ROADMAP / SAFETY CONTRACT
+----------------------------------
+Calamus W80-W84 exact deltas are reused as safety provenance but mutations remain serial.
+
+PLUS-S4 — New Text + New Folder
+  Shared validation/planning infrastructure is implemented once.
+  New Text: because it will become the active document, canonical unsaved/replacement
+  preflight occurs **before** file creation; then exclusive creation, postcondition,
+  refresh/select and canonical open_path(). User Cancel must not leave an unwanted file.
+  New Folder: no document unsaved guard because active document identity is unchanged;
+  bounded validation + exactly one creation + postcondition + refresh/select.
+
+PLUS-S5 — Safe Rename
+  First baseline allows inactive file and inactive directory only.
+  Active document and any ancestor directory containing active document fail closed.
+  Pattern: stale/current + confinement validation -> immutable plan -> identity token ->
+  one Gio rename -> postcondition -> ownership-safe rollback only when ownership remains
+  demonstrable -> refresh/reconciliation.
+  Active-document path rebinding is DEFERRED rather than importing Calamus-specific
+  lifecycle complexity.
+
+PLUS-S6 — Verified Duplicate
+  Regular files only. Source remains active. Duplicate represents bytes saved on disk,
+  never unsaved editor buffer, and is not auto-opened. Revalidate source identity/content,
+  perform one Gio copy, prove source still same and target content equals source, then
+  refresh/select. Workspace never uses the document Save writer for Duplicate.
+
+PLUS-S7 — System Trash
+  System Trash only; permanent-delete fallback forbidden. Active document and active-
+  document ancestor directory fail closed. Pattern: stale/current + confinement + identity
+  checks -> optional Gio capability hint only -> explicit confirmation -> one Gio trash ->
+  postcondition -> refresh. `os.remove`, `shutil.rmtree` or equivalent permanent delete is
+  forbidden as fallback.
+
+PLUS-S8 — Usability / structural consolidation
+  Only after filesystem safety is stable, evaluate active-document highlight/locate,
+  show/hide Workspace, pane width and other bounded usability improvements. Geany's
+  follow-current-document is a comparator here, not baseline behavior.
+
+PLUS-S9 — Integral qualification / Candidate readiness
+  Must be able to FAIL for bloat/duplicate authority even with all functional tests green.
+  Audit Core isolation, authority counts, startup I/O, lazy behavior, mutations, hostile
+  filesystem cases, dependency/LOC/test-harness growth and absence of Calamus/Cistula
+  runtime coupling. Candidate remains separately authorized.
+
+TEST / BLOAT GOVERNANCE FOR PLUS
+--------------------------------
+The previously appended sandbox-first / anti-happy-test rules remain binding. In
+particular:
+  - any meaningful sandbox-capable test runs in assistant sandbox, not T480;
+  - T480 requires a property that cannot meaningfully be proved in sandbox plus explicit
+    justification and minimal scope;
+  - no retry-until-green;
+  - wrong oracle must be repaired from source truth, never by product workaround;
+  - test count is not quality;
+  - no multiplication of tests/harnesses for reassurance;
+  - test/harness LOC counts as bloat cost;
+  - unused genericity / generic framework for one feature is rejected;
+  - real GUI/icon/layout repair is permitted and required when source/user evidence shows
+    a real defect; "cosmetic" prohibition means masking evidence, not legitimate visual
+    product work.
+
+CANDIDATE / USER-PC DELIVERY
+----------------------------
+Candidate remains separately authorized. Whenever a Candidate/package intended to be
+kept/run on the user's PC is delivered, the same assistant message must include the
+artifact identity/SHA and complete copy-paste terminal command. A sandbox-capable test
+must never be delegated to the PC for convenience.
+
+CURRENT SERIAL ROADMAP
+----------------------
+  PLUS-S0 = CLOSED source-first product-line contract
+  PLUS-S1 = CLOSED NON-CANDIDATE composition + toolbar
+  PLUS-S2 = CLOSED source-first Workspace contract freeze
+  PLUS-S3 = read-only lazy Workspace implementation/current work
+  PLUS-S4 = New Text + New Folder
+  PLUS-S5 = Safe Rename
+  PLUS-S6 = Verified Duplicate
+  PLUS-S7 = System Trash
+  PLUS-S8 = usability + structural consolidation
+  PLUS-S9 = integral qualification / Candidate readiness
+  Candidate R1 = separate authorization only
+
+
+
+===============================================================================
+ENTRY — GRAPHIIUM PLUS-S3 READ-ONLY WORKSPACE IMPLEMENTATION / LOCAL QUALIFICATION
+Date: 2026-08-28
+State: CANONICAL HANDOVER UPDATE / S3 IMPLEMENTED / LOCAL PASS / TRUE-GTK PENDING
+===============================================================================
+
+AUTHORIZATION / SCOPE
+---------------------
+The user explicitly authorized the next serial step after Plus-S2 and required that all
+sandbox-capable tests remain in the assistant sandbox. The user also supplied exact
+Calamus W79-W84 source and Geany master source. Geany was re-audited before S3 code.
+
+S3 implements only the read-only Workspace foundation defined by the consolidated Plus
+contract above. No mutation operations, Candidate, Git mutation or T480 execution occur
+in this step.
+
+EXACT S3 SOURCE IDENTITY
+------------------------
+  SOURCE_FILES=273
+  SOURCE_SHA256_MANIFEST_SHA256=f03bbab2f420b61853b61a7fd53a4358aa60b99018d0f3f3ca501ecb481a3fc1
+
+IMPLEMENTED STRUCTURE
+---------------------
+  ONE_LOCAL_ROOT=YES
+  ONE_DIRECTORY_SCANNER=YES
+  LAZY_DIRECTORY_EXPANSION=YES
+  HIDDEN_DOT_NAMES=OMIT
+  SYMLINK_ROOT_EXPAND_ACTIVATE=FAIL_CLOSED
+  ROOT_CONFINEMENT=REALPATH_COMMONPATH_REVALIDATED
+  GENERATION_STALE_FENCE=YES
+  RECENT_WORKSPACES_SEPARATE=YES
+  RECENT_LIMIT=8
+  ACTIVE_ROOT_PERSISTENCE=NO
+  WORKSPACE_STARTUP_SCAN=NO
+  WORKSPACE_WATCHER=NO
+  WORKSPACE_INDEXER=NO
+  BACKGROUND_WORKER=NO
+  GTK_MAIN_SPLIT=Gtk.Paned_HORIZONTAL
+  EXISTING_EDITOR_SCROLLER_REUSED=YES
+  SECOND_EDITOR_SESSION_WRITER=0
+  NATIVE_LOADED_ROW_TREE_SEARCH=YES
+  EXPANDED_PATH_RESTORE_ON_MANUAL_REFRESH=YES_IN_MEMORY_ONLY
+  INTERNAL_TXT_MD_GATEWAY=GraphiumWindow.open_path
+  EXTERNAL_DELEGATION=Gio_SHELL_FREE
+
+Exactly one inherited Core GUI seam was added: the already-created editor scroller is
+retained as `_editor_scroller` so Plus can compose it into the paned container without
+widget-tree guessing. Core imports no Plus code.
+
+SOURCE-FIRST DEFECT FOUND BEFORE PLATFORM TEST
+----------------------------------------------
+The first local S3 draft could commit a new Workspace root and then fail Recent Workspace
+persistence before rendering the accepted root, leaving controller and visible tree out
+of sync. This was classified as a real authority-order defect, not hidden with an oracle.
+The corrected order renders the successfully validated root first; Recent persistence is
+convenience state and a save failure produces only warning without undoing/hiding the
+accepted root.
+
+SANDBOX QUALIFICATION
+---------------------
+All meaningful non-GTK properties were executed in the assistant sandbox:
+  AST_PARSE=PASS files=138
+  PLUS_WORKSPACE_FOCUSED=5/5 PASS
+  INTEGRATION=187/187 PASS
+  CORE_BEHAVIORAL=190/190 PASS
+  PACKAGING_RELEASE=60/60 PASS
+  FORBIDDEN_WORKER_WATCHER_SUBPROCESS_INDEX_PATTERNS=NONE
+  PYCACHE_HYGIENE=PASS
+
+No test-count target is inferred from these numbers. One focused integration module
+covers the new GTK-free Workspace authority boundaries; no framework was added.
+
+TRUE-GTK BOUNDARY
+-----------------
+The assistant sandbox lacks PyGObject (`gi`), so actual Gtk.Paned/Gtk.TreeView behavior
+cannot be executed meaningfully here. One and only one new permanent desktop scenario,
+`plus_workspace`, was added to the existing harness. Static parse is PASS. It is scoped
+to the unresolved real GTK projection/lazy-expansion/refresh/open handoff only. No T480
+run is authorized by this entry.
+
+ANTI-BLOAT ACCOUNTING
+---------------------
+Relative to pre-S3 Plus source:
+  CHANGED_OR_NEW_PATHS=10
+  CORE_RUNTIME_NET_SEAM=+1_LINE
+  PLUS_PY_RUNTIME_BEFORE_S3=94_LOC
+  PLUS_PY_RUNTIME_AFTER_S3=735_LOC
+  PLUS_S3_RUNTIME_GROWTH=+641_LOC
+  TEST_PY_GROWTH=+206_LOC
+  NEW_TEST_FRAMEWORKS=0
+  NEW_PERMANENT_GTK_FREE_TEST_FILES=1
+  NEW_PERMANENT_TRUE_GTK_SCENARIOS=1
+  NEW_THREAD_PROCESS_WATCHER_INDEX_DB=0
+
+This growth remains below the exact Calamus W79 read-only Workspace-only implementation
+(~770 Workspace LOC) while changing the recursive model to lazy loading and adding
+separate recent-state handling. That comparison is contextual only; LOC is not a quality
+score and S9 remains allowed to reject the product for bloat.
+
+STATUS
+------
+  PLUS_S0=PASS_CLOSED
+  PLUS_S1=PASS_CLOSED_NONCANDIDATE
+  PLUS_S2=PASS_CLOSED_SOURCE_FIRST_CONTRACT_FREEZE
+  PLUS_S3_IMPLEMENTED=YES
+  PLUS_S3_SANDBOX_QUALIFICATION=PASS
+  PLUS_S3_TRUE_GTK=PENDING_REAL_GTK_DISPLAY
+  PLUS_S3_CLOSED=NO
+  CANDIDATE=NO
+  ATTEMPT_CONSUMED=NO
+  GIT_MUTATION=NO
+
+NEXT_STEP=AWAIT_EXPLICIT_MINIMAL_PLUS_S3_TRUE_GTK_PLATFORM_QUALIFICATION_AUTHORIZATION
+
+
+===============================================================================
+ENTRY — GRAPHIUM PLUS-S3 TRUE-GTK VALID PRODUCT FAIL / LAZY-TREE SOURCE REPAIR
+Date: 2026-08-28
+State: CANONICAL HANDOVER UPDATE / S3 OPEN / REPAIR LOCALLY QUALIFIED / GTK PROOF PENDING
+===============================================================================
+
+USER DIRECTION / GOVERNANCE
+---------------------------
+After the single authorized S3 True-GTK run failed, the user explicitly prohibited
+trial-and-error repair and required renewed mature-source analysis. No retry, reissue or
+oracle weakening was performed before that audit. The user subsequently authorized the
+source-derived next step and required that explanations lead to a concrete artifact.
+
+OBSERVED TRUE-GTK FAIL
+----------------------
+The real T480 run reached the Plus Workspace Gtk.TreeView and failed after expanding a
+non-empty directory:
+
+  GtkTreeView.expand_row("Chapter")
+  -> lazy materialization
+  -> GtkTreeView.row_expanded("Chapter") == FALSE
+
+Classification:
+  PLUS_S3_PRODUCT_FAIL=YES
+  FAIL_AREA=GTK_LAZY_TREE_EXPANSION
+  TEST_ORACLE=KEEP
+  ORACLE_FAIL=NO
+  CANDIDATE=NO
+  ATTEMPT_CONSUMED=NO
+  RETRY_BEFORE_SOURCE_AUDIT=NO
+  PLUS_S4=BLOCKED
+
+MATURE-SOURCE ROOT CAUSE
+------------------------
+The failed S3 implementation deleted the directory's sole placeholder child before
+appending the real loaded children. That forced an expanding GtkTreeView directory
+through a transient zero-child state. GTK can destroy the expanded child subtree when
+the sole child is deleted; appending rows later does not restore the expansion.
+
+gedit File Browser is the decisive mature comparator for this exact class of problem:
+a hierarchical GTK filesystem tree with lazy directory materialization and structural
+dummy children. Calamus W79-W84 and Cistula remain primary safety/state provenance but
+are not authorities for this transition because they render already-materialized
+recursive snapshots. Geany remains authoritative for the simple one-directory scan
+primitive and canonical editor handoff, but its file browser uses a flat current-
+directory model and therefore does not define hierarchical lazy expansion semantics.
+
+SOURCE-DERIVED REPAIR CONTRACT
+------------------------------
+For a loaded non-empty directory:
+  1. keep the existing placeholder row alive;
+  2. mutate that exact row in place into the first real WorkspaceItem;
+  3. if that first item is an expandable directory, add its own placeholder child;
+  4. append remaining items;
+  5. never cross `1 child -> 0 children -> N children` when N > 0.
+
+For a genuinely empty directory only, remove the placeholder so the directory correctly
+becomes non-expandable.
+
+No `connect_after`, manual expand forcing, sensitivity/state workaround, custom TreeModel,
+async loader, worker, watcher or additional authority is introduced merely to make the
+test green. The permanent True-GTK oracle remains byte-identical.
+
+REPAIR DELTA / ANTI-BLOAT
+-------------------------
+Relative to the exact failed S3 source:
+  SOURCE_CHANGED_PATHS=1
+  CHANGED_PATH=graphium_plus/adapters/gtk/workspace_panel.py
+  WORKSPACE_PANEL_LOC_DELTA=+10
+  PERMANENT_TRUE_GTK_ORACLE_CHANGED=NO
+  NEW_PERMANENT_TESTS=0
+  NEW_HARNESS=0
+  NEW_RUNTIME_AUTHORITY=0
+  NEW_THREAD_PROCESS_WATCHER_INDEX_DB=0
+
+SANDBOX REQUALIFICATION
+-----------------------
+All meaningful sandbox-capable authorities were rerun on the repaired exact source:
+  AST_PARSE=PASS files=138
+  PLUS_WORKSPACE_FOCUSED=5/5 PASS
+  INTEGRATION=187/187 PASS
+  CORE_BEHAVIORAL=190/190 PASS
+  PACKAGING_RELEASE=60/60 PASS
+
+A temporary, non-permanent fake-TreeStore exercise executed the repaired helper and
+proved both semantic branches without adding test-suite surface:
+  NONEMPTY_PLACEHOLDER_IN_PLACE=PASS
+  EMPTY_DIRECTORY_PLACEHOLDER_REMOVAL=PASS
+
+REAL GTK BOUNDARY
+-----------------
+The assistant sandbox still lacks PyGObject (`gi`), so the actual GtkTreeView expansion
+lifecycle cannot be meaningfully executed there. The only remaining proof is one real
+GTK3 run of the unchanged `plus_workspace` scenario. No other sandbox-capable test may be
+delegated to the T480.
+
+CURRENT STATUS
+--------------
+  PLUS_S0=PASS_CLOSED
+  PLUS_S1=PASS_CLOSED_NONCANDIDATE
+  PLUS_S2=PASS_CLOSED_SOURCE_FIRST_CONTRACT_FREEZE
+  PLUS_S3=OPEN_REPAIRED_LOCAL_PASS_TRUE_GTK_PENDING
+  PLUS_S4=BLOCKED_UNTIL_S3_TRUE_GTK_PASS
+  CANDIDATE=NO
+  ATTEMPT_CONSUMED=NO
+  GIT_MUTATION=NO
+
+NEXT_STEP=ONE_MINIMAL_PLUS_S3_TRUE_GTK_REPAIR_QUALIFICATION_ON_EXACT_REPAIRED_SOURCE
+
+
+===============================================================================
+ENTRY — GRAPHIUM PLUS-S3 TRUE-GTK REPAIR PASS / S3 CLOSED
+Date: 2026-08-28
+State: CANONICAL HANDOVER UPDATE / S3 PASS CLOSED NON-CANDIDATE
+===============================================================================
+
+The single authorized T480 proof on the exact source-derived lazy-tree repair reported:
+  PACKAGE_VERIFY=PASS files=285
+  GTK3_PYTHON_PREFLIGHT=PASS
+  DESKTOP_SECTION=plus_workspace RESULT=PASS
+  PLUS_WORKSPACE_TRUE_GTK_REPAIR_PROOF=PASS
+  PYCACHE_HYGIENE=PASS
+  PLUS_S3_T480_REPAIR_QUALIFICATION_NONCANDIDATE=PASS
+
+No retry was performed. The prior valid S3 product FAIL remains historical evidence and
+must not be erased or reclassified. Its source-derived placeholder repair is now proven
+on real GTK3.
+
+Binding status:
+  PLUS_S3=PASS_CLOSED_NONCANDIDATE
+  CANDIDATE=NO
+  ATTEMPT_CONSUMED=NO
+  GIT_MUTATION=NO
+  NEXT_SERIAL_WORK_ITEM=PLUS-S4_NEW_TEXT_PLUS_NEW_FOLDER
+
+
+===============================================================================
+ENTRY — GRAPHIUM PLUS-S4 NEW TEXT + NEW FOLDER STRUCTURAL CONTRACT / LOCAL PASS
+Date: 2026-08-28
+State: CANONICAL HANDOVER UPDATE / S4 IMPLEMENTED / SANDBOX PASS / TRUE-GTK+GIO PENDING
+===============================================================================
+
+AUTHORIZATION / SCOPE
+---------------------
+The user explicitly authorized the next serial step after the real-GTK S3 repair PASS.
+S4 combines Calamus W80 New Text and W81 New Folder in one work item to avoid duplicating
+planner/runtime/qualification infrastructure for two closely related creation actions.
+
+PRIMARY SOURCE AUTHORITY
+------------------------
+Exact Calamus W80/W81 source is the primary mutation provenance. Cistula is a secondary
+commit-boundary/safety comparator. Geany master does not provide a comparable New File /
+New Folder mutation implementation in its core file-browser plugin and therefore is not
+used as unsupported mutation authority.
+
+GRAPHIIUM-SPECIFIC REPLACEMENT PERMIT
+-------------------------------------
+Calamus resolves unsaved changes before mutation and then calls an unguarded host
+`open_path()`. Graphium's canonical `open_path()` deliberately contains its own guarded
+FileLifecycle Open. A direct transplant would therefore double-prompt after DISCARD.
+
+S4 freezes one narrow Core seam:
+  `prepare_document_replacement(action_label)` resolves SAVE/DISCARD/CANCEL once and
+  returns a `DocumentReplacementPermit` bound to the exact `DocumentSession.revision`.
+  `open_document(..., replacement_permit=permit)` accepts it only if the revision is
+  unchanged; any intervening document mutation makes the permit stale and Open fails
+  closed. `GraphiumWindow.open_path(..., replacement_permit=permit)` remains the canonical
+  monitor/recent/projection gateway.
+
+This permit is not a second lifecycle authority, does not discard buffer state itself,
+and cannot make filesystem mutation precede Cancel resolution.
+
+NEW TEXT CONTRACT
+-----------------
+  DESTINATION=selected_directory OR selected_file_parent OR workspace_root
+  DESTINATION_SYMLINK=REJECT
+  NAME=ONE_BASENAME_ONLY
+  HIDDEN_RESERVED_NAME=REJECT
+  ALLOWED_SUFFIX=.txt|.md
+  FILE_CREATE=Gio.File.create(FileCreateFlags.NONE)
+  OVERWRITE=NO
+  PARENT_REVALIDATION_AT_COMMIT=YES
+  POST_COMMIT_REGULAR_NON_SYMLINK_WITHIN_ROOT=REQUIRED
+  UNSAVED_REPLACEMENT_PERMIT=BEFORE_MUTATION
+  OPEN_AFTER_CREATE=GraphiumWindow.open_path_with_current_permit
+  DOUBLE_UNSAVED_PROMPT=FORBIDDEN
+  STALE_PERMIT=FAIL_CLOSED
+
+NEW FOLDER CONTRACT
+-------------------
+  DESTINATION=same_bounded_creation_destination
+  NAME=ONE_BASENAME_ONLY
+  HIDDEN_RESERVED_NAME=REJECT
+  CREATE=Gio.File.make_directory
+  RECURSIVE_MKDIR=NO
+  POST_COMMIT_DIRECTORY_NON_SYMLINK_WITHIN_ROOT=REQUIRED
+  UNSAVED_GUARD=NO
+  OPEN_AS_DOCUMENT=NO
+
+RECONCILIATION
+--------------
+After a committed creation the Workspace refreshes, restores expanded in-memory paths,
+expands the destination parent only when needed to reveal the new item, and selects the
+new item. GtkTreeIter remains projection-only and never filesystem identity.
+
+ANTI-COSMETIC / ANTI-BLOAT
+--------------------------
+No happy oracle, weakened assertion, product workaround, test framework, watcher, index,
+worker, subprocess or database was introduced. Text suffixes reuse the existing single
+Workspace model authority; an unused `open_after_commit` plan field was removed before
+freeze.
+
+Relative to exact repaired S3 source:
+  SOURCE_CHANGED_PATHS=10
+  RUNTIME_PY_LOC_DELTA=+466
+  TEST_PY_LOC_DELTA=+126
+  NEW_PERMANENT_TEST_FILES=0
+  NEW_PERMANENT_DESKTOP_SCENARIOS=0
+
+SANDBOX QUALIFICATION
+---------------------
+  AST_PARSE=PASS files=140
+  FOCUSED_LIFECYCLE_AND_WORKSPACE=39/39 PASS
+  CORE_BEHAVIORAL=190/190 PASS
+  INTEGRATION=191/191 PASS
+  PACKAGING_RELEASE=60/60 PASS
+  PYCACHE_HYGIENE=PASS
+
+REAL PLATFORM BOUNDARY
+----------------------
+The assistant sandbox lacks PyGObject (`gi`). Real Python GIO commit semantics and real
+GTK tree refresh/selection/canonical-window-open wiring therefore remain pending. Only
+the existing `plus_workspace` True-GTK scenario may be run on T480; all sandbox-capable
+suites above are forbidden from being delegated to that PC.
+
+STATUS
+------
+  PLUS_S0=PASS_CLOSED
+  PLUS_S1=PASS_CLOSED_NONCANDIDATE
+  PLUS_S2=PASS_CLOSED_SOURCE_FIRST_CONTRACT_FREEZE
+  PLUS_S3=PASS_CLOSED_NONCANDIDATE
+  PLUS_S4_IMPLEMENTED=YES
+  PLUS_S4_SANDBOX_QUALIFICATION=PASS
+  PLUS_S4_TRUE_GTK_GIO=PENDING
+  PLUS_S4_CLOSED=NO
+  CANDIDATE=NO
+  ATTEMPT_CONSUMED=NO
+  GIT_MUTATION=NO
+
+NEXT_STEP=ONE_MINIMAL_PLUS_S4_TRUE_GTK_GIO_PLATFORM_QUALIFICATION_ON_EXACT_SOURCE
+
+
+===============================================================================
+ENTRY — GRAPHIUM PLUS-S4 FINAL CLOSURE / PLUS-S5 SAFE RENAME IMPLEMENTATION
+Date: 2026-08-28
+State: S4 CLOSED / S5 IMPLEMENTED / LOCAL SCOPE PASS / TRUE-GTK+GIO PENDING
+===============================================================================
+
+PLUS-S4 FINAL CLOSURE
+---------------------
+The user executed the exact S4 T480 platform qualification once. Final output:
+
+  PACKAGE_VERIFY=PASS files=275 package_files=283
+  GTK3_GIO_PYTHON_PREFLIGHT=PASS
+  DESKTOP_SECTION=plus_workspace RESULT=PASS
+  PYCACHE_HYGIENE=PASS
+  PLUS_S4_T480_NONCANDIDATE=PASS
+
+Therefore:
+  PLUS_S4=PASS_CLOSED_NONCANDIDATE
+  CANDIDATE=NO
+  ATTEMPT_CONSUMED=NO
+  GIT_MUTATION=NO
+
+An intentional existing-file collision produced a real Workspace warning dialog which the
+user dismissed once; the same process then completed PASS. Product behavior was correct,
+but future narrow platform proofs must avoid making the user dismiss an expected-error
+modal when the same negative property can be observed directly at the adapter boundary.
+
+VISIBLE WORKSPACE NAME
+----------------------
+The user definitively accepted the one-word visible name `Workspace`. `Writing Workspace`
+is retired as the Plus UI label. Historical Calamus provenance may still use its original
+name in evidence only.
+
+PLUS ICON PALETTE — USER-APPROVED DIRECTION
+-------------------------------------------
+The user requested the Graphium Plus red to become slightly more vivid, not dramatically
+brighter. S5 applies the same exact icon geometry at every hicolor size and changes only
+Plus palette values:
+
+  PRIMARY_RED_OLD=#A61B29
+  PRIMARY_RED_NEW=#B51F31
+  PEN_RED_OLD=#D86774
+  PEN_RED_NEW=#E0707C
+
+Core icon bytes/colors remain untouched. Ultra remains future gold/yellow using the same
+family geometry.
+
+PLUS-S5 SAFE RENAME — SOURCE-FIRST CONTRACT
+-------------------------------------------
+Primary source authorities re-audited before implementation:
+  1. exact Calamus W82 Workspace source;
+  2. Cistula W03 mutation/operations/GIO source;
+  3. exact current Graphium Plus S4 source and Graphium document identity/lifecycle owners.
+
+Geany master File Browser has no direct rename implementation to transplant. Kate's richer
+rename/file operations are delegated through KDE/KIO and remain outside the lightweight
+Plus architecture.
+
+S5 deliberately does NOT import Calamus W82's active-document/path-store/Source-Notes
+reconciliation. The first Plus rename baseline is bounded:
+
+  INACTIVE_REGULAR_FILE_RENAME=ALLOW
+  INACTIVE_DIRECTORY_RENAME=ALLOW
+  ACTIVE_DOCUMENT_RENAME=REJECT_FAIL_CLOSED
+  ACTIVE_DOCUMENT_ANCESTOR_DIRECTORY_RENAME=REJECT_FAIL_CLOSED
+  SYMLINK_RENAME=REJECT
+  WORKSPACE_ROOT_RENAME=REJECT
+  STALE_FOREIGN_SELECTION=REJECT
+  PATH_ESCAPE=REJECT
+  SAME_NAME_NOOP=REJECT
+  EXISTING_DESTINATION=REJECT_NO_OVERWRITE
+
+Active-document comparison uses the accepted canonical document path when available,
+otherwise the logical path. No unsaved-document gate is invoked: a rename capable of
+changing active document identity is rejected before filesystem commit.
+
+S5 MUTATION TOPOLOGY
+--------------------
+  current Workspace selection
+    -> generation/current-item validation
+    -> symlink/type/root confinement revalidation
+    -> active-document/ancestor fence
+    -> lstat device/inode/mode token
+    -> immutable same-parent WorkspaceRenamePlan
+    -> commit-time parent/source/token/collision revalidation
+    -> exactly one Gio.File.set_display_name()
+    -> returned path + source disappearance + target token/type/symlink/confinement proof
+    -> ownership-safe rollback only while target still carries original token
+    -> Workspace refresh + deterministic target selection
+
+Forbidden for S5:
+  os.rename
+  shutil.move
+  shell mutation
+  active-document lifecycle rebind
+  second document/session/save authority
+  Source Notes/favorites/recent-file path rewrite imported from Calamus
+  worker/thread/watcher/index/database
+
+Existing `workspace.state` use of os.replace/os.unlink remains solely the atomic temporary
+Recent Workspaces state-file protocol and is not item-rename authority.
+
+S5 IMPLEMENTATION OWNERS
+------------------------
+No new runtime module or framework was created. Existing owners are extended:
+  graphium_plus/workspace/operations.py
+  graphium_plus/workspace/controller.py
+  graphium_plus/workspace/gio.py
+  graphium_plus/adapters/gtk/workspace_panel.py
+  graphium_plus/adapters/gtk/window.py
+
+The Workspace UI gains one `Rename Selected Item` action with `document-edit-symbolic`.
+The dialog is input-only; filesystem mutation remains in the GIO adapter.
+
+S5 LOCAL QUALIFICATION
+----------------------
+Exact final S5 source currently reports:
+  AST_PARSE=PASS files=140
+  FOCUSED_WORKSPACE_PLUS_PRODUCT_LINE=14/14 PASS
+  PACKAGING_RELEASE=60/60 PASS
+  CORE_SUBTREE_BYTE_IDENTITY_VS_S4=PASS files=57
+  PYCACHE_HYGIENE=PASS
+
+One full sandbox Integration execution produced:
+  TOTAL=192
+  PASS=188
+  ERROR=4
+
+All four errors are the already-known unchanged-Core fake-Hunspell startup timeout in the
+assistant sandbox. Core is byte-identical to S4. No retry was performed and no Hunspell
+or S5 product code was changed to make the run green.
+
+S5 ANTI-BLOAT
+-------------
+Relative to exact S4 source:
+  SOURCE_CHANGED_PATHS=12
+  PLUS_RUNTIME_PY_LOC_DELTA=+283
+  TEST_PY_LOC_DELTA=+28
+  PLUS_RUNTIME_TOTAL=1453 LOC
+  NEW_RUNTIME_MODULES=0
+  NEW_PERMANENT_TEST_FILES=0
+  NEW_DESKTOP_SCENARIOS=0
+  NEW_TEST_FRAMEWORKS=0
+  CORE_SOURCE_CHANGED_PATHS=0
+
+Exact Calamus W81->W82 Workspace growth (~+426 LOC) is context only, never a pass metric.
+S9 retains authority to reject the accumulated implementation for structural bloat even
+if functional tests pass.
+
+S5 PLATFORM BOUNDARY
+--------------------
+The assistant sandbox lacks PyGObject/GIO. Therefore only these real properties remain
+pending:
+  - actual Gio.File.set_display_name() file rename;
+  - actual directory rename preserving children;
+  - Gtk.TreeStore refresh/selection reconciliation after rename;
+  - real runtime collision and planned-token replacement fail-closed behavior.
+
+A single external NON-CANDIDATE T480 proof is permitted for those properties only. It
+must not repeat sandbox-capable suites or the S4 scenario and must not require the user
+to dismiss an expected warning dialog.
+
+CURRENT SERIAL ROADMAP
+----------------------
+  PLUS-S0 = CLOSED source-first product-line contract
+  PLUS-S1 = CLOSED NON-CANDIDATE composition + toolbar
+  PLUS-S2 = CLOSED source-first Workspace contract freeze
+  PLUS-S3 = CLOSED NON-CANDIDATE read-only lazy Workspace
+  PLUS-S4 = CLOSED NON-CANDIDATE New Text + New Folder
+  PLUS-S5 = IMPLEMENTED / LOCAL SCOPE PASS / TRUE-GTK+GIO PENDING
+  PLUS-S6 = Verified Duplicate — BLOCKED until S5 closes
+  PLUS-S7 = System Trash
+  PLUS-S8 = usability + structural consolidation
+  PLUS-S9 = integral qualification / Candidate readiness
+  Candidate R1 = separate authorization only
+
+================================================================================
+2026-08-28 — GRAPHIUM PLUS S5 VALID T480 PRODUCT FAIL / RENAME IDENTITY RE-AUDIT
+================================================================================
+
+Binding status update:
+- PLUS_S5 remains OPEN after a valid NON-CANDIDATE T480 product-safety FAIL.
+- The failing property is the planned-source replacement fence for Safe Rename.
+- No retry, reissue, product patch, Candidate, attempt, or Git mutation was performed after the FAIL.
+
+Root cause:
+- S5 adopted `WorkspacePathToken(st_dev, st_ino, st_mode)` from Calamus W82/Cistula Rename.
+- Linux may immediately reuse a freed inode after unlink+recreate; therefore a different filesystem lifetime can reproduce the same weak token.
+- Graphium Core already documents `(dev, ino)` as object evidence, never content identity, and uses stronger observation signatures plus descriptor/path rebinding for file safety.
+
+Binding source-first decision:
+- ADOPT from Calamus/Cistula: immutable plan, commit-time revalidation, one GIO rename, fail-closed collision handling, ownership-gated rollback topology.
+- REJECT from Calamus W82/Cistula Rename: `dev+ino+mode` as sufficient pre-commit stale-object evidence.
+- KEEP the existing T480 replacement oracle; it exposed a real product defect and must not be weakened.
+- gedit/Kate ordinary rename implementations do not provide the stronger stale-object fence and therefore are not authorities for weakening Graphium Plus safety.
+
+Repair direction (not yet implementation authority):
+- separate pre-commit freshness evidence from post-commit ownership evidence;
+- derive strong metadata observation from Graphium Core's published safety model;
+- evaluate a descriptor-pinned source identity across the single GIO rename so inode reuse cannot impersonate the planned object during commit verification/rollback;
+- no generic framework or extra test proliferation.
+
+Current state:
+PLUS_S5=OPEN_VALID_PRODUCT_SAFETY_FAIL
+PLUS_S6=BLOCKED
+CANDIDATE=NO
+ATTEMPT_CONSUMED=NO
+GIT_MUTATION=NO
+RETRY=NO
+
+================================================================================
+2026-08-28 — PLUS S5 STRONG IDENTITY REPAIR + DIAGNOSIS-TO-REMEDY DELIVERY RULE
+================================================================================
+
+Binding product repair after the valid S5 T480 replacement-fence FAIL:
+- KEEP the failing T480 oracle byte-identical; it is a valid product-safety oracle.
+- REJECT `dev+ino+mode` as sufficient planned-source freshness evidence.
+- Workspace Rename now freezes a strong pre-commit signature:
+  dev, ino, mode, size, mtime_ns, ctime_ns, uid, gid, nlink.
+- Commit opens the selected source with O_NOFOLLOW (and O_DIRECTORY for directories),
+  validates the frozen signature, validates pathname-to-descriptor binding, and keeps the
+  descriptor open across the single Gio.File.set_display_name() namespace mutation.
+- Post-commit ownership is NOT proved by replaying the pre-commit signature because ctime
+  may legitimately change on rename. It is proved by target pathname dev+ino matching the
+  still-open descriptor-pinned original object.
+- Rollback is permitted only while the target pathname still binds that same pinned object.
+- Active-document and ancestor-directory rename remain fail-closed.
+- Core source remains byte-identical; no second document/file authority is introduced.
+
+Sandbox qualification on the repaired source:
+  PLUS_WORKSPACE_FOCUSED=8/8 PASS
+  CORE_BEHAVIORAL=190/190 PASS
+  PACKAGING_RELEASE=60/60 PASS
+  INTEGRATION=191/192 with exactly one unchanged-Core fake-Hunspell startup-timeout ERROR;
+  no retry and no Hunspell/product mutation.
+  EPHEMERAL_PINNED_FILE_REPLACEMENT_FENCE=PASS, object-id reuse 0/500 while fd pinned.
+  EPHEMERAL_PINNED_DIRECTORY_REPLACEMENT_FENCE=PASS, object-id reuse 0/200 while fd pinned.
+
+Anti-bloat relative to the failed S5 source:
+  PRODUCT_CHANGED_PATHS=3 (operations.py, controller.py, gio.py)
+  EXISTING_TEST_CHANGED_PATHS=1 (tests/integration/test_plus_workspace.py)
+  NEW_RUNTIME_MODULES=0
+  NEW_TEST_FILES=0
+  NEW_TEST_FRAMEWORKS=0
+  CORE_CHANGED_PATHS=0
+  T480_FAILING_ORACLE_CHANGED=NO
+
+Binding delivery rule from user:
+- After a source-first diagnosis identifies a sufficiently determined source-derived remedy,
+  the assistant must not stop with explanation alone.
+- In the same authorized work step it must implement the remedy, run every meaningful
+  sandbox-capable qualification, update MO/evidence, and deliver the repaired product package.
+- When a user-PC proof remains genuinely necessary, the same response must include the exact
+  download artifact, SHA-256, and copy/paste terminal command.
+- If the mature/source audit does NOT yet determine a safe remedy, the assistant must say so
+  explicitly rather than invent a patch or a happy-test workaround.
+
+Current state before real-GIO requalification:
+PLUS_S5=OPEN_REPAIRED_SANDBOX_QUALIFIED_TRUE_GTK_GIO_PENDING
+PLUS_S6=BLOCKED_UNTIL_S5_CLOSE
+CANDIDATE=NO
+ATTEMPT_CONSUMED=NO
+GIT_MUTATION=NO
+
+================================================================================
+ENTRY — 2026-08-28 — GRAPHIIUM PLUS S5 CLOSURE + S6 VERIFIED DUPLICATE
+================================================================================
+State: BINDING / PLUS OPEN / S5 CLOSED / S6 IMPLEMENTED LOCAL-QUALIFIED / NON-CANDIDATE
+
+PLUS-S5 FINAL CLOSURE
+---------------------
+The descriptor-pinned strong-identity Rename repair was qualified on the T480 exactly once:
+  PACKAGE_VERIFY=PASS
+  GTK3_GIO_PYTHON_PREFLIGHT=PASS
+  PLUS_S5_TRUE_GTK_GIO_RENAME=PASS
+  PYCACHE_HYGIENE=PASS
+  PLUS_S5_STRONG_IDENTITY_REPAIR_T480_NONCANDIDATE=PASS
+Therefore:
+  PLUS_S5=PASS_CLOSED_NONCANDIDATE
+  CANDIDATE=NO
+  ATTEMPT_CONSUMED=NO
+  GIT_MUTATION=NO
+No S5 rerun is required or authorized by this closure.
+
+PLUS-S6 SOURCE-FIRST DECISION
+-----------------------------
+Primary provenance reviewed directly:
+- Calamus exact W83 Duplicate source;
+- Cistula W03 Duplicate source;
+- Graphium Core GuardedFileWriter / strong file-observation model.
+
+Calamus/Cistula remain valuable for the bounded product behavior:
+- duplicate one regular sibling file only;
+- deterministic sibling naming (` copy`, ` copy 2`, ...), no overwrite;
+- source remains active and duplicate is not auto-opened;
+- filesystem mutation is independent of the document Save writer;
+- stale source and unsafe/symlink inputs fail closed.
+
+However, the earlier S6 wording "perform one Gio copy" is SUPERSEDED. After the S5 inode-reuse finding,
+path-only Gio copy plus post-hoc token verification is not strong enough to prove ownership of a target
+under the Graphium safety contract. Graphium Core's guarded-write descriptor model is the stronger mature
+precedent and is ADOPTED for S6.
+
+S6 VERIFIED DUPLICATE COMMIT CONTRACT
+-------------------------------------
+- regular files only; directories and symlinks are rejected;
+- all regular Workspace files are eligible, not only .txt/.md;
+- duplicate bytes are the SAVED ON-DISK source bytes, never unsaved editor-buffer bytes;
+- source document/session remains active and its dirty state is unchanged;
+- duplicate is not auto-opened;
+- deterministic same-parent target name; no overwrite;
+- source plan carries the strong S5 signature:
+  dev, ino, mode, size, mtime_ns, ctime_ns, uid, gid, nlink;
+- commit opens source with O_NOFOLLOW and keeps its descriptor pinned;
+- containing directory is descriptor-pinned;
+- bytes are streamed into an exclusive hidden sibling stage;
+- stage is fsync'd and SHA-256 read-back verified;
+- source signature/path binding is revalidated after the copy and immediately before commit;
+- final target is committed no-overwrite by same-directory hard link, then the hidden stage name is removed;
+- final target identity is proven against the still-open stage descriptor;
+- rollback/deletion is allowed only while the pathname still binds that descriptor-owned object;
+- no DocumentCopyService/GuardedFileWriter Save authority is reused as the Workspace Duplicate authority;
+- no worker/job framework is introduced unless a measured product need later proves one necessary.
+
+S6 PERFORMANCE FINDING
+----------------------
+A sandbox-only directional 64 MiB duplicate measurement on the exact S6 algorithm completed successfully in
+approximately 362.8 ms. This is NOT a certification threshold and does NOT by itself authorize async/job
+infrastructure. Writing-workspace files are normally much smaller; async Duplicate remains DEFERRED pending a
+real demonstrated UX requirement.
+
+S6 SANDBOX QUALIFICATION
+------------------------
+Exact final source:
+  AST_PARSE=140 files PASS
+  PLUS_WORKSPACE_FOCUSED=9/9 PASS
+  CORE_BEHAVIORAL=190/190 PASS
+  INTEGRATION=193/193 PASS
+  PACKAGING_RELEASE=60/60 PASS
+
+The focused Duplicate proof covers:
+- deterministic naming and existing-name skipping;
+- exact saved-byte duplicate;
+- source unchanged;
+- no residual hidden stage;
+- commit-time no-overwrite race;
+- source replacement after planning fails closed;
+- directories and symlinks rejected.
+
+ANTI-BLOAT / TEST VALUE
+-----------------------
+Relative to exact S5 repaired source:
+  SOURCE_CHANGED_PATHS=6
+  RUNTIME_DELTA=+406 net LOC
+  TEST_DELTA=+60 net LOC
+  NEW_RUNTIME_MODULES=0
+  NEW_TEST_FILES=0
+  NEW_TEST_FRAMEWORKS=0
+  NEW_PERMANENT_DESKTOP_SCENARIOS=0
+The runtime cost is explicit and is not treated as a success metric. For context only, Calamus W82->W83
+added about +442 net LOC across its Workspace owners while carrying additional Calamus-specific companion
+logic; S6 remains below that baseline while strengthening target/source ownership. This comparison is not a
+PASS criterion.
+
+T480 BOUNDARY
+-------------
+Filesystem correctness is already sandbox-proven. The only remaining T480 property is real GTK wiring:
+- Duplicate button exists and invokes the S6 path;
+- duplicating an active MODIFIED document leaves the same source/session active and dirty;
+- the duplicate contains only saved disk bytes;
+- the resulting target is selected in the real Gtk.TreeView;
+- a regular non-text file can be duplicated without changing the active document.
+No Behavioral/Integration/Release/Hunspell/S4/S5 rerun belongs to this proof.
+
+CURRENT STATE
+-------------
+PLUS_S0=PASS_CLOSED
+PLUS_S1=PASS_CLOSED_NONCANDIDATE
+PLUS_S2=PASS_CLOSED_SOURCE_FIRST_CONTRACT_FREEZE
+PLUS_S3=PASS_CLOSED_NONCANDIDATE
+PLUS_S4=PASS_CLOSED_NONCANDIDATE
+PLUS_S5=PASS_CLOSED_NONCANDIDATE
+PLUS_S6=IMPLEMENTED_SANDBOX_QUALIFIED_TRUE_GTK_WIRING_PENDING
+PLUS_S7=BLOCKED_UNTIL_S6_CLOSE
+CANDIDATE=NO
+ATTEMPT_CONSUMED=NO
+GIT_MUTATION=NO
+
+================================================================================
+2026-08-28 — GRAPHIUM PLUS-S6 CLOSURE / PLUS-S7 SYSTEM TRASH IMPLEMENTATION
+================================================================================
+State: BINDING / PLUS OPEN / S6 CLOSED / S7 IMPLEMENTED SANDBOX-QUALIFIED / NON-CANDIDATE
+
+PLUS-S6 FINAL CLOSURE
+---------------------
+The exact S6 package was qualified on the T480 exactly once:
+  PACKAGE_VERIFY=PASS files=275 package_files=284
+  PACKAGE_VERIFY=PASS
+  GTK3_PYTHON_PREFLIGHT=PASS
+  PLUS_S6_TRUE_GTK_WIRING=START
+  PLUS_S6_TRUE_GTK_WIRING=PASS
+  PYCACHE_HYGIENE=PASS
+  PLUS_S6_T480_NONCANDIDATE=PASS
+Therefore:
+  PLUS_S6=PASS_CLOSED_NONCANDIDATE
+  CANDIDATE=NO
+  ATTEMPT_CONSUMED=NO
+  GIT_MUTATION=NO
+No S6 rerun is required or authorized by this closure.
+
+PLUS-S7 SOURCE-FIRST DECISION
+-----------------------------
+Primary provenance re-audited directly:
+- Calamus exact W84 Move to Trash source;
+- Cistula W03 Trash source;
+- repaired Plus-S5 strong identity / descriptor pinning;
+- Graphium Core strong object-observation discipline.
+
+ADOPT from Calamus W84 / Cistula:
+- system Trash only;
+- no permanent-delete fallback;
+- immutable root-confined plan;
+- current/stale/type/symlink validation;
+- `access::can-trash` as preflight capability evidence;
+- explicit user confirmation;
+- one `Gio.File.trash()` mutation;
+- original-path absence postcondition;
+- Workspace refresh after accepted Trash.
+
+SUPERSEDE from Calamus W84 / Cistula:
+- their old `dev+inode+mode` Trash token is insufficient after the S5 inode-reuse finding;
+- S7 carries the strong signature already frozen after S5:
+  dev, ino, mode, size, mtime_ns, ctime_ns, uid, gid, nlink;
+- the source object is opened with O_NOFOLLOW and descriptor-pinned through capability checks,
+  final precommit revalidation and the single Gio Trash call.
+
+S7 SAFETY / SCOPE CONTRACT
+--------------------------
+- Workspace root itself: REJECT;
+- symlink: REJECT;
+- only regular files and directories: ALLOW;
+- active document: REJECT;
+- directory containing active document: REJECT;
+- no Save/Discard guard is invoked because permitted Trash never targets active-document scope;
+- no restore command is implemented; restore remains system-Trash responsibility;
+- no internal application Trash directory;
+- no `os.remove`, `os.unlink`, `os.rmdir`, `shutil.rmtree` or equivalent permanent-delete fallback
+  exists in the S7 Trash operation;
+- confirmation defaults to Cancel and explicitly states that Graphium Plus will not permanently delete
+  the item as fallback;
+- if Gio accepts Trash but original-path absence cannot be verified, the result is fail-visible and
+  Workspace refreshes instead of claiming success.
+
+EXPLICIT GIO API LIMIT
+----------------------
+`Gio.File.trash()` is a pathname-based API and exposes no fd-bound atomic Trash commit. S7 therefore
+performs the strongest practical precommit fence available within the frozen Gio-only Trash contract:
+strong signature + O_NOFOLLOW descriptor pin + pathname/descriptor revalidation immediately before the
+single `trash()` call, with the descriptor kept open through the call. This detects stale replacements
+before commit and prevents freed-inode reuse from impersonating the planned object while pinned.
+
+S7 MUST NOT claim a mathematically impossible atomic identity guarantee across the final pathname race
+window inside the Gio API. This residual platform/API boundary is documented rather than hidden by a
+happy test or weakened oracle.
+
+S7 UI / RECONCILIATION
+----------------------
+Workspace adds one `Move Selected Item to Trash` button with `user-trash-symbolic`.
+The real product confirmation dialog:
+- is modal;
+- defaults to Cancel;
+- offers only Cancel / Move to Trash;
+- states that the operation uses system Trash and has no permanent-delete fallback.
+
+After Gio reports an accepted Trash, Workspace refreshes. A successful root-level removal clears tree
+selection; a nested removal selects the surviving parent when possible. The active document/session/dirty
+buffer remain unchanged because active-document scope is blocked before confirmation.
+
+S7 SANDBOX QUALIFICATION
+------------------------
+Exact final S7 source reports:
+  AST_PARSE=140 files PASS
+  PLUS_WORKSPACE_FOCUSED=10/10 PASS
+  CORE_BEHAVIORAL=190/190 PASS
+  INTEGRATION=194/194 PASS
+  PACKAGING_RELEASE=60/60 PASS
+  CORE_CHANGED_PATHS=0
+  PYCACHE_HYGIENE=PASS
+
+The focused proof uses the real sandbox filesystem for:
+- current/root-confined planning;
+- active-document and active-ancestor rejection;
+- symlink rejection;
+- strong plan signature;
+- descriptor pinning of the planned source;
+- unlink+recreate replacement causing precommit fail-closed;
+- stale generation rejection.
+
+The first Release execution failed only because editing-time `py_compile` commands had created seven
+`__pycache__/.pyc` artifacts in the sandbox working copy. Those generated bytes were removed; no source,
+product or test bytes changed. Behavioral/Integration were not rerun. Release alone was rerun and passed
+60/60. This event is environment contamination, not product evidence.
+
+S7 ANTI-BLOAT
+-------------
+Relative to exact closed S6 source:
+  SOURCE_CHANGED_PATHS=6
+  PLUS_RUNTIME_PY_LOC=1940 -> 2217 (+277)
+  TEST_PY_LOC=6081 -> 6123 (+42)
+  NEW_RUNTIME_MODULES=0
+  NEW_TEST_FILES=0
+  NEW_TEST_FRAMEWORKS=0
+  CORE_CHANGED_PATHS=0
+No worker, watcher, indexer, database or subprocess boundary was added.
+
+S7 PLATFORM BOUNDARY
+--------------------
+The assistant sandbox lacks PyGObject/Gio Python binding, so exactly one NON-CANDIDATE T480 proof remains
+for properties that cannot meaningfully be executed there:
+- real GTK Trash button and real confirmation dialog;
+- confirmation default is Cancel and Cancel performs no mutation;
+- real `Gio.File.trash()` for one regular file and one directory;
+- proof that the objects appear in system Trash rather than being permanently deleted;
+- real Gtk tree refresh/removal;
+- active modified document remains the same active/dirty document.
+
+The T480 runner MUST isolate HOME and all XDG roots in one temporary directory on the same filesystem as
+the test Workspace. Therefore test Trash entries go to an isolated temporary Trash rather than the user's
+normal Trash, and are removed when the runner exits. Confirmation is automated; the user must not become
+part of the harness by dismissing expected dialogs.
+
+CURRENT STATE
+-------------
+PLUS_S0=PASS_CLOSED
+PLUS_S1=PASS_CLOSED_NONCANDIDATE
+PLUS_S2=PASS_CLOSED_SOURCE_FIRST_CONTRACT_FREEZE
+PLUS_S3=PASS_CLOSED_NONCANDIDATE
+PLUS_S4=PASS_CLOSED_NONCANDIDATE
+PLUS_S5=PASS_CLOSED_NONCANDIDATE
+PLUS_S6=PASS_CLOSED_NONCANDIDATE
+PLUS_S7=IMPLEMENTED_SANDBOX_QUALIFIED_TRUE_GTK_GIO_PENDING
+PLUS_S8=BLOCKED_UNTIL_S7_CLOSE
+CANDIDATE=NO
+ATTEMPT_CONSUMED=NO
+GIT_MUTATION=NO
+
+==============================================================================
+PLUS-S7 — T480 ORACLE API FAIL AND SOURCE-PRESERVING REPAIR (2026-08-28)
+==============================================================================
+
+The first S7 T480 execution is retained as a VALID OBSERVED FAIL but is classified HARNESS_ORACLE_FAIL,
+not PRODUCT_FAIL. The failure occurred inside the external proof callback before the product Trash behavior
+could be judged:
+
+  AttributeError: 'MessageDialog' object has no attribute 'get_default_response'
+
+GTK3 GtkDialog exposes `set_default_response(response_id)` but no corresponding get-default-response API.
+The source S7 confirmation remains unchanged and already calls:
+
+  dialog.set_default_response(Gtk.ResponseType.CANCEL)
+
+The corrected oracle MUST NOT inspect a nonexistent getter or weaken the product requirement. It verifies
+the user-visible default behavior functionally: while the real modal confirmation is visible, the harness
+calls the real GtkWindow `activate_default()` method. The selected item must remain present and unmodified,
+which proves that the configured default action is the safe Cancel path. Explicit acceptance cases continue
+to respond with `Gtk.ResponseType.ACCEPT` and verify real Gio system Trash behavior.
+
+BOUNDARY / GOVERNANCE:
+- S7 `SOURCE/` is byte-identical to the pre-fail sandbox-qualified S7 source;
+- no product patch is permitted for this oracle API error;
+- no SOURCE test file is modified;
+- only the external T480 proof and package evidence are repaired;
+- no Behavioral/Integration/Release rerun is justified because SOURCE is unchanged;
+- one corrected T480 execution is permitted; no retry loop.
+
+CURRENT STATE:
+PLUS_S7=IMPLEMENTED_SANDBOX_QUALIFIED_TRUE_GTK_ORACLE_REPAIRED_PENDING_ONE_RUN
+PLUS_S8=BLOCKED_UNTIL_S7_CLOSE
+CANDIDATE=NO
+ATTEMPT_CONSUMED=NO
+GIT_MUTATION=NO
+
+===============================================================================
+2026-08-28 — GRAPHIUM PLUS-S7 CLOSURE / PLUS-S8 USABILITY + STRUCTURAL CONSOLIDATION
+===============================================================================
+State: BINDING / PLUS OPEN / S7 CLOSED / S8 IMPLEMENTED SANDBOX-QUALIFIED / NON-CANDIDATE
+
+PLUS-S7 FINAL CLOSURE
+---------------------
+The corrected S7 T480 oracle was executed exactly once against the byte-identical S7 SOURCE:
+  PACKAGE_VERIFY=PASS files=275 package_files=285
+  PACKAGE_VERIFY=PASS
+  GTK3_GIO_PYTHON_PREFLIGHT=PASS
+  PLUS_S7_TRUE_GTK_GIO_TRASH=START
+  PLUS_S7_TRUE_GTK_GIO_TRASH=PASS
+  PYCACHE_HYGIENE=PASS
+  PLUS_S7_T480_NONCANDIDATE=PASS
+Therefore:
+  PLUS_S7=PASS_CLOSED_NONCANDIDATE
+  CANDIDATE=NO
+  ATTEMPT_CONSUMED=NO
+  GIT_MUTATION=NO
+No S7 rerun is required or authorized by this closure.
+
+PLUS-S8 MATURE-SOURCE FINDINGS
+------------------------------
+S8 re-audited the already supplied mature sources with emphasis on workspace usability rather than
+filesystem mutation:
+- Kate File Tree implements an explicit `Show Active Document` action that selects, scrolls to and
+  expands the active document ancestry, and shows/focuses the tool view. This is the closest mature
+  precedent for Plus's bounded manual locate operation.
+- Kate File Browser also supports automatic synchronization with the active document, but that behavior
+  is optional. Geany File Browser likewise has an optional `fb_follow_path` document-activate hook.
+- Plus REJECTS automatic follow in the first baseline because a lazy bounded Workspace would otherwise
+  perform navigation/filesystem loading merely because the editor's active document changes. User intent
+  remains explicit.
+- gedit's historical `Set root to active document` changes the browser root. Plus REJECTS that model:
+  the explicitly bound one-root Workspace remains authority and active-document navigation must never
+  silently rebind it.
+- Kate tool views and Geany/gedit sidebars provide mature precedent for explicit show/hide behavior.
+- Geany provides a dedicated focus-file-list command; Plus does not add a new shortcut in S8 because
+  accelerator namespace expansion is unnecessary when manual Locate already transfers focus to the tree.
+
+PLUS-S8 ADOPT / REJECT CONTRACT
+-------------------------------
+ADOPT:
+- manual `Locate Active Document` only;
+- load/expand only the ancestor directories required for that known path;
+- select and scroll the active file into view, then focus the Workspace tree;
+- manual Workspace show/hide control;
+- a bounded initial pane width that leaves the editor wider than Workspace;
+- split Workspace controls into navigation and mutation rows so the action strip no longer determines
+  an excessively wide sidebar minimum.
+
+REJECT / DEFER:
+- automatic follow-current-document: DEFER/REJECT first Plus baseline;
+- active root rebinding from the document: REJECT;
+- pane width persistence: DEFER; no new UI state store in S8;
+- show/hide persistence: DEFER; no startup state/I/O added;
+- dedicated Workspace focus accelerator: DEFER;
+- global search/filter, watcher, indexer, project/session state: unchanged REJECT.
+
+S8 IMPLEMENTATION
+-----------------
+Runtime additions are confined to existing owners:
+- `WorkspaceController.relative_path_for_document()` validates a real regular active-document path
+  against the current bound root and hidden/symlink policy without changing root or document state.
+- `WorkspacePanel.locate_relative_path()` walks only the known relative ancestry, lazily expands each
+  needed directory, then selects/scrolls/focuses the active file.
+- `GraphiumPlusWindow._locate_active_document()` is the single GTK host gateway. If Workspace was hidden,
+  an explicit Locate operation shows it before locating.
+- main Plus toolbar adds one transient `Gtk.ToggleToolButton` for Workspace visibility. It is not a
+  duplicate Core command and it does not create persistent product state.
+- Workspace panel controls are split into two rows:
+    navigation: Open / Recent / Locate Active / Refresh / Reveal
+    mutations:  New Text / New Folder / Rename / Duplicate / Trash
+- initial `Gtk.Paned` position is 260 logical px. The divider remains freely user-resizable for the
+  current window; no value is persisted.
+
+The established S1 toolbar projection contract remains unchanged for Core actions. The new Workspace
+visibility toggle owns only transient Plus UI visibility and does not duplicate document command
+sensitivity or lifecycle authority.
+
+S8 SANDBOX QUALIFICATION
+------------------------
+Exact final S8 source reports:
+  AST_PARSE=140 files PASS
+  PLUS_WORKSPACE_FOCUSED=10/10 PASS
+  CORE_BEHAVIORAL=190/190 PASS
+  INTEGRATION=194/194 PASS
+  PACKAGING_RELEASE=60/60 PASS
+  S8_STATIC_SCOPE=PASS
+  CORE_BYTE_IDENTITY=PASS
+  PYCACHE_HYGIENE=PASS
+
+No test case/file/framework was added. Existing Workspace integration and desktop scenarios were extended
+only where they already owned the relevant behavior.
+
+S8 ANTI-BLOAT
+-------------
+Relative to exact closed S7 source:
+  SOURCE_CHANGED_PATHS=5
+  PLUS_RUNTIME_PY_LOC=2217 -> 2307 (+90)
+  TEST_PY_LOC=6123 -> 6153 (+30)
+  NEW_RUNTIME_MODULES=0
+  NEW_TEST_FILES=0
+  NEW_DESKTOP_SCENARIOS=0
+  NEW_TEST_FRAMEWORKS=0
+  CORE_CHANGED_PATHS=0
+No worker, watcher, indexer, database, session model, automatic document-follow signal or new persistence
+store was added.
+
+S8 PLATFORM BOUNDARY
+--------------------
+The assistant sandbox still lacks PyGObject/GTK3. All model/controller and static product properties were
+qualified there. One narrow NON-CANDIDATE T480 proof remains only for real GTK behavior:
+- Workspace pane is initially narrower than the editor;
+- toolbar toggle really hides/shows the Workspace widget;
+- manual Locate expands a collapsed ancestor chain, selects the active document and focuses the tree;
+- changing the active document does NOT auto-follow or trigger selection change;
+- explicit Locate while Workspace is hidden shows it and locates the new active document.
+No filesystem mutation proof, Behavioral, Integration, Release, Hunspell, Rename, Duplicate or Trash is
+repeated by this boundary.
+
+CURRENT STATE
+-------------
+PLUS_S0=PASS_CLOSED
+PLUS_S1=PASS_CLOSED_NONCANDIDATE
+PLUS_S2=PASS_CLOSED_SOURCE_FIRST_CONTRACT_FREEZE
+PLUS_S3=PASS_CLOSED_NONCANDIDATE
+PLUS_S4=PASS_CLOSED_NONCANDIDATE
+PLUS_S5=PASS_CLOSED_NONCANDIDATE
+PLUS_S6=PASS_CLOSED_NONCANDIDATE
+PLUS_S7=PASS_CLOSED_NONCANDIDATE
+PLUS_S8=IMPLEMENTED_SANDBOX_QUALIFIED_TRUE_GTK_USABILITY_PENDING
+PLUS_S9=BLOCKED_UNTIL_S8_CLOSE
+CANDIDATE=NO
+ATTEMPT_CONSUMED=NO
+GIT_MUTATION=NO
+
+======================================================================
+2026-08-28 — GRAPHIIUM PLUS S8 TRUE-GTK FOCUS FAIL: MATURE-SOURCE REAUDIT + FOCUS-PRESERVATION REPAIR
+======================================================================
+
+OBSERVED T480 FAIL
+------------------
+The first S8 True-GTK usability proof reached the manual Locate behavior, successfully expanded the
+collapsed ancestor and selected the active document, then failed only at:
+  `assert window.get_focus() is window.workspace_panel.tree`
+No rerun was performed before mature-source re-audit.
+
+MANDATORY POST-FAIL MATURE-SOURCE FINDINGS
+------------------------------------------
+- Kate File Tree `showActiveDocument()` calls `viewChanged()` to select/scroll/expand the active document,
+  then shows/focuses the generic tool view. Its file selection routine does not establish an exact
+  `QTreeView` focus contract.
+- Kate Project `selectFile()` likewise scrolls and selects without calling `setFocus()` on the tree.
+- Geany File Browser separates navigation/follow-current-document from focus ownership: its
+  `document_activate_cb()` changes directory/refreshes without grabbing the file list, while a separate
+  `KB_FOCUS_FILE_LIST` command explicitly calls `gtk_widget_grab_focus(file_view)` when focus transfer is
+  actually requested.
+- gedit keeps document focus as an explicit primary concern around panel visibility; its mature panel
+  behavior does not establish 'selection in a side panel implies exact tree focus' as an invariant.
+
+ROOT CAUSE / CONTRACT CORRECTION
+--------------------------------
+S8 had invented an overly specific focus contract: `Locate Active Document` was required to transfer
+focus exactly to the Workspace `Gtk.TreeView`. The mature sources do not converge on that property.
+Graphium Plus already sets Workspace action buttons `focus-on-click=False`, which expresses the opposite
+editor-first policy: navigation actions should not steal typing focus unnecessarily. The additional
+`self.tree.grab_focus()` in `WorkspacePanel.locate_relative_path()` contradicted that policy.
+
+The corrected Graphium Plus contract is therefore:
+- Locate Active Document reveals the bounded Workspace if needed;
+- lazily expands only required ancestors;
+- selects and scrolls the active file into view;
+- DOES NOT change root;
+- DOES NOT auto-follow future document changes;
+- DOES NOT steal the editor's existing keyboard focus.
+A dedicated future 'Focus Workspace' command may be considered only if a real user need appears; it is
+not part of S8.
+
+REPAIR
+------
+Product repair is deliberately reductive:
+- delete the single `self.tree.grab_focus()` call from `WorkspacePanel.locate_relative_path()`.
+No other product owner changes.
+
+The existing external S8 True-GTK proof is corrected rather than weakened:
+- it explicitly establishes the real `GraphiumTextView` as focus before Locate;
+- after Locate it requires the same editor focus to remain;
+- it repeats this preservation check when Locate reveals a previously hidden Workspace.
+The test still requires ancestor expansion, selection, visibility and no-auto-follow, so no functional
+coverage is removed.
+
+SANDBOX REQUALIFICATION AFTER REPAIR
+------------------------------------
+Exact repaired source:
+  AST_PARSE=PASS files=140
+  PLUS_WORKSPACE_FOCUSED=10/10 PASS
+  INTEGRATION=194/194 PASS
+  PACKAGING_RELEASE=60/60 PASS
+  CORE_CHANGED_PATHS=0
+  SOURCE_CHANGED_PATHS=1
+  PRODUCT_LOC_DELTA=-1
+  NEW_TEST_FILES=0
+  NEW_TEST_FRAMEWORKS=0
+Core Behavioral 190/190 from the exact S8 baseline remains valid because Core is byte-identical.
+
+CURRENT STATE
+-------------
+PLUS_S8=OPEN_REPAIRED_SANDBOX_PASS_TRUE_GTK_FOCUS_POLICY_PENDING
+PLUS_S9=BLOCKED_UNTIL_S8_CLOSE
+CANDIDATE=NO
+ATTEMPT_CONSUMED=NO
+GIT_MUTATION=NO
+
+
+================================================================================
+ENTRY — GRAPHIUM PLUS-S8 TRUE-GTK FOCUS POLICY REPAIR PASS / CLOSURE
+Date: 2026-08-28
+State: BINDING / PLUS OPEN / S8 PASS CLOSED NON-CANDIDATE / S9 AUTHORIZED
+================================================================================
+
+USER-PROVIDED T480 CLOSURE
+--------------------------
+The exact source-derived S8 focus-policy repair package completed its single authorized real-GTK
+qualification on the user's T480:
+
+  PACKAGE_VERIFY=PASS files=275 package_files=285
+  GTK3_PYTHON_PREFLIGHT=PASS
+  PLUS_S8_TRUE_GTK_FOCUS_POLICY_REPAIR=PASS
+  PYCACHE_HYGIENE=PASS
+  PLUS_S8_FOCUS_POLICY_REPAIR_T480_NONCANDIDATE=PASS
+
+No retry, manual test, Candidate declaration, Git mutation or Candidate attempt occurred. The repaired
+contract remains: Locate Active Document reveals/expands/selects the active in-root document while preserving
+editor writing focus; a future dedicated Focus Workspace command is not implied.
+
+PLUS_S8=PASS_CLOSED_NONCANDIDATE
+PLUS_S9=AUTHORIZED
+CANDIDATE=NO
+ATTEMPT_CONSUMED=NO
+GIT_MUTATION=NO
+
+
+================================================================================
+ENTRY — GRAPHIUM PLUS-S9 INTEGRAL QUALIFICATION / STRUCTURAL CONSOLIDATION / CANDIDATE READINESS
+Date: 2026-08-28
+State: BINDING / PLUS OPEN / S0-S9 COMPLETE / NON-CANDIDATE / CANDIDATE R1 AUTHORIZATION READY
+================================================================================
+
+PURPOSE
+-------
+S9 is deliberately not a functional-PASS counting exercise. It audits the exact cumulative Plus line for
+Core isolation, duplicated authorities, startup I/O, dead/test-only runtime API, dependency growth,
+Workspace loading/mutation boundaries, packaging identity, user documentation and test/harness growth. It is
+permitted to fail even when all functional suites are green.
+
+INITIAL S9 SOURCE-PROVEN BLOCKERS
+---------------------------------
+The first S9 audit found three real pre-Candidate deficiencies despite S1-S8 product functionality being
+closed:
+
+1. `PLUS_PRODUCT_IDENTITY.version` was still `None`; a Candidate would not have an independent release
+   identity.
+2. Plus had a source launcher and icons but no own installed desktop projection: no Plus `.desktop` file and
+   no Plus installer. A separate-product Candidate must not depend on running from the source tree.
+3. `WorkspaceController` retained five runtime API surfaces with no product consumer: `generation`,
+   `root_listing`, `listing_for`, `current_item`, and `clear`. Four existed only as test/introspection
+   convenience and one was completely dead. Keeping them merely because tests were green violates the
+   binding anti-bloat/test-value policy.
+
+These are Candidate-readiness defects, not S1-S8 feature regressions.
+
+S9 CONSOLIDATION / REMEDY
+-------------------------
+The exact S8 source was consolidated without reopening any completed Workspace feature:
+
+- Graphium Plus begins its own unpublished early-stage release line at `0.0.1`. This is not a semantic
+  stability claim and does not alter Core version `0.0.16`.
+- additive `bin/graphium-plus-install` installs one private `/lib/graphium-plus` runtime containing inherited
+  `graphium/` + additive `graphium_plus/`, one public `graphium-plus` symlink, Plus desktop file, Plus icon
+  family, user docs and GPL license. It installs no Core public launcher or Core desktop entry.
+- additive `graphium_plus/data/io.github.leviagravia.GraphiumPlus.desktop` freezes the independent desktop
+  identity: `Name=Graphium Plus`, `Exec=graphium-plus %F`, Plus application icon and no terminal.
+- additive `docs/user/GRAPHIUM_PLUS_USER_GUIDE.txt` is a complete independent Plus guide: inherited Core
+  behavior plus a bounded Workspace section. Plus Help -> User Guide projects this guide; keyboard-shortcut
+  help remains the inherited shortcut content but is titled Graphium Plus in the Plus window.
+- the five no-product-consumer `WorkspaceController` APIs above are removed. Existing tests are rewritten to
+  use controller return values or the actual GTK tree projection rather than forcing test-only runtime getters.
+  No new test file/framework is introduced and no product behavior is weakened.
+
+RELEASE / INSTALL IDENTITY
+--------------------------
+  PLUS_VERSION=0.0.1_UNPUBLISHED
+  PRODUCT_NAME=Graphium Plus
+  EXECUTABLE=graphium-plus
+  INSTALLER=graphium-plus-install
+  DESKTOP_APPLICATION_ID=io.github.leviagravia.GraphiumPlus
+  DESKTOP_FILE=io.github.leviagravia.GraphiumPlus.desktop
+  XDG_NAMESPACE=graphium-plus
+  USER_GUIDE=GRAPHIUM_PLUS_USER_GUIDE.txt
+  LICENSE=GPL-3.0-or-later
+
+The sandbox staged installer proves the Plus public projection independently and does not install
+`/usr/bin/graphium` or `io.github.leviagravia.Graphium.desktop`. The same installer also succeeds under a HOME
+path containing spaces and creates `~/.local/bin/graphium-plus` as the public symlink.
+
+INTEGRAL LOCAL QUALIFICATION — EXACT S9 PRODUCT
+-----------------------------------------------
+All meaningful sandbox-capable permanent authorities are PASS on the exact S9 product:
+
+  Behavioral:          190/190 PASS
+  Integration:         194/194 PASS
+  Packaging/Release:    60/60 PASS
+  LOCAL_AUTOMATED:     444/444 PASS
+  AST_PARSE=PASS
+  PYCACHE_HYGIENE=PASS
+  STAGED_PLUS_INSTALL=PASS
+
+The final Release rerun after the last test-only extension remains 60/60 PASS; Behavioral/Integration were not
+repeated because no product byte changed after their PASS. A later ad-hoc structural-import script created six
+`__pycache__/.pyc` files by omitting `-B`; those generated bytes were removed only. No functional suite was
+repeated because the source had not changed.
+
+STRUCTURAL / AUTHORITY AUDIT
+----------------------------
+  CORE_RUNTIME_MODULES=57
+  PLUS_RUNTIME_MODULES=13
+  CORE_IMPORTS_PLUS=0
+  PLUS_IMPORTS_ULTRA=0
+  CALAMUS_RUNTIME_IMPORTS=0
+  CISTULA_RUNTIME_IMPORTS=0
+  PLUS_TO_CORE_DIRECT_IMPORT_EDGES=5
+  PLUS_INTERNAL_IMPORT_CYCLES=0
+
+  ACTIVE_DOCUMENT_AUTHORITY_COUNT=1
+  DOCUMENT_REPLACEMENT_LIFECYCLE_COUNT=1
+  PHYSICAL_DOCUMENT_WRITER_AUTHORITY_COUNT=1
+  CANONICAL_COMMAND_AUTHORITY_COUNT=1
+  EDITOR_BUFFER_AUTHORITY_COUNT=1
+  WORKSPACE_ROOT_AUTHORITY_COUNT=1
+
+No `DocumentSession`, `GuardedFileWriter`, `FileLifecycleController`, `NativeEditorController`, `Gtk.TextBuffer`
+or `Gtk.TextView` authority is constructed inside `graphium_plus/`. Core source imports no Plus module.
+
+Startup remains bounded: constructing Plus creates the Workspace controller/panel and a Recent-Workspaces path
+object only; it does not bind a root, enumerate a directory, load recents, start a watcher/indexer/worker or
+restore a Workspace. Filesystem loading begins only from an explicit user Workspace action.
+
+The runtime contains no Workspace thread pool, watcher, indexer, SQLite/database, project/session model,
+recursive `os.walk`, Calamus/Cistula coupling or generic plugin/panel framework. User Trash still has no
+permanent-delete fallback; `os.unlink` inside the filesystem adapter is confined to private Duplicate staging /
+ownership-safe rollback, not a user delete authority.
+
+LIGHTWEIGHT / LOC / TEST-VALUE AUDIT
+------------------------------------
+Exact S9 measures:
+
+  Graphium Core Python runtime:                 11,733 LOC
+  additive Graphium Plus Python runtime:         2,303 LOC
+  of which Workspace core+panel:                 1,741 LOC
+  inherited Core generic-seam net delta:          +115 LOC across 7 Core runtime files
+  Plus installer:                                   68 LOC
+  Plus complete user guide:                        446 lines
+
+Comparator context only, never a numeric PASS threshold:
+  exact Calamus W84 Workspace modules:           2,580 LOC
+  Plus Workspace versus Calamus W84:              -839 LOC (~32.5% smaller)
+
+The final Plus Workspace is smaller despite adding lazy one-directory loading and strengthening Rename /
+Duplicate safety beyond the historical Calamus token model. `workspace/gio.py` is intentionally large because
+it owns one narrow filesystem commit boundary; splitting each mutation into a new service/module would increase
+authority/module count without changing ownership and is therefore rejected at S9.
+
+Tests versus exact public Core:
+  new permanent test files: 4 total
+  test changed/new paths: 10
+  test net delta: +765 LOC
+  S9 new test files: 0
+  S9 new test cases: 0
+
+S9 extends existing Release and Workspace authorities instead of adding reassurance layers. Five test-only/dead
+runtime APIs were removed rather than preserved for test convenience.
+
+PLATFORM EVIDENCE ADOPTED — NO REDUNDANT T480
+----------------------------------------------
+The cumulative Plus feature bytes already have focused real-T480 GTK/GIO evidence:
+
+  S1 compact native toolbar                    PASS
+  S3 repaired lazy GtkTreeView                 PASS
+  S4 New Text + New Folder real GTK/GIO        PASS
+  S5 strong-identity Rename                    PASS
+  S6 Verified Duplicate GTK wiring             PASS
+  S7 System Trash real GTK/GIO                 PASS
+  S8 repaired focus/usability policy            PASS
+
+The line also preserves the earlier valid FAIL evidence: S3 placeholder-expansion product FAIL, S5 weak-token
+product-safety FAIL, S7 invalid GTK getter oracle FAIL and S8 over-specific focus-policy FAIL were all
+source-first audited and repaired rather than retried until green. Candidate-readiness does not erase these
+historical failures.
+
+S9 changes no S1-S8 functional GTK/GIO feature implementation byte except removing dead/test-only controller
+accessors and adding Help-document projection. The release/version/installer/desktop/doc changes are
+source/staged-install provable. Repeating the focused T480 feature proofs would add no new property and is
+forbidden under sandbox-first / no-redundant-T480 policy.
+
+CANDIDATE READINESS VERDICT
+---------------------------
+  SOURCE_PROVABLE_BLOCKERS=0
+  PLATFORM_BLOCKERS=0
+  MANUAL_ONLY_BLOCKERS=0
+  DUPLICATE_DOCUMENT_AUTHORITIES=0
+  CORE_TO_PLUS_IMPORT_EDGES=0
+  UNUSED_TEST_ONLY_RUNTIME_APIS=0
+  STARTUP_WORKSPACE_IO=0
+  STRUCTURAL_AUDIT=PASS
+  PLUS_S9=PASS_CLOSED_NONCANDIDATE
+
+Graphium Plus is therefore **Candidate R1 authorization ready**, but Candidate R1 is NOT declared by S9.
+No Candidate attempt is consumed and no Git mutation occurs.
+
+GOVERNANCE
+----------
+  GRAPHIUM_PLUS_STATUS=OPEN/S0-S9_COMPLETE/NONCANDIDATE/CANDIDATE_R1_AUTHORIZATION_READY
+  PLUS_VERSION=0.0.1_UNPUBLISHED
+  PLUS_CANDIDATE_R1=NOT_DECLARED
+  PLUS_CANDIDATE_ATTEMPTS=0/2
+  PLUS_MANUAL_TESTS_REQUIRED_BEFORE_CANDIDATE=0
+  PLUS_NEW_T480_REQUIRED_BEFORE_CANDIDATE=NO
+  GIT_MUTATION=NO
+  PUBLICATION_AUTHORIZED=NO
+  GRAPHIIUM_ULTRA=DEFINED_NOT_OPENED
+
+NEXT_STEP=AWAIT_EXPLICIT_PLUS_CANDIDATE_R1_AUTHORIZATION
+FINAL_PHASE=PLUS_S9_PRE_CANDIDATE_READINESS_PASS_CANDIDATE_R1_AUTHORIZATION_READY
+
+
+================================================================================
+ENTRY — GRAPHIUM PLUS CANDIDATE R1 DECLARATION / FROZEN INSTALL PROJECTION
+Date: 2026-08-28
+State: BINDING / CANDIDATE R1 DECLARED / ATTEMPT 1 OF 2 USED / T480 INSTALLED-SMOKE PENDING
+================================================================================
+
+The user explicitly authorized Candidate R1 after Plus-S9 Candidate-readiness. Candidate attempt accounting is
+therefore 1/2 USED and 1/2 REMAINING.
+
+Candidate R1 version 0.0.1 is byte-identical to the exact Plus-S9 Candidate-ready SOURCE:
+
+  SOURCE_FILES=278
+  SOURCE_MANIFEST_SHA256=09a4b21b5bb7a79a88225fe52050d0ed5d5b62396a5b63bf93af19db3b0ddd9e
+  PRODUCT_MANIFEST_SHA256=99295ca0dd9bc3e34d32cb142e527d8dbc87921bd514d2c8e4c65197128fb4d8
+  TESTS_MANIFEST_SHA256=5f46517baa39cf7f5217ab5fe08fb9819492f940060b0d7a2afd3e2f2aa40c86
+  USER_DOCS_MANIFEST_SHA256=7d513e467860e7fb53d356f3747b7d46b37f25d1bb169f18a18407d4b7ceb052
+
+The Candidate is installed under `/home/luciano/Applications/Graphium-Plus-Candidate-R1` with isolated
+`.xdg/config`, `.xdg/data`, `.xdg/cache` and `.xdg/state`. The runner verifies SOURCE, installs using the real
+Plus installer into a private Candidate prefix, verifies the installed bytes/symlink topology against a frozen
+staged-install manifest, and launches only that installed Candidate. It never installs into `~/.local` and never
+overwrites an existing Candidate target. A FAIL leaves the target visible for forensics and forbids blind retry.
+
+  PLUS_CANDIDATE_R1=DECLARED_FROZEN
+  PLUS_CANDIDATE_ATTEMPTS=1/2_USED
+  PLUS_CANDIDATE_ATTEMPTS_REMAINING=1/2
+  T480_INSTALLED_RUNTIME_SMOKE=PENDING
+  CANDIDATE_CERTIFIED=NO_PENDING_INSTALLED_SMOKE
+  GIT_MUTATION=NO
+  PUBLICATION_AUTHORIZED=NO
+  GRAPHIUM_ULTRA=DEFINED_NOT_OPENED
+
+NEXT_STEP=RUN_EXACT_CANDIDATE_R1_INSTALLED_PROJECTION_ON_T480_ONCE
+FINAL_PHASE=PLUS_CANDIDATE_R1_DECLARED_FROZEN_T480_INSTALLED_SMOKE_PENDING
+
+================================================================================
+2026-08-28 — GRAPHIIUM PLUS CANDIDATE R1 USER-VISIBLE FAIL + POST-R1 REPAIR CONTRACT
+================================================================================
+
+Observed Candidate R1 platform smoke:
+- installed projection: PASS
+- runtime smoke: PASS
+- candidate remained installed at /home/luciano/Applications/Graphium-Plus-Candidate-R1
+
+User-visible findings after smoke:
+1. the compact icon toolbar cannot be hidden, while toolbar visibility is required to be optional;
+2. Reveal in File Manager opens the containing/current folder rather than requesting the desktop file manager to reveal the selected item.
+
+Classification:
+- CANDIDATE_R1=RETIRED_VALID_PRODUCT_FAIL
+- ATTEMPT_1_OF_2=CONSUMED
+- ATTEMPT_2_OF_2=REMAINS
+- CANDIDATE_R2=NOT_DECLARED; requires separate explicit authorization
+- runtime smoke PASS does not override a user-visible product FAIL.
+
+Mature-source audit:
+- Geany implements toolbar visibility as a user-controlled View-menu state and persists it.
+- historical gedit likewise has an explicit toolbar-visible View setting.
+- Graphium Plus adapts only the essential property now: View > Toolbar is a stateful presentation toggle; persistence is deliberately DEFERRED to avoid introducing new session state solely for this corrective.
+- Kate uses KIO::highlightInFileManager({url}) for "open containing folder" semantics that reveal/highlight the exact selected URL rather than merely launching dirname.
+- Linux desktop interoperability authority is org.freedesktop.FileManager1: ShowItems for selected item(s), ShowFolders for a folder location.
+
+Post-R1 repair contract:
+- View > Toolbar MUST hide/show the compact Plus toolbar in the current window.
+- hiding the toolbar MUST NOT disable canonical menu commands or shortcuts.
+- toolbar visibility in 0.0.1 corrective remains transient; no new persistent setting is introduced.
+- Workspace Reveal with a selected item MUST request FileManager1.ShowItems for that exact item's URI.
+- with no Workspace item selected, Reveal MUST request FileManager1.ShowFolders for the Workspace root.
+- if FileManager1 is unavailable, fallback may open the relevant directory, but Graphium Plus MUST NOT claim that the exact item was highlighted.
+- Candidate R1 source behavior "always launch dirname" is retired.
+- Nemo-specific behavior is not an authority for Graphium: current Nemo versions may mishandle ShowItems for directories; file-item reveal must be judged using a selected regular file.
+
+Test policy:
+- no new permanent test file/scenario is created for this corrective;
+- existing plus_toolbar and plus_workspace scenarios are extended with the new properties;
+- any stale static oracle that scans unrelated callbacks must be narrowed to the owner/property it actually protects rather than forcing product code to satisfy it.
+
+
+
+================================================================================
+2026-08-28 — GRAPHIUM PLUS POST-R1 WORKSPACE USABILITY / TOOLBAR NON-CANDIDATE DESKTOP CLOSURE
+================================================================================
+State: BINDING / NON-CANDIDATE DESKTOP VALIDATION PASS / CANDIDATE R2 NOT DECLARED
+
+After the retired Candidate R1 and its source-first mature-source corrective, the user authorized one
+additional bounded Workspace/toolbar usability implementation before any R2 declaration. The resulting
+NON-CANDIDATE line contains:
+- explicit Light-mode Workspace row selection contrast for active and backdrop/inactive selection states,
+  implemented only in the existing Graphium appearance authority;
+- a right-click Workspace context menu reusing the existing Workspace operation callbacks/controllers;
+- explicit internal Graphium Plus opening for regular .txt/.md Workspace files by double-click/Enter and
+  by "Open with Graphium Plus"; single click remains selection-only;
+- natural numeric-aware sibling sorting, folders first, without recursive scanning or an index;
+- in-memory preservation of surviving selection across explicit Refresh;
+- more informative partial-view diagnostics without a new diagnostics subsystem;
+- compact-toolbar projection of Cut, Copy, Paste and Replace onto existing canonical win.* actions.
+
+No new module, dependency, thread, watcher, indexer, database, session/project model, recursive Workspace
+snapshot, startup Workspace scan, document authority, filesystem mutation authority or appearance authority
+was added.
+
+The T480 NON-CANDIDATE runner displayed one expected real-GTK duplicate-create warning dialog during its
+True-GTK path. The user explicitly classified the initial window/dialog as NOT a product fail: after closing
+it, Graphium Plus operated normally. The user then manually checked all newly implemented features and
+reported:
+
+  POST_R1_WORKSPACE_USABILITY_TOOLBAR_DESKTOP_VALIDATION=PASS
+  PRODUCT_FAIL=NO
+  CANDIDATE_R2=NOT_DECLARED
+  CANDIDATE_ATTEMPT_CONSUMED_THIS_STEP=NO
+
+Historical accounting therefore remains:
+  CANDIDATE_R1=RETIRED_VALID_PRODUCT_FAIL
+  PLUS_CANDIDATE_ATTEMPTS_USED=1/2
+  PLUS_CANDIDATE_ATTEMPTS_REMAINING=1/2
+
+================================================================================
+2026-08-28 — GRAPHIUM PLUS CONSOLIDATED R2 READINESS + HELP SYNCHRONIZATION
+================================================================================
+State: BINDING / NON-CANDIDATE / R2 READINESS PASS / CANDIDATE R2 AUTHORIZATION PENDING
+
+The next authorized step is a source-first consolidated readiness pass, not Candidate R2 declaration.
+Because the post-R1 usability runtime has already received user desktop validation PASS, this readiness
+step deliberately preserves every runtime/product byte and changes only documentation plus the existing
+release-test owner that verifies the documentation projection.
+
+HELP / USER GUIDE CLOSURE
+-------------------------
+`docs/user/GRAPHIUM_PLUS_USER_GUIDE.txt` is synchronized to the actual final Plus 0.0.1 behavior:
+- sections are sequential 1..23; stale duplicate Workspace section numbers are removed;
+- the inherited Core no-toolbar statement is qualified so it no longer contradicts Plus;
+- section 22 documents the exact compact toolbar order, View > Toolbar transient visibility semantics,
+  canonical action projection and the separate Workspace visibility toggle;
+- section 23 documents the complete bounded Workspace: Open Folder, Recent, lazy navigation, natural sort,
+  single-click selection, internal .txt/.md open, explicit external activation for other file types,
+  Light selection visibility, right-click menu, Locate Active, Refresh selection preservation, New Text,
+  New Folder, Rename, Duplicate, Move to Trash, FileManager1 Reveal, Workspace visibility, partial-view
+  diagnostics and the intentionally rejected project/indexer/watcher/session scope;
+- Help clarifies that Plus adds no new global accelerator, so Keyboard Shortcuts remains the inherited Core
+  accelerator authority while Plus-only toolbar/Workspace presentation actions remain mouse/menu driven;
+- the Plus GTK window continues to open `GRAPHIUM_PLUS_USER_GUIDE.txt` from Help > User Guide, and the Plus
+  installer already projects that file into the private installed Help tree.
+
+The existing release file `tests/release/test_plus_product_line.py` is extended rather than adding a new test
+file. It now verifies the final Help markers, sequential section numbering, removal of stale contradictory
+headings, and the actual Plus Help projection path/title.
+
+EXACT-BYTE PRESERVATION
+-----------------------
+Relative to the user desktop-validated post-R1 usability source, exactly two paths change:
+  docs/user/GRAPHIUM_PLUS_USER_GUIDE.txt
+  tests/release/test_plus_product_line.py
+
+Therefore the following scopes are byte-identical to the desktop-validated product:
+  graphium/**
+  graphium_plus/**
+  bin/**
+  data/**
+  assets/**
+  LICENSE
+
+No additional T480/manual run is justified: the only post-validation delta is offline Help text and its
+source/release oracle. The previously obtained desktop validation is adopted for the unchanged runtime bytes.
+
+READINESS VERIFICATION
+----------------------
+Exact readiness source:
+  CORE_BEHAVIORAL=190/190 PASS
+  PLUS_WORKSPACE_INTEGRATION_FOCUSED=10/10 PASS
+  INTEGRATION_NON_HUNSPELL=163/163 PASS
+  RELEASE=62/62 PASS
+  PLUS_HELP_PROJECTION=PASS
+  RUNTIME_BYTE_IDENTITY_VS_DESKTOP_VALIDATED_SOURCE=PASS
+  NEW_RUNTIME_MODULES=0
+  NEW_TEST_FILES=0
+  NEW_T480_REQUIRED=NO
+
+A first integration invocation from `<stdin>` produced two multiprocessing-spawn harness failures because
+Python spawn cannot re-import a `<stdin>` main module. It was INVALID HARNESS for those cases, not product
+evidence. The same exact suite was rerun from a real temporary runner file and passed 163/163.
+
+GOVERNANCE
+----------
+  GRAPHIUM_PLUS_STATUS=OPEN/POST_R1_REPAIRED/DESKTOP_VALIDATED/R2_READINESS_PASS
+  PLUS_VERSION=0.0.1_UNPUBLISHED
+  CANDIDATE_R1=RETIRED_VALID_PRODUCT_FAIL
+  PLUS_CANDIDATE_ATTEMPTS_USED=1/2
+  PLUS_CANDIDATE_ATTEMPTS_REMAINING=1/2
+  CANDIDATE_R2=NOT_DECLARED
+  CANDIDATE_ATTEMPT_CONSUMED_THIS_READINESS=NO
+  GIT_MUTATION=NO
+  PUBLICATION_AUTHORIZED=NO
+
+NEXT_STEP=AWAIT_SEPARATE_EXPLICIT_PLUS_CANDIDATE_R2_AUTHORIZATION
+FINAL_PHASE=PLUS_POST_R1_CONSOLIDATED_R2_READINESS_PASS_HELP_COHERENT_COMPLETE
+
+================================================================================
+2026-08-28 — GRAPHIUM PLUS CANDIDATE R2 DECLARATION / FINAL ATTEMPT
+================================================================================
+State: BINDING / CANDIDATE R2 DECLARED / ATTEMPT 2 OF 2 USED / T480 INSTALLED-SMOKE PENDING
+
+The user explicitly authorized the next step after consolidated R2-readiness PASS. That next step was frozen
+in advance as Graphium Plus Candidate R2 and required separate authorization. Candidate R2 is therefore
+DECLARED on the exact readiness source. This declaration consumes the second and final Candidate attempt.
+
+Candidate R2 version 0.0.1 is byte-identical to the exact consolidated R2-readiness SOURCE:
+
+  SOURCE_FILES=278
+  SOURCE_MANIFEST_SHA256=4678509a0470c69dff97249b975742ac70a71c0725fc65e76ee34d9157ad10be
+  RUNTIME_FILES=89
+  RUNTIME_MANIFEST_SHA256=756d7978bc651b1e0b54973ccdb06d777fa15e22fdacbe8089250947675e8dd7
+  TESTS_FILES=70
+  TESTS_MANIFEST_SHA256=a70b1a44cc567c2c14632395c7a3ab3148beb72cc3b574e5223a40af9d574b3a
+  USER_DOCS_FILES=3
+  USER_DOCS_MANIFEST_SHA256=8ff6b5bb0fb7c6447dbb75056a4ef4634678048bfe98969a31db591f9678efb5
+
+No product/runtime, test, Help/User Guide, launcher, installer, icon, desktop file, LICENSE or canonical source
+byte is changed by Candidate declaration. The user desktop validation PASS for the runtime is adopted because
+Candidate R2 runtime bytes are identical. The only post-desktop-validation source delta was the already
+R2-readiness-qualified Help/User Guide text and its existing release oracle.
+
+Candidate R2 must be installed exactly once under:
+  /home/luciano/Applications/Graphium-Plus-Candidate-R2
+
+The runner:
+- verifies the exact frozen source manifest before any install;
+- preflights the real Plus installer in a temporary private prefix;
+- refuses to overwrite an existing Candidate-R2 target;
+- installs using the real `bin/graphium-plus-install` into the private Applications prefix;
+- verifies exact installed file hashes, executable modes and symlink topology;
+- creates XDG config/data/cache/state only inside the Candidate directory;
+- launches only the installed Candidate projection;
+- leaves the Candidate target intact after PASS or FAIL for inspection.
+
+No Git mutation, publication, `~/.local` installation or system integration is authorized by this step.
+
+Governance:
+  CANDIDATE_R1=RETIRED_VALID_PRODUCT_FAIL
+  CANDIDATE_R2=DECLARED_FROZEN
+  PLUS_CANDIDATE_ATTEMPTS_USED=2/2
+  PLUS_CANDIDATE_ATTEMPTS_REMAINING=0/2
+  CANDIDATE_R2_T480_INSTALLED_SMOKE=PENDING
+  CANDIDATE_R2_CERTIFIED=NO_PENDING_INSTALLED_SMOKE
+  GIT_MUTATION=NO
+  PUBLICATION_AUTHORIZED=NO
+
+If Candidate R2 produces a valid product FAIL, the Plus Candidate line is exhausted and no further Candidate
+attempt/reissue is authorized. Harness-only invalidity must be classified from evidence; it must never be
+converted into a blind product retry.
+
+NEXT_STEP=RUN_EXACT_CANDIDATE_R2_INSTALLED_PROJECTION_ON_T480_ONCE
+FINAL_PHASE=PLUS_CANDIDATE_R2_DECLARED_FINAL_ATTEMPT_T480_INSTALLED_SMOKE_PENDING
+
+================================================================================
+2026-08-28 — GRAPHIUM PLUS CANDIDATE R2 CERTIFICATION
+================================================================================
+State: BINDING / CANDIDATE R2 CERTIFIED / PUBLICATION NOT AUTHORIZED
+
+The user executed the exact frozen Candidate R2 once on the T480. The supplied runner output proves:
+  CANDIDATE_R2_SOURCE_VERIFY=PASS files=278
+  CANDIDATE_R2_INSTALL_PREFLIGHT=PASS files=87 symlinks=1
+  CANDIDATE_R2_INSTALLED_PROJECTION=PASS files=87 symlinks=1
+  CANDIDATE_R2_INSTALLED_RUNTIME_SMOKE=PASS
+  CANDIDATE_R2_CERTIFICATION_EVIDENCE_READY=YES
+  CANDIDATE_R2_TARGET_PRESERVED=/home/luciano/Applications/Graphium-Plus-Candidate-R2
+  GIT_MUTATION=NO
+  PUBLICATION_AUTHORIZED=NO
+
+Candidate R2 is therefore CERTIFIED on the exact already-frozen identity:
+  SOURCE_FILES=278
+  SOURCE_MANIFEST_SHA256=4678509a0470c69dff97249b975742ac70a71c0725fc65e76ee34d9157ad10be
+  RUNTIME_FILES=89
+  RUNTIME_MANIFEST_SHA256=756d7978bc651b1e0b54973ccdb06d777fa15e22fdacbe8089250947675e8dd7
+  TESTS_FILES=70
+  TESTS_MANIFEST_SHA256=a70b1a44cc567c2c14632395c7a3ab3148beb72cc3b574e5223a40af9d574b3a
+  USER_DOCS_FILES=3
+  USER_DOCS_MANIFEST_SHA256=8ff6b5bb0fb7c6447dbb75056a4ef4634678048bfe98969a31db591f9678efb5
+
+The Candidate source/runtime/test/Help bytes are not changed by certification. The runtime is identical to the
+post-R1 line already covered by explicit user Desktop Validation PASS. The R2-readiness Help/User Guide closure
+is part of the frozen Candidate source.
+
+Governance:
+  CANDIDATE_R1=RETIRED_VALID_PRODUCT_FAIL
+  CANDIDATE_R2=CERTIFIED
+  PLUS_CANDIDATE_ATTEMPTS_USED=2/2
+  PLUS_CANDIDATE_ATTEMPTS_REMAINING=0/2
+  KNOWN_OPEN_PRODUCT_BLOCKERS=0
+  GIT_MUTATION_THIS_CERTIFICATION=NO
+  PUBLICATION_AUTHORIZED=NO
+
+No Candidate retry/reissue remains available. Publication is a separate fail-closed transaction and requires
+separate explicit user authorization. Until then the canonical Git repository is not mutated.
+
+NEXT_STEP=AWAIT_SEPARATE_EXPLICIT_GRAPHIUM_PLUS_PUBLICATION_AUTHORIZATION
+FINAL_PHASE=PLUS_CANDIDATE_R2_CERTIFIED_PUBLICATION_NOT_AUTHORIZED
+
+================================================================================
+2026-08-28 — GRAPHIUM PLUS 0.0.1 PUBLICATION AUTHORIZATION / TARGET FREEZE
+================================================================================
+State: BINDING / CANDIDATE R2 CERTIFIED / PUBLICATION AUTHORIZED / FINALIZER REQUIRED
+
+The user explicitly authorized the next step after Candidate R2 certification. That next step is the first
+Graphium Plus product publication. The publication preserves the separately frozen product-line topology:
+Graphium Core remains the public Core repository; Graphium Plus is a separate cumulative repository with a
+one-time Git lineage from exact public Graphium Core HEAD `8899c94006757c066c88739ff84bf8e1a6cb1b35`.
+
+Canonical Plus repository identity:
+  LOCAL_REPOSITORY=/home/luciano/Projects/graphium-plus-work
+  BRANCH=main
+  REMOTE=https://github.com/leviagravia/graphium-plus.git
+  REPOSITORY_NAME=graphium-plus
+  PRODUCT_VERSION=0.0.1
+  COMMIT_SUBJECT=Graphium Plus 0.0.1: publish toolbar and workspace
+
+Certified Candidate R2 authority remains:
+  SOURCE_FILES=278
+  SOURCE_MANIFEST_SHA256=4678509a0470c69dff97249b975742ac70a71c0725fc65e76ee34d9157ad10be
+  RUNTIME_MANIFEST_SHA256=756d7978bc651b1e0b54973ccdb06d777fa15e22fdacbe8089250947675e8dd7
+  TESTS_MANIFEST_SHA256=a70b1a44cc567c2c14632395c7a3ab3148beb72cc3b574e5223a40af9d574b3a
+  USER_DOCS_MANIFEST_SHA256=8ff6b5bb0fb7c6447dbb75056a4ef4634678048bfe98969a31db591f9678efb5
+  CANDIDATE_R2=CERTIFIED
+  CANDIDATE_ATTEMPTS_USED=2/2
+  CANDIDATE_ATTEMPTS_REMAINING=0/2
+  KNOWN_OPEN_PRODUCT_BLOCKERS=0
+
+Relative to certified Candidate R2, publication may change exactly five authority/evidence paths:
+  docs/canonical/GRAPHIUM_MEMORIA_OPERATIVA.txt
+  docs/canonical/GRAPHIUM_PRODUCT_ARCHITECTURE_CONTRACT.md
+  docs/canonical/GRAPHIUM_ROADMAP.md
+  evidence/GRAPHIUM_PLUS_0.0.1_CANDIDATE_R2_CERTIFICATION_RECEIPT_20260828.txt
+  evidence/SHA256SUMS.txt
+
+All runtime, test, user Help, launcher/installer, desktop/icon, LICENSE and existing public-surface bytes remain
+Candidate-protected through the product publication transaction. In particular no post-certification functional
+change is permitted. No new T480 functional/manual test is justified for publication.
+
+The target GitHub repository is created PRIVATE first. This prevents the inherited Core README from becoming a
+misleading public Graphium Plus page before the separately bounded GitHub public-surface step. Product publication
+therefore commits and pushes the exact frozen Plus product to the private canonical remote, then stops. README,
+public Graphium Plus logo projection, description/topics, Plus tag/release and transition to PUBLIC belong to the
+next GitHub-surface closure and must not be folded into the certified product commit.
+
+GIT_MUTATION=AUTHORIZED_BY_USER
+PUBLICATION_AUTHORIZED=YES
+PUBLICATION_COMPLETE=NO
+GITHUB_PUBLIC_SURFACE=PENDING_SEPARATE_CLOSURE
+NEXT_STEP=RUN_FAIL_CLOSED_GRAPHIUM_PLUS_0.0.1_PUBLICATION_FINALIZER
+FINAL_PHASE=PLUS_0.0.1_CANDIDATE_R2_CERTIFIED_PUBLICATION_AUTHORIZED_FINALIZER_PENDING
+

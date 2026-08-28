@@ -12,13 +12,7 @@ from gi.repository import Gdk, Gtk, Pango
 from graphium.application.file_lifecycle import ReloadDecision, UnsavedDecision
 from graphium.application.recovery_startup import RecoveryStartupDecision
 from graphium.domain.recovery_artifact import RecoveryDocumentKind, RecoveryRecord
-from graphium.product import (
-    APPLICATION_ICON_NAME,
-    AUTHOR,
-    COPYRIGHT,
-    REPOSITORY_LABEL,
-    REPOSITORY_URL,
-)
+from graphium.product import CORE_PRODUCT_IDENTITY, ProductIdentity
 
 
 class GtkLifecycleUI:
@@ -232,11 +226,13 @@ def show_text_document(parent: Gtk.Window, *, title: str, path: str) -> None:
         dialog.destroy()
 
 
-def _project_about_application_icon(dialog: Gtk.AboutDialog) -> None:
-    """Project the single Graphium application-icon authority into About."""
+def _project_about_application_icon(
+    dialog: Gtk.AboutDialog, identity: ProductIdentity
+) -> None:
+    """Project the selected application-icon authority into About."""
     theme = Gtk.IconTheme.get_default()
-    if theme is not None and theme.has_icon(APPLICATION_ICON_NAME):
-        dialog.set_logo_icon_name(APPLICATION_ICON_NAME)
+    if theme is not None and theme.has_icon(identity.application_icon_name):
+        dialog.set_logo_icon_name(identity.application_icon_name)
         return
     for icon in Gtk.Window.get_default_icon_list() or ():
         if icon.get_width() == 48 and icon.get_height() == 48:
@@ -244,22 +240,27 @@ def _project_about_application_icon(dialog: Gtk.AboutDialog) -> None:
             return
 
 
-def show_about(parent: Gtk.Window, *, version: str) -> None:
+def show_about(
+    parent: Gtk.Window,
+    *,
+    identity: ProductIdentity = CORE_PRODUCT_IDENTITY,
+) -> None:
     dialog = Gtk.AboutDialog(transient_for=parent, modal=True)
-    _project_about_application_icon(dialog)
-    dialog.set_program_name("Graphium")
-    dialog.set_version(version)
+    _project_about_application_icon(dialog, identity)
+    dialog.set_program_name(identity.product_name)
+    if identity.version is not None:
+        dialog.set_version(identity.version)
     display = Gdk.Display.get_default()
     backend = type(display).__name__ if display is not None else "Unavailable"
     system = (f"Python {sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}; "
               f"GTK {Gtk.get_major_version()}.{Gtk.get_minor_version()}.{Gtk.get_micro_version()}; "
               f"Display {backend}")
     dialog.set_comments("Fast, simple and safety-focused plain-text editor for Linux.\n\n" + system)
-    dialog.set_authors([AUTHOR])
-    dialog.set_copyright(COPYRIGHT)
+    dialog.set_authors([identity.author])
+    dialog.set_copyright(identity.copyright)
     dialog.set_license_type(Gtk.License.GPL_3_0)
-    dialog.set_website(REPOSITORY_URL)
-    dialog.set_website_label(REPOSITORY_LABEL)
+    dialog.set_website(identity.repository_url)
+    dialog.set_website_label(identity.repository_label)
     try:
         dialog.run()
     finally:

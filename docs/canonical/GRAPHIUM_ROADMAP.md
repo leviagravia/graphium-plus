@@ -844,3 +844,21 @@ work, not a new Graphium Core feature line.
 source-first mature-editor audit under the Plus contract.
 
 **Graphium Ultra:** **DEFINED / NOT OPENED**.
+
+### Graphium Plus 0.0.1 — Candidate R2 CERTIFIED / PUBLICATION AUTHORIZED — 2026-08-28
+
+Plus S0-S9 and the bounded post-R1 usability closure are complete. The certified 0.0.1 product consists of
+Graphium Core plus the compact native toolbar and bounded local Workspace. Final user desktop validation is PASS;
+Candidate R2 installed projection/smoke is PASS; known open product blockers = 0. Candidate accounting is 2/2
+used, 0/2 remaining.
+
+The authorized publication is the first commit in the separate `graphium-plus` product line after exact public
+Core lineage commit `8899c94006757c066c88739ff84bf8e1a6cb1b35`. The first GitHub remote state is intentionally
+PRIVATE. After product publication PASS, perform a separate GitHub public-surface closure: install an accurate
+Graphium Plus README, expose the red Plus icon as primary identity, retain the original Graphium icon only in a
+small "Built on Graphium Core" lineage section, set description/topics, create the Plus `v0.0.1` release when its
+release artifact is frozen, verify anonymous endpoints, and only then make the repository PUBLIC.
+
+Graphium Ultra remains DEFINED / NOT OPENED and requires separate explicit authorization after Plus publication
+and public-surface closure.
+

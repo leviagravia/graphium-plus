@@ -17,23 +17,32 @@ gi.require_version("GdkPixbuf", "2.0")
 from gi.repository import GdkPixbuf, Gio, GLib, Gtk
 
 from graphium.application.commands import COMMANDS
-from graphium.product import APPLICATION_ICON_NAME, DESKTOP_APPLICATION_ID
+from graphium.product import CORE_PRODUCT_IDENTITY, ProductIdentity
 from .window import GraphiumWindow
 
 
-def application_icon_paths() -> tuple[Path, ...]:
-    """Return the bundled, hand-tuned Graphium application icon set."""
-    root = Path(__file__).resolve().parents[3] / "data" / "icons" / "hicolor"
+def application_icon_paths(
+    identity: ProductIdentity = CORE_PRODUCT_IDENTITY,
+    icon_root: Path | None = None,
+) -> tuple[Path, ...]:
+    """Return the bundled, hand-tuned application icon set for one product identity."""
+    root = (
+        Path(__file__).resolve().parents[3] / "data" / "icons" / "hicolor"
+        if icon_root is None
+        else icon_root
+    )
     return tuple(
-        root / size / "apps" / f"{APPLICATION_ICON_NAME}.svg"
+        root / size / "apps" / f"{identity.application_icon_name}.svg"
         for size in ("16x16", "24x24", "32x32", "48x48", "scalable")
     )
 
 
-def _install_application_icon_identity() -> None:
+def _install_application_icon_identity(
+    identity: ProductIdentity, icon_root: Path | None = None
+) -> None:
     """Use the installed theme identity, with exact repo-local icons for source runs."""
-    Gtk.Window.set_default_icon_name(APPLICATION_ICON_NAME)
-    paths = application_icon_paths()
+    Gtk.Window.set_default_icon_name(identity.application_icon_name)
+    paths = application_icon_paths(identity, icon_root)
     if not all(path.is_file() for path in paths):
         return
     try:
@@ -44,17 +53,26 @@ def _install_application_icon_identity() -> None:
 
 
 class GraphiumApplication(Gtk.Application):
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        *,
+        identity: ProductIdentity = CORE_PRODUCT_IDENTITY,
+        window_factory=GraphiumWindow,
+        icon_root: Path | None = None,
+    ) -> None:
         super().__init__(
-            application_id=DESKTOP_APPLICATION_ID,
+            application_id=identity.desktop_application_id,
             flags=Gio.ApplicationFlags.HANDLES_OPEN | Gio.ApplicationFlags.NON_UNIQUE,
         )
+        self.product_identity = identity
+        self._window_factory = window_factory
+        self._icon_root = icon_root
         self.window: GraphiumWindow | None = None
         self.system_prefer_dark_theme = False
 
     def do_startup(self) -> None:
         Gtk.Application.do_startup(self)
-        _install_application_icon_identity()
+        _install_application_icon_identity(self.product_identity, self._icon_root)
         settings = Gtk.Settings.get_default()
         if settings is not None:
             self.system_prefer_dark_theme = bool(
@@ -66,7 +84,7 @@ class GraphiumApplication(Gtk.Application):
 
     def _ensure_window(self) -> GraphiumWindow:
         if self.window is None:
-            self.window = GraphiumWindow(self)
+            self.window = self._window_factory(self)
             self.window.connect("destroy", self._on_window_destroyed)
         return self.window
 

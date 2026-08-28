@@ -19,6 +19,13 @@ class XdgPathTests(unittest.TestCase):
         self.assertEqual(got.cache, Path('/tmp/cache/graphium'))
         self.assertEqual(got.state, Path('/tmp/state/graphium'))
 
+    def test_explicit_product_namespace_is_isolated(self):
+        got = resolve_xdg_paths({'HOME': '/home/tester'}, namespace='graphium-plus')
+        self.assertEqual(got.config, Path('/home/tester/.config/graphium-plus'))
+        self.assertEqual(got.data, Path('/home/tester/.local/share/graphium-plus'))
+        self.assertEqual(got.cache, Path('/home/tester/.cache/graphium-plus'))
+        self.assertEqual(got.state, Path('/home/tester/.local/state/graphium-plus'))
+
     def test_missing_home_fails_closed(self):
         with self.assertRaises(ValueError):
             resolve_xdg_paths({})

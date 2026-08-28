@@ -23,7 +23,7 @@ from .infrastructure.view_settings_store import JsonViewSettingsStore
 from .infrastructure.recent_files_store import JsonRecentFilesStore
 from .infrastructure.recovery_store import RecoveryArtifactStore
 from .infrastructure.recovery_worker import DedicatedRecoveryWorker
-from .paths import resolve_xdg_paths
+from .paths import XdgPaths, resolve_xdg_paths
 
 
 @dataclass
@@ -52,7 +52,9 @@ def build_core(
     recovery_scheduler: RecoverySchedulerPort | None = None,
     recovery_store: RecoveryArtifactStore | None = None,
     recovery_worker: RecoveryWorkerPort | None = None,
+    xdg_paths: XdgPaths | None = None,
 ) -> GraphiumCore:
+    paths = resolve_xdg_paths() if xdg_paths is None else xdg_paths
     session = DocumentSession()
     history = DeltaHistory()
     editor = NativeEditorController(session=session, history=history, buffer=buffer)
@@ -60,17 +62,17 @@ def build_core(
     save_service = DocumentSaveService(session=session, writer=writer)
     search = SearchController()
     if view_settings_store is None:
-        view_settings_store = JsonViewSettingsStore(resolve_xdg_paths().config / "view.json")
+        view_settings_store = JsonViewSettingsStore(paths.config / "view.json")
     view_settings = ViewSettingsController(view_settings_store)
     if recent_files_store is None:
-        recent_files_store = JsonRecentFilesStore(resolve_xdg_paths().state / "recent-files.json")
+        recent_files_store = JsonRecentFilesStore(paths.state / "recent-files.json")
     recent_files = RecentFilesController(recent_files_store)
     document_copy = DocumentCopyService(session=session, writer=writer)
     document_properties = DocumentPropertiesController(session=session, observer=observe_document)
     recovery: RecoveryController | None = None
     if recovery_scheduler is not None:
         if recovery_store is None:
-            recovery_store = RecoveryArtifactStore(resolve_xdg_paths().state / "recovery")
+            recovery_store = RecoveryArtifactStore(paths.state / "recovery")
         if recovery_worker is None:
             recovery_worker = DedicatedRecoveryWorker(recovery_scheduler.dispatch)
         recovery = RecoveryController(

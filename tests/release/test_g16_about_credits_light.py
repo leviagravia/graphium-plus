@@ -16,6 +16,19 @@ class G16AboutCreditsLightTests(unittest.TestCase):
         self.assertIn(selector, light)
         self.assertIn(selector, dark)
 
+
+    def test_treeview_selection_is_explicit_in_active_and_backdrop_states(self):
+        source = (ROOT / "graphium/adapters/gtk/appearance.py").read_text(encoding="utf-8")
+        light = source[source.index("_LIGHT_CSS"):source.index("_DARK_CSS")]
+        dark = source[source.index("_DARK_CSS"):source.index("class GtkAppearanceRenderer")]
+        for block in (light, dark):
+            self.assertIn("treeview.view:selected", block)
+            self.assertIn("treeview.view:selected:focus", block)
+            self.assertIn("treeview.view:selected:backdrop", block)
+            self.assertIn("background-image: none", block)
+            self.assertIn("background-color: #3584e4", block)
+            self.assertIn("color: #ffffff", block)
+
     def test_credits_fix_does_not_create_dialog_specific_styling_owner(self):
         dialogs = (ROOT / "graphium/adapters/gtk/dialogs.py").read_text(encoding="utf-8")
         for forbidden in (

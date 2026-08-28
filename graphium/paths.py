@@ -25,7 +25,9 @@ def _home(env: Mapping[str, str]) -> Path:
     return Path(raw)
 
 
-def resolve_xdg_paths(env: Mapping[str, str] | None = None) -> XdgPaths:
+def resolve_xdg_paths(
+    env: Mapping[str, str] | None = None, *, namespace: str = "graphium"
+) -> XdgPaths:
     source = os.environ if env is None else env
     home = _home(source)
     config_home = Path(source.get("XDG_CONFIG_HOME", home / ".config"))
@@ -33,10 +35,10 @@ def resolve_xdg_paths(env: Mapping[str, str] | None = None) -> XdgPaths:
     cache_home = Path(source.get("XDG_CACHE_HOME", home / ".cache"))
     state_home = Path(source.get("XDG_STATE_HOME", home / ".local" / "state"))
     return XdgPaths(
-        config=config_home / "graphium",
-        data=data_home / "graphium",
-        cache=cache_home / "graphium",
-        state=state_home / "graphium",
+        config=config_home / namespace,
+        data=data_home / namespace,
+        cache=cache_home / namespace,
+        state=state_home / namespace,
     )
 
 def resolve_recovery_root(env: Mapping[str, str] | None = None) -> Path:

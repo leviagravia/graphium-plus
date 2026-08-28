@@ -12,6 +12,7 @@ from gi.repository import Gdk, Gio, GLib, GObject, Gtk
 
 from graphium.application.commands import (COMMANDS, TOP_LEVEL_MENUS, command_availability, encoding_choice_target, encoding_choice_value, line_ending_choice_target)
 from graphium.application.document_properties import CheckNowResult, CheckNowStatus
+from graphium.application.file_lifecycle import DocumentReplacementPermit
 from graphium.application.view_status import project_compact_status
 from graphium.application.view_settings import (
     APPEARANCE_DARK, APPEARANCE_LIGHT, APPEARANCE_SYSTEM, APPEARANCE_VALUES,
@@ -27,13 +28,14 @@ from graphium.domain.document_serialization import (
 from graphium.domain.document_save import SaveDisposition
 from graphium.domain.text_search import SearchInputError, SearchMatch
 from graphium.composition import build_core
+from graphium.paths import XdgPaths, resolve_xdg_paths
 from graphium.domain.edit_history import ViewState
 from graphium.application.renderability import (
     InteractiveRenderabilityError,
     ensure_insert_renderable,
     ensure_join_renderable,
 )
-from graphium.product import PRODUCT_NAME, VERSION
+from graphium.product import CORE_PRODUCT_IDENTITY, ProductIdentity
 from .dialogs import (
     GtkLifecycleUI, choose_copy_path, choose_font, choose_line_number, choose_tab_width, show_about,
     show_properties, show_statistics, show_text_document,
@@ -45,9 +47,21 @@ from .recovery_runtime import GLibRecoveryScheduler
 
 
 class GraphiumWindow(Gtk.ApplicationWindow):
-    def __init__(self, application: Gtk.Application) -> None:
+    def __init__(
+        self,
+        application: Gtk.Application,
+        *,
+        identity: ProductIdentity = CORE_PRODUCT_IDENTITY,
+        xdg_paths: XdgPaths | None = None,
+    ) -> None:
         super().__init__(application=application)
-        self.set_role("graphium-editor")
+        self._identity = identity
+        self._xdg_paths = (
+            resolve_xdg_paths(namespace=identity.xdg_namespace)
+            if xdg_paths is None
+            else xdg_paths
+        )
+        self.set_role(f"{identity.package_name}-editor")
 
         self._closing_accepted = False
         self._startup_open_pending = False
@@ -82,6 +96,7 @@ class GraphiumWindow(Gtk.ApplicationWindow):
         self._status_document.set_xalign(1.0)
 
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        self._root_box = box
         self.add(box)
 
         self._external_info_bar = Gtk.InfoBar()
@@ -107,6 +122,7 @@ class GraphiumWindow(Gtk.ApplicationWindow):
         scroller = Gtk.ScrolledWindow()
         scroller.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         scroller.add(self.text_view)
+        self._editor_scroller = scroller
         box.pack_start(scroller, True, True, 0)
 
         self._status_bar.pack_start(self._status_position, False, False, 4)
@@ -119,6 +135,7 @@ class GraphiumWindow(Gtk.ApplicationWindow):
             buffer=self.buffer_port,
             ui=ui,
             recovery_scheduler=GLibRecoveryScheduler(),
+            xdg_paths=self._xdg_paths,
         )
         if self.core.recovery is None:
             raise RuntimeError("Graphium recovery controller was not composed")
@@ -608,7 +625,7 @@ class GraphiumWindow(Gtk.ApplicationWindow):
         path = self.core.session.logical_path
         name = Path(path).name if path else "Untitled"
         state = "Modified" if self.core.session.modified else "Saved"
-        return f"{name} ({state}) — {PRODUCT_NAME}"
+        return f"{name} ({state}) — {self._identity.product_name}"
 
     def _refresh_projection(self) -> None:
         self.set_title(self._title())
@@ -683,9 +700,14 @@ class GraphiumWindow(Gtk.ApplicationWindow):
             self._ui.show_warning("Recent file history was not cleared", str(exc))
         self._refresh_recent_menu()
 
-    def open_path(self, path: str) -> bool:
+    def open_path(
+        self,
+        path: str,
+        *,
+        replacement_permit: DocumentReplacementPermit | None = None,
+    ) -> bool:
         self._suspend_external_monitor()
-        result = self.core.lifecycle.open_document(path)
+        result = self.core.lifecycle.open_document(path, replacement_permit=replacement_permit)
         if result.completed:
             self._clear_external_file_alert()
             self._refresh_recent_menu()
@@ -823,6 +845,7 @@ class GraphiumWindow(Gtk.ApplicationWindow):
                 self,
                 show_error=self._ui.show_error,
                 show_warning=self._ui.show_warning,
+                page_setup_path=self._xdg_paths.config / "page-setup.ini",
             )
         return self._print_controller
 
@@ -1438,7 +1461,7 @@ class GraphiumWindow(Gtk.ApplicationWindow):
         )
 
     def _action_about(self, *_args) -> None:
-        show_about(self, version=VERSION)
+        show_about(self, identity=self._identity)
 
     def _on_delete_event(self, *_args) -> bool:
         if self._closing_accepted:

@@ -9,8 +9,8 @@ from tests.release._common import ROOT
 class G16AboutIconCorrectiveTests(unittest.TestCase):
     def test_about_uses_existing_identity_not_an_about_asset(self):
         source = (ROOT / "graphium/adapters/gtk/dialogs.py").read_text(encoding="utf-8")
-        self.assertIn("APPLICATION_ICON_NAME", source)
-        self.assertIn("dialog.set_logo_icon_name(APPLICATION_ICON_NAME)", source)
+        self.assertIn("identity.application_icon_name", source)
+        self.assertIn("dialog.set_logo_icon_name(identity.application_icon_name)", source)
         self.assertIn("Gtk.Window.get_default_icon_list()", source)
         self.assertIn("dialog.set_logo(icon)", source)
         for forbidden in (".svg", "data/icons", "about.svg", "about-icon", "image-missing"):

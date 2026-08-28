@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Graphium Plus
+GenericName=Text Editor
+Comment=Native text editor with a focused Workspace
+Exec=graphium-plus %F
+Icon=io.github.leviagravia.GraphiumPlus
+Terminal=false
+MimeType=text/plain;
+Categories=GTK;Utility;TextEditor;
+Keywords=Text;Editor;Workspace;Writing;
+StartupNotify=true

@@ -63,6 +63,15 @@ class LifecycleResult:
     cancelled: bool = False
 
 
+_REPLACEMENT_PERMIT_AUTHORITY = object()
+
+
+@dataclass(frozen=True)
+class DocumentReplacementPermit:
+    _authority: object
+    session_revision: int
+
+
 class FileLifecycleController:
     __slots__ = ("session", "editor", "save_service", "loader", "ui", "recent_files", "recovery")
 
@@ -201,6 +210,20 @@ class FileLifecycleController:
             return self.save().completed
         raise RuntimeError(f"unexpected unsaved decision: {decision!r}")
 
+    def prepare_document_replacement(self, action_label: str) -> DocumentReplacementPermit | None:
+        if not isinstance(action_label, str) or not action_label.strip():
+            raise ValueError("action_label must be a non-empty string")
+        if not self._resolve_modified_before_replace(action_label.strip()):
+            return None
+        return DocumentReplacementPermit(_REPLACEMENT_PERMIT_AUTHORITY, self.session.revision)
+
+    def _replacement_permit_is_current(self, permit: DocumentReplacementPermit) -> bool:
+        return (
+            isinstance(permit, DocumentReplacementPermit)
+            and permit._authority is _REPLACEMENT_PERMIT_AUTHORITY
+            and permit.session_revision == self.session.revision
+        )
+
     def new_document(self) -> LifecycleResult:
         if not self._resolve_modified_before_replace("create a new document"):
             return LifecycleResult(False, cancelled=True)
@@ -211,9 +234,21 @@ class FileLifecycleController:
             return LifecycleResult(False)
         return LifecycleResult(True, changed_document=True)
 
-    def open_document(self, path: str | None = None) -> LifecycleResult:
-        if not self._resolve_modified_before_replace("open another file"):
-            return LifecycleResult(False, cancelled=True)
+    def open_document(
+        self,
+        path: str | None = None,
+        *,
+        replacement_permit: DocumentReplacementPermit | None = None,
+    ) -> LifecycleResult:
+        if replacement_permit is None:
+            if not self._resolve_modified_before_replace("open another file"):
+                return LifecycleResult(False, cancelled=True)
+        elif not self._replacement_permit_is_current(replacement_permit):
+            self.ui.show_error(
+                "Could not open file",
+                "The active document changed after replacement was authorized.",
+            )
+            return LifecycleResult(False)
         selected = path if path is not None else self.ui.choose_open_path()
         if not selected:
             return LifecycleResult(False, cancelled=True)

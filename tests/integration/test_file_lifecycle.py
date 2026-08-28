@@ -54,6 +54,33 @@ class FileLifecycleTests(unittest.TestCase):
     def assert_state_triplet(self,before): self.assertEqual((self.session.snapshot(),self.history.checkpoint(),self.buffer.text),before)
     def bind_recovery_spy(self):
         r=RecoverySpy(); self.lifecycle.recovery=r; self.editor.set_document_state_listener(r.document_state_changed); return r
+    def test_prepared_replacement_discard_authorizes_canonical_open_without_second_prompt(self):
+        self.edit('draft')
+        target = self.file_bytes('created.md', b'')
+        self.ui.unsaved = UnsavedDecision.DISCARD
+        permit = self.lifecycle.prepare_document_replacement('open a new Workspace text file')
+        self.assertIsNotNone(permit)
+        self.assertEqual(self.ui.unsaved_prompts, ['open a new Workspace text file'])
+        result = self.lifecycle.open_document(str(target), replacement_permit=permit)
+        self.assertTrue(result.completed)
+        self.assertEqual(self.ui.unsaved_prompts, ['open a new Workspace text file'])
+        self.assertEqual(self.session.logical_path, str(target))
+        self.assertFalse(self.session.modified)
+
+    def test_prepared_replacement_fails_closed_if_document_changes_before_open(self):
+        self.edit('draft')
+        target = self.file_bytes('created.md', b'')
+        self.ui.unsaved = UnsavedDecision.DISCARD
+        permit = self.lifecycle.prepare_document_replacement('open a new Workspace text file')
+        self.assertIsNotNone(permit)
+        self.edit('draft changed')
+        before = self.state_triplet()
+        result = self.lifecycle.open_document(str(target), replacement_permit=permit)
+        self.assertFalse(result.completed)
+        self.assert_state_triplet(before)
+        self.assertTrue(self.ui.errors)
+        self.assertIn('changed after replacement was authorized', self.ui.errors[-1][1])
+
     def test_recovery_failed_open_after_discard_preserves_generation(self):
         self.edit('draft'); r=self.bind_recovery_spy(); self.ui.unsaved=UnsavedDecision.DISCARD
         self.assertFalse(self.lifecycle.open_document(str(self.root/'missing.txt')).completed); self.assertEqual((r.changed,r.invalidated),(0,0))

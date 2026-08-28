@@ -45,6 +45,14 @@ button:disabled, entry:disabled, spinbutton:disabled { color: #77767b; }
   background-color: #3584e4;
   color: #ffffff;
 }
+treeview.view:selected,
+treeview.view:selected:focus,
+treeview.view:selected:backdrop,
+treeview.view:backdrop:selected {
+  background-image: none;
+  background-color: #3584e4;
+  color: #ffffff;
+}
 tooltip {
   background-color: #202020;
   color: #ffffff;
@@ -74,6 +82,14 @@ button {
 button:hover { background-color: #4a4a4a; }
 button:disabled, entry:disabled, spinbutton:disabled { color: #9a9996; }
 *:selected {
+  background-color: #3584e4;
+  color: #ffffff;
+}
+treeview.view:selected,
+treeview.view:selected:focus,
+treeview.view:selected:backdrop,
+treeview.view:backdrop:selected {
+  background-image: none;
   background-color: #3584e4;
   color: #ffffff;
 }

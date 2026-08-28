@@ -2054,3 +2054,31 @@ product. No Candidate is reopened, no attempt is consumed, and no new T480 funct
 Graphium Core 0.0.16 is **CLOSED / CERTIFIED / PUBLISHED / CANONICALLY CONVERGED** by this revision. The next
 product-adjacent activity is the public GitHub surface/release preparation and full Git-history hygiene audit;
 Graphium Plus and Graphium Ultra remain separately defined and **NOT OPENED**.
+
+### Graphium Plus 0.0.1 cumulative-edition publication authority — 2026-08-28
+
+Graphium Plus is a separate cumulative product line, not a Core runtime feature flag. Its canonical repository is
+`leviagravia/graphium-plus`, with one-time Git lineage from exact public Graphium Core HEAD
+`8899c94006757c066c88739ff84bf8e1a6cb1b35`. Core remains independently usable and imports no Plus module.
+Plus may reuse inherited Core modules and may introduce only minimal generic seams in inherited `graphium/` when
+Core-default behavior remains equivalent and the inherited Core layer gains no Plus import.
+
+The Plus 0.0.1 additive runtime is `graphium_plus/` plus the `graphium-plus` launcher/installer and independent
+`io.github.leviagravia.GraphiumPlus` desktop/XDG/icon identity. The editor continues to own exactly one active
+DocumentSession, one editor buffer/view authority, one physical writer and one canonical command authority.
+The compact GTK toolbar is only a projection of existing actions. The Workspace owns one local root and uses
+lazy one-directory loading; it adds no watcher, indexer, database, project/session graph, recursive startup scan
+or background worker. `.txt` and `.md` activation routes through Graphium's canonical Open lifecycle. Filesystem
+mutations remain bounded, root-confined and fail-closed; Move to Trash has no permanent-delete fallback.
+
+Graphium Plus uses the exact Graphium icon geometry with a red colorway. The original Graphium icon remains the
+Core identity and may be shown on the repository public page only as lineage attribution; it must not replace or
+compete with the red Graphium Plus icon as the Plus product identity.
+
+Candidate R2 is certified on runtime manifest
+`756d7978bc651b1e0b54973ccdb06d777fa15e22fdacbe8089250947675e8dd7` with zero known open product blockers.
+Publication may alter only the three canonical documents, one additive Candidate-R2 certification receipt and
+`evidence/SHA256SUMS.txt`. Runtime, tests, user Help, launchers/installers, desktop/icon assets, LICENSE and the
+inherited public-surface README/assets are publication-protected. The first remote is created private; public
+README/logo/release metadata and visibility are a later repository-surface transaction.
+

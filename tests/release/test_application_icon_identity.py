@@ -68,8 +68,8 @@ class ApplicationIconIdentityTests(unittest.TestCase):
 
     def test_gtk_adapter_has_one_local_fallback_without_resource_framework(self):
         source = (ROOT / "graphium" / "adapters" / "gtk" / "application.py").read_text(encoding="utf-8")
-        self.assertIn("APPLICATION_ICON_NAME", source)
-        self.assertIn("Gtk.Window.set_default_icon_name(APPLICATION_ICON_NAME)", source)
+        self.assertIn("identity.application_icon_name", source)
+        self.assertIn("Gtk.Window.set_default_icon_name(identity.application_icon_name)", source)
         self.assertIn("Gtk.Window.set_default_icon_list", source)
         self.assertIn("application_icon_paths", source)
         for forbidden in ("GResource", "resource_register", "gtk-update-icon-cache", "subprocess.run"):
