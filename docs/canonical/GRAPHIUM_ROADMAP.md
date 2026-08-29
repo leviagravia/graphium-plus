@@ -862,3 +862,21 @@ release artifact is frozen, verify anonymous endpoints, and only then make the r
 Graphium Ultra remains DEFINED / NOT OPENED and requires separate explicit authorization after Plus publication
 and public-surface closure.
 
+
+### Graphium Plus 0.0.1 — PRODUCT PUBLISHED / GITHUB PUBLIC-SURFACE CLOSURE AUTHORIZED — 2026-08-28
+
+The first separate Plus product publication is PASS: commit
+`b6b3709d9fbb100844302625adacd014b95a1c96`, tree
+`a558bbb3a6cee3dbd412e909df1a1e67ce636340`, parent public Core
+`8899c94006757c066c88739ff84bf8e1a6cb1b35`, with `HEAD=origin/main=remote main` and CLEAN worktree. The remote
+is intentionally PRIVATE before surface closure. Certified Candidate R2 product/runtime/test/user-Help bytes are
+unchanged by publication.
+
+The user has authorized the bounded GitHub public-surface closure: final Plus README, red Plus hero icon, small
+linked original Graphium lineage icon, description/topics, history hygiene and final PRIVATE -> PUBLIC transition.
+The README must explicitly explain that Latin `graphium` means a stylus/writing implement associated with wax-tablet
+writing. GitHub release `v0.0.1` remains DEFERRED until a separate release artifact is frozen; no `.deb` or other
+binary availability may be claimed before then.
+
+After public-surface PASS, Graphium Plus 0.0.1 may be marked CLOSED / CERTIFIED / PUBLISHED / PUBLIC. Graphium
+Ultra remains DEFINED / NOT OPENED and still requires separate explicit authorization.

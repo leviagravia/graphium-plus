@@ -11117,3 +11117,57 @@ GITHUB_PUBLIC_SURFACE=PENDING_SEPARATE_CLOSURE
 NEXT_STEP=RUN_FAIL_CLOSED_GRAPHIUM_PLUS_0.0.1_PUBLICATION_FINALIZER
 FINAL_PHASE=PLUS_0.0.1_CANDIDATE_R2_CERTIFIED_PUBLICATION_AUTHORIZED_FINALIZER_PENDING
 
+
+================================================================================
+2026-08-28 — GRAPHIUM PLUS 0.0.1 PRODUCT PUBLICATION PASS / GITHUB PUBLIC-SURFACE AUTHORIZED
+================================================================================
+State: BINDING / PRODUCT PUBLISHED / PRIVATE REMOTE / PUBLIC-SURFACE CLOSURE AUTHORIZED
+
+The user executed the corrected fail-closed publication finalizer against the pre-existing empty PRIVATE
+`leviagravia/graphium-plus` repository. Publication completed PASS with:
+  LOCAL_REPOSITORY=/home/luciano/Projects/graphium-plus-work
+  BRANCH=main
+  REMOTE=https://github.com/leviagravia/graphium-plus.git
+  PUBLISHED_COMMIT=b6b3709d9fbb100844302625adacd014b95a1c96
+  PUBLISHED_TREE=a558bbb3a6cee3dbd412e909df1a1e67ce636340
+  PUBLISHED_PARENT=8899c94006757c066c88739ff84bf8e1a6cb1b35
+  COMMIT_SUBJECT=Graphium Plus 0.0.1: publish toolbar and workspace
+  HEAD=ORIGIN_MAIN=REMOTE_MAIN=b6b3709d9fbb100844302625adacd014b95a1c96
+  WORKTREE_INDEX=CLEAN
+  REPOSITORY_VISIBILITY=PRIVATE
+  RUNTIME_CHANGED_BY_PUBLICATION=NO
+  TESTS_CHANGED_BY_PUBLICATION=NO
+  USER_HELP_CHANGED_BY_PUBLICATION=NO
+
+Candidate R2 remains the frozen certified product authority. Candidate accounting remains historically 2/2 used,
+0/2 remaining. No Candidate is reopened by distribution/public-surface work.
+
+The user separately authorized the GitHub public-surface closure. This closure is distribution/governance only:
+it must preserve `graphium/**`, `graphium_plus/**`, `bin/**`, `data/**`, `tests/**`, `docs/user/**`, `LICENSE`
+and the certified Plus runtime bytes. It may install the final Plus README, add the exact scalable red Plus icon
+as `assets/graphium-plus.svg`, update the three canonical documents, add public-surface/publication evidence and
+regenerate `evidence/SHA256SUMS.txt`.
+
+Public branding contract:
+- the red Graphium Plus icon is the only primary/hero identity;
+- the original dark Graphium icon remains smaller and appears only in the `Built on Graphium Core` lineage section;
+- the README must state what the name Graphium means: Latin `graphium`, a stylus/writing implement, associated
+  with writing on wax tablets;
+- the README must present Plus as Graphium Core + a compact toolbar + bounded local Workspace, not as an IDE;
+- no unverified benchmark claim, download artifact or package availability may be invented.
+
+Repository metadata target:
+  DESCRIPTION=Lightweight native GTK text editor for Linux: Graphium Core plus a compact toolbar and bounded local Workspace.
+  TOPICS=linux,gtk3,text-editor,python,pygobject,lightweight,plain-text,markdown,workspace,hunspell
+
+The `v0.0.1` GitHub Release is deliberately deferred until a release artifact (for example a final `.deb`) is
+separately frozen. Absence of a release asset does not block making the source repository public once README,
+branding, metadata, history hygiene and anonymous-read checks pass.
+
+The closure runner must revalidate exact private published identity before mutation, perform a read-only hygiene
+scan, precompute/prove the exact staged target in a temporary clone, commit/push without force, verify authenticated
+private README/icon/metadata endpoints, then change visibility PRIVATE -> PUBLIC and verify anonymous GitHub/API/raw
+access. If anonymous verification fails after visibility transition, the runner must attempt to restore PRIVATE.
+
+NEXT_STEP=RUN_FAIL_CLOSED_GRAPHIUM_PLUS_0.0.1_GITHUB_PUBLIC_SURFACE_FINALIZER
+FINAL_PHASE=PLUS_0.0.1_PRODUCT_PUBLISHED_PRIVATE_PUBLIC_SURFACE_AUTHORIZED

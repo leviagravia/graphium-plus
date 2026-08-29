@@ -2082,3 +2082,24 @@ Publication may alter only the three canonical documents, one additive Candidate
 inherited public-surface README/assets are publication-protected. The first remote is created private; public
 README/logo/release metadata and visibility are a later repository-surface transaction.
 
+
+### Graphium Plus 0.0.1 GitHub public-surface authority — 2026-08-28
+
+Graphium Plus 0.0.1 product publication is complete at commit
+`b6b3709d9fbb100844302625adacd014b95a1c96`, tree
+`a558bbb3a6cee3dbd412e909df1a1e67ce636340`, parent exact public Graphium Core commit
+`8899c94006757c066c88739ff84bf8e1a6cb1b35`. GitHub public-surface work is distribution/governance only and
+must not change any certified runtime, test, installed Help, launcher/installer, desktop or product icon byte.
+
+The public Graphium Plus identity uses the existing scalable red Plus application icon as the README hero. The
+original dark Graphium icon may appear only as a smaller lineage marker linking to Graphium Core. README wording
+must keep Plus architecturally accurate: one Graphium document authority plus compact toolbar and bounded lazy
+Workspace; no project/session authority, watcher, indexer, recursive startup scan, background Workspace worker,
+database, tabs, plugin platform or cloud service may be implied.
+
+The public README must include the name origin: Latin `graphium`, meaning a stylus/writing implement, associated
+with writing on wax tablets. This naming text is descriptive branding only and creates no runtime authority.
+
+A GitHub `v0.0.1` release must not claim or attach an installer/package until that release artifact is separately
+frozen. Repository visibility may become PUBLIC after exact Git/source identity, public-surface target, history
+hygiene, authenticated metadata and anonymous-read verification gates are satisfied.
