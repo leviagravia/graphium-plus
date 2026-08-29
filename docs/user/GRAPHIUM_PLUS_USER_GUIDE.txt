@@ -419,7 +419,7 @@ Workspace visibility toggle. The buttons call the same canonical window actions 
 keyboard shortcuts; the toolbar does not implement a second command, document or Save authority.
 
 Choose View -> Toolbar to show or hide the entire compact toolbar in the current window. Toolbar
-visibility is intentionally transient in Graphium Plus 0.0.1 and is not restored at startup. Hiding
+visibility is intentionally transient in Graphium Plus 0.0.2 and is not restored at startup. Hiding
 the toolbar never disables the corresponding menu commands or accelerators. The Workspace button at
 the end of the toolbar independently shows or hides the Workspace pane for the current window.
 

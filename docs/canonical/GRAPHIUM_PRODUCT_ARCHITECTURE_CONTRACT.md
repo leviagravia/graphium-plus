@@ -2128,3 +2128,12 @@ Post-release canonical convergence may alter only the three canonical documents,
 `graphium/`, `graphium_plus/`, `bin/`, `data/`, `tests/`, `docs/user/`, `README.md`, `assets/`, `LICENSE` and all
 other released product/public-surface paths are protected and must remain byte/mode-identical to release source.
 No Candidate is reopened and no T480 functional retest is justified by governance-only convergence.
+
+
+### Graphium Plus 0.0.2 maintenance boundary — Core 0.0.17 guarded-save propagation — 2026-08-29
+
+Graphium Plus 0.0.2 is a maintenance successor to immutable release 0.0.1. It does not fork or reinterpret the Core writer. `graphium/infrastructure/guarded_file_writer.py` and `tests/integration/test_guarded_writer.py` are adopted byte-for-byte from the supplied Core 0.0.17 derived-line authority because the Plus 0.0.1 inherited owner hashes matched the accepted pre-corrective pair exactly. The resulting writer hash is `c3972a980229b64d96c864d4462472be44820be485d02757d1dd02105f86dad2`; permanent regression hash is `5d3fbfb85e1b8cefedf8978696a3893baedc196464993f9d9185aee0a0c984f2`.
+
+The EXPECTED_ABSENT namespace commit contract is therefore: fd-relative `renameat2(..., RENAME_NOREPLACE)` primary, hard-link+unlink only when no-replace is genuinely unsupported, no replacing/direct-write/exists-then-rename fallback, and post-link stage-unlink failure classified as post-commit warning-shaped state. No FAT32-specific product branch is permitted. Existing-target guarded atomic replacement remains unchanged.
+
+Plus-only toolbar/Workspace/document authorities remain byte-identical to 0.0.1. The only Plus runtime identity delta is `PLUS_PRODUCT_IDENTITY.version = 0.0.2`. The exact Core writer bytes already possess physical FAT32/vfat proof; derived-line certification adopts that proof while requiring exact-byte identity and permanent Plus tests. Release `v0.0.1` and its artifact remain immutable; publication of this maintenance source uses new tag `v0.0.2` and package version `0.0.2-1`.

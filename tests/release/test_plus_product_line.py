@@ -31,7 +31,7 @@ class PlusProductLineTests(unittest.TestCase):
             PLUS_PRODUCT_IDENTITY.repository_url,
             "https://github.com/leviagravia/graphium-plus",
         )
-        self.assertEqual(PLUS_PRODUCT_IDENTITY.version, "0.0.1")
+        self.assertEqual(PLUS_PRODUCT_IDENTITY.version, "0.0.2")
         self.assertEqual(PLUS_PRODUCT_IDENTITY.author, CORE_PRODUCT_IDENTITY.author)
         self.assertEqual(PLUS_PRODUCT_IDENTITY.copyright, CORE_PRODUCT_IDENTITY.copyright)
         self.assertEqual(PLUS_PRODUCT_IDENTITY.license_id, CORE_PRODUCT_IDENTITY.license_id)

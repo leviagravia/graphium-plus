@@ -8,6 +8,8 @@
   <strong>Graphium Core + compact toolbar + local Workspace</strong>
 </p>
 
+<p align="center"><strong>Current release: 0.0.2</strong></p>
+
 <p align="center">
   A lightweight native GTK text editor for Linux with a bounded filesystem Workspace and strict file-safety semantics.
 </p>
@@ -49,7 +51,7 @@ Workspace mutations are similarly bounded. Paths are revalidated before mutation
   </a>
 </p>
 
-Graphium Plus 0.0.1 is a cumulative descendant of **Graphium Core 0.0.16**. The original Graphium icon above identifies that lineage; the **red icon is the primary Graphium Plus identity**.
+Graphium Plus 0.0.2 remains a cumulative descendant of **Graphium Core 0.0.16** and additionally inherits the exact **Graphium Core 0.0.17 guarded-save corrective** for FAT32/vfat compatibility. The original Graphium icon above identifies that lineage; the **red icon is the primary Graphium Plus identity**.
 
 The Plus repository begins from the exact published Graphium Core lineage and adds the Plus layer without replacing the Core editor authorities.
 

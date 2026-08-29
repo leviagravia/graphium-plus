@@ -7,7 +7,7 @@ Safety model:
 - metadata preservation for an existing target;
 - late target/parent/stage revalidation;
 - atomic replace for an observed existing target;
-- race-safe link-based no-overwrite commit for an observed absent target;
+- race-safe rename-no-replace commit for an observed absent target, with link fallback;
 - parent-directory fsync;
 - truthful post-commit baseline/durability outcomes.
 
@@ -15,6 +15,7 @@ There is deliberately no direct/truncate fallback.
 """
 from __future__ import annotations
 
+import ctypes
 import errno
 import hashlib
 import os
@@ -43,6 +44,56 @@ from graphium.infrastructure.document_loader import load_document, normalize_log
 
 DEFAULT_NEW_FILE_MODE = 0o644
 _CHUNK_SIZE = 1024 * 1024
+_RENAME_NOREPLACE = 1
+_RENAME_NOREPLACE_UNSUPPORTED_ERRNOS = frozenset(
+    {
+        errno.ENOSYS,
+        errno.EINVAL,
+        errno.ENOTSUP,
+        getattr(errno, "EOPNOTSUPP", errno.ENOTSUP),
+    }
+)
+
+
+def _load_renameat2() -> object | None:
+    try:
+        libc = ctypes.CDLL(None, use_errno=True)
+        renameat2 = libc.renameat2
+    except (OSError, AttributeError):
+        return None
+    renameat2.argtypes = (
+        ctypes.c_int,
+        ctypes.c_char_p,
+        ctypes.c_int,
+        ctypes.c_char_p,
+        ctypes.c_uint,
+    )
+    renameat2.restype = ctypes.c_int
+    return renameat2
+
+
+_RENAMEAT2 = _load_renameat2()
+
+
+def _rename_noreplace_at(
+    source_directory_fd: int,
+    source_name: str,
+    target_directory_fd: int,
+    target_name: str,
+) -> None:
+    renameat2 = _RENAMEAT2
+    if renameat2 is None:
+        raise OSError(errno.ENOSYS, os.strerror(errno.ENOSYS))
+    result = renameat2(
+        source_directory_fd,
+        os.fsencode(source_name),
+        target_directory_fd,
+        os.fsencode(target_name),
+        _RENAME_NOREPLACE,
+    )
+    if result != 0:
+        error_number = ctypes.get_errno() or errno.EIO
+        raise OSError(error_number, os.strerror(error_number), target_name)
 
 
 def _object_id(st: os.stat_result) -> FileObjectIdentity:
@@ -433,30 +484,60 @@ class GuardedFileWriter:
                 stage_path=stage_path,
                 stage_fd=stage_fd,
             )
-            try:
-                if observation.expectation is SaveTargetExpectation.EXPECTED_EXISTING:
+            if observation.expectation is SaveTargetExpectation.EXPECTED_EXISTING:
+                try:
                     os.replace(
                         stage_name,
                         target_name,
                         src_dir_fd=directory_fd,
                         dst_dir_fd=directory_fd,
                     )
-                else:
-                    # Link is a portable POSIX no-overwrite namespace commit: it fails if a
-                    # competing writer created the destination after our absence observation.
-                    os.link(
-                        stage_name,
-                        target_name,
-                        src_dir_fd=directory_fd,
-                        dst_dir_fd=directory_fd,
-                        follow_symlinks=False,
-                    )
-                    os.unlink(stage_name, dir_fd=directory_fd)
+                except OSError as exc:
+                    raise GuardedWriteError(f"namespace commit failed: {exc}") from exc
                 committed = True
-            except FileExistsError as exc:
-                raise StaleSaveTargetError("Save As target appeared at commit time") from exc
-            except OSError as exc:
-                raise GuardedWriteError(f"namespace commit failed: {exc}") from exc
+            else:
+                try:
+                    _rename_noreplace_at(
+                        directory_fd,
+                        stage_name,
+                        directory_fd,
+                        target_name,
+                    )
+                except OSError as exc:
+                    if exc.errno == errno.EEXIST:
+                        raise StaleSaveTargetError(
+                            "Save As target appeared at commit time"
+                        ) from exc
+                    if exc.errno not in _RENAME_NOREPLACE_UNSUPPORTED_ERRNOS:
+                        raise GuardedWriteError(f"namespace commit failed: {exc}") from exc
+                    try:
+                        os.link(
+                            stage_name,
+                            target_name,
+                            src_dir_fd=directory_fd,
+                            dst_dir_fd=directory_fd,
+                            follow_symlinks=False,
+                        )
+                    except FileExistsError as link_exc:
+                        raise StaleSaveTargetError(
+                            "Save As target appeared at commit time"
+                        ) from link_exc
+                    except OSError as link_exc:
+                        raise GuardedWriteError(
+                            f"namespace commit fallback failed: {link_exc}"
+                        ) from link_exc
+                    committed = True
+                    try:
+                        os.unlink(stage_name, dir_fd=directory_fd)
+                    except FileNotFoundError:
+                        pass
+                    except OSError as unlink_exc:
+                        warnings.append(
+                            "post-commit stage cleanup failed after link fallback: "
+                            f"{unlink_exc}"
+                        )
+                else:
+                    committed = True
 
             try:
                 self._hook(

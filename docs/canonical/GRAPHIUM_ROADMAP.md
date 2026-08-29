@@ -902,3 +902,10 @@ is **CLOSED / CERTIFIED / PUBLISHED / PUBLIC / RELEASED / CANONICALLY CONVERGED*
 not another product patch.
 
 Graphium Ultra remains **DEFINED / NOT OPENED** and still requires separate explicit authorization.
+
+
+### Graphium Plus 0.0.2 — maintenance release for Core 0.0.17 FAT32 save corrective — 2026-08-29
+
+0.0.1 remains immutable. The Plus 0.0.2 maintenance line carries only the exact Core-owned guarded-writer corrective, its permanent integration regression, the Plus serial version bump, matching release/help/README authority, and canonical evidence. No Plus feature scope is reopened. Exact-source prequalification must prove the corrected owner hashes and established Plus behavioral/integration/release suites. Candidate R1 has a fresh 2-attempt maintenance-line budget and needs no new physical FAT32 device run because the writer bytes are exact Core 0.0.17 bytes already proven on real FAT32/vfat and the persistence boundary is unchanged.
+
+After Candidate R1 system-install smoke PASS, publish exact source to `main`, create reproducible `graphium-plus_0.0.2-1_all.deb`, and create new public GitHub tag/release `v0.0.2`. Never move `v0.0.1` or replace its assets.

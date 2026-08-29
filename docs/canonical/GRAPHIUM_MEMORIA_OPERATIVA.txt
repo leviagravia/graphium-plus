@@ -11246,3 +11246,27 @@ and explicit authorization. Graphium Ultra remains DEFINED / NOT OPENED and requ
 
 NEXT_STEP=RUN_POST_RELEASE_GOVERNANCE_CONVERGENCE_FINALIZER
 FINAL_PHASE=PLUS_0.0.1_RELEASED_POST_RELEASE_CONVERGENCE_AUTHORIZED
+
+
+================================================================================
+2026-08-29 — GRAPHIUM PLUS 0.0.2 MAINTENANCE LINE — RELEASE UPDATE AUTHORITY
+================================================================================
+State: BINDING MAINTENANCE AUTHORITY / 0.0.1 IMMUTABLE
+
+Graphium Plus 0.0.1 remains CLOSED / CERTIFIED / PUBLISHED / PUBLIC / RELEASED / CANONICALLY CONVERGED. Its tag, release assets and source commit MUST NOT be moved or replaced. The user requested the GitHub release be updated after the supplied Core 0.0.17 derived-line propagation authority established the exact FAT32/vfat guarded-save corrective. Therefore the correction is versioned as a new Graphium Plus maintenance release, 0.0.2, never as an in-place rewrite of v0.0.1.
+
+0.0.2 product delta from canonical post-0.0.1 convergence is deliberately bounded:
+  - graphium/infrastructure/guarded_file_writer.py — exact Core 0.0.17 owner bytes;
+  - tests/integration/test_guarded_writer.py — exact Core 0.0.17 permanent regression bytes;
+  - graphium_plus/product.py — Plus release identity 0.0.1 -> 0.0.2;
+  - tests/release/test_plus_product_line.py — matching release identity oracle;
+  - docs/user/GRAPHIUM_PLUS_USER_GUIDE.txt — current-release wording only;
+  - README.md — current release and precise Core 0.0.17 corrective lineage wording;
+  - canonical/evidence authority for this maintenance line.
+
+No Plus-specific toolbar, Workspace, document lifecycle, appearance, Hunspell, icon, launcher or installer behavior changes. GuardedFileWriter remains Core-owned. The corrected writer hash is c3972a980229b64d96c864d4462472be44820be485d02757d1dd02105f86dad2 and the permanent test hash is 5d3fbfb85e1b8cefedf8978696a3893baedc196464993f9d9185aee0a0c984f2. The supplied Core authority records real FAT32/vfat device proof for these exact writer bytes; no new physical FAT32 test is required unless Plus changes those bytes or the persistence boundary.
+
+Maintenance candidate accounting is a fresh line. Exact-source prequalification occurs before Candidate declaration. Candidate R1 then consumes attempt 1/2; after final Debian system-upgrade smoke PASS it is certified and publication may proceed under this explicit user release-update authorization. Packaging target is graphium-plus_0.0.2-1_all.deb and GitHub tag/release v0.0.2. v0.0.1 remains immutable and available as historical release.
+
+NEXT_STEP=RUN_PLUS_0.0.2_MAINTENANCE_RELEASE_UPDATE
+FINAL_PHASE=PLUS_0.0.2_MAINTENANCE_RELEASE_UPDATE_AUTHORIZED

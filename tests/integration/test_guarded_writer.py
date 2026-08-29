@@ -1,4 +1,5 @@
 from __future__ import annotations
+import ctypes
 import errno
 import hashlib
 import os
@@ -6,8 +7,9 @@ from pathlib import Path
 import tempfile
 import unittest
 from unittest.mock import patch
-from graphium.domain.document_save import SaveDisposition, SaveTargetExpectation, StaleSaveTargetError, UnsafeSaveTargetError
+from graphium.domain.document_save import GuardedWriteError, SaveDisposition, SaveTargetExpectation, StaleSaveTargetError, UnsafeSaveTargetError
 from graphium.infrastructure.document_loader import load_document
+import graphium.infrastructure.guarded_file_writer as guarded_writer_module
 from graphium.infrastructure.guarded_file_writer import GuardedFileWriter
 class GuardedWriterTests(unittest.TestCase):
     def _write(self, path: Path, data: bytes, mode: int=420) -> None:
@@ -120,6 +122,161 @@ class GuardedWriterTests(unittest.TestCase):
             result = writer.commit(obs, b'Body\n')
             self.assertEqual(target.read_bytes(), b'Body\n')
             self.assertEqual(result.disposition, SaveDisposition.COMMITTED_CONFIRMED)
+    def test_absent_target_primary_rename_noreplace_is_fd_relative_and_consumes_stage(self):
+        with tempfile.TemporaryDirectory() as td:
+            target = Path(td) / 'new.txt'
+            calls = []
+            cwd_before = os.getcwd()
+            def renameat2(source_fd, source_name, target_fd, target_name, flags):
+                calls.append((source_fd, source_name, target_fd, target_name, flags))
+                os.rename(source_name, target_name, src_dir_fd=source_fd, dst_dir_fd=target_fd)
+                return 0
+            with patch.object(guarded_writer_module, '_RENAMEAT2', renameat2), patch(
+                'graphium.infrastructure.guarded_file_writer.os.link',
+                side_effect=AssertionError('link fallback must not run after primary success'),
+            ):
+                result = GuardedFileWriter().commit(
+                    GuardedFileWriter().observe_target(str(target)),
+                    b'Body\n',
+                )
+            self.assertEqual(result.disposition, SaveDisposition.COMMITTED_CONFIRMED)
+            self.assertEqual(target.read_bytes(), b'Body\n')
+            self.assertEqual(os.getcwd(), cwd_before)
+            self.assertEqual(len(calls), 1)
+            source_fd, source_name, target_fd, target_name, flags = calls[0]
+            self.assertEqual(source_fd, target_fd)
+            self.assertIsInstance(source_name, bytes)
+            self.assertIsInstance(target_name, bytes)
+            self.assertNotIn(b'/', source_name)
+            self.assertEqual(target_name, b'new.txt')
+            self.assertEqual(flags, guarded_writer_module._RENAME_NOREPLACE)
+            self.assertEqual(list(Path(td).glob('.graphium-save-*.tmp')), [])
+    def test_primary_rename_noreplace_eexist_is_stale_and_does_not_overwrite(self):
+        with tempfile.TemporaryDirectory() as td:
+            target = Path(td) / 'new.txt'
+            def hook(phase, _ctx):
+                if phase == 'before_namespace_commit':
+                    target.write_bytes(b'attacker')
+            def renameat2(*_args):
+                return -1
+            writer = GuardedFileWriter(test_hook=hook)
+            obs = writer.observe_target(str(target))
+            with patch.object(guarded_writer_module, '_RENAMEAT2', renameat2), patch(
+                'graphium.infrastructure.guarded_file_writer.ctypes.get_errno',
+                return_value=errno.EEXIST,
+            ):
+                with self.assertRaises(StaleSaveTargetError):
+                    writer.commit(obs, b'Graphium')
+            self.assertEqual(target.read_bytes(), b'attacker')
+    def test_rename_noreplace_unsupported_uses_hardlink_fallback(self):
+        with tempfile.TemporaryDirectory() as td:
+            target = Path(td) / 'new.txt'
+            real_link = os.link
+            def renameat2(*_args):
+                return -1
+            with patch.object(guarded_writer_module, '_RENAMEAT2', renameat2), patch(
+                'graphium.infrastructure.guarded_file_writer.ctypes.get_errno',
+                return_value=errno.ENOSYS,
+            ), patch(
+                'graphium.infrastructure.guarded_file_writer.os.link',
+                wraps=real_link,
+            ) as link_mock:
+                writer = GuardedFileWriter()
+                result = writer.commit(writer.observe_target(str(target)), b'Body\n')
+            self.assertEqual(result.disposition, SaveDisposition.COMMITTED_CONFIRMED)
+            self.assertEqual(target.read_bytes(), b'Body\n')
+            self.assertEqual(link_mock.call_count, 1)
+            self.assertEqual(list(Path(td).glob('.graphium-save-*.tmp')), [])
+    def test_missing_renameat2_symbol_uses_hardlink_fallback(self):
+        with tempfile.TemporaryDirectory() as td:
+            target = Path(td) / 'new.txt'
+            real_link = os.link
+            with patch.object(guarded_writer_module, '_RENAMEAT2', None), patch(
+                'graphium.infrastructure.guarded_file_writer.os.link',
+                wraps=real_link,
+            ) as link_mock:
+                writer = GuardedFileWriter()
+                result = writer.commit(writer.observe_target(str(target)), b'Body\n')
+            self.assertEqual(result.disposition, SaveDisposition.COMMITTED_CONFIRMED)
+            self.assertEqual(link_mock.call_count, 1)
+            self.assertEqual(target.read_bytes(), b'Body\n')
+    def test_rename_noreplace_unsupported_and_hardlink_unsupported_fails_closed(self):
+        with tempfile.TemporaryDirectory() as td:
+            target = Path(td) / 'new.txt'
+            def renameat2(*_args):
+                return -1
+            with patch.object(guarded_writer_module, '_RENAMEAT2', renameat2), patch(
+                'graphium.infrastructure.guarded_file_writer.ctypes.get_errno',
+                return_value=errno.ENOSYS,
+            ), patch(
+                'graphium.infrastructure.guarded_file_writer.os.link',
+                side_effect=OSError(errno.EPERM, 'hard links unsupported'),
+            ):
+                writer = GuardedFileWriter()
+                with self.assertRaises(GuardedWriteError):
+                    writer.commit(writer.observe_target(str(target)), b'Body\n')
+            self.assertFalse(target.exists())
+            self.assertEqual(list(Path(td).glob('.graphium-save-*.tmp')), [])
+    def test_nonunsupported_rename_noreplace_error_does_not_enter_fallback(self):
+        with tempfile.TemporaryDirectory() as td:
+            target = Path(td) / 'new.txt'
+            def renameat2(*_args):
+                return -1
+            with patch.object(guarded_writer_module, '_RENAMEAT2', renameat2), patch(
+                'graphium.infrastructure.guarded_file_writer.ctypes.get_errno',
+                return_value=errno.EACCES,
+            ), patch(
+                'graphium.infrastructure.guarded_file_writer.os.link',
+                side_effect=AssertionError('link fallback must be unsupported-only'),
+            ):
+                writer = GuardedFileWriter()
+                with self.assertRaises(GuardedWriteError):
+                    writer.commit(writer.observe_target(str(target)), b'Body\n')
+            self.assertFalse(target.exists())
+    def test_absent_target_has_no_replacing_rename_fallback(self):
+        with tempfile.TemporaryDirectory() as td:
+            target = Path(td) / 'new.txt'
+            def renameat2(*_args):
+                return -1
+            with patch.object(guarded_writer_module, '_RENAMEAT2', renameat2), patch(
+                'graphium.infrastructure.guarded_file_writer.ctypes.get_errno',
+                return_value=errno.ENOSYS,
+            ), patch(
+                'graphium.infrastructure.guarded_file_writer.os.link',
+                side_effect=OSError(errno.EPERM, 'hard links unsupported'),
+            ), patch(
+                'graphium.infrastructure.guarded_file_writer.os.replace',
+                side_effect=AssertionError('replacing rename must not be used for absent target'),
+            ):
+                writer = GuardedFileWriter()
+                with self.assertRaises(GuardedWriteError):
+                    writer.commit(writer.observe_target(str(target)), b'Body\n')
+            self.assertFalse(target.exists())
+    def test_link_fallback_unlink_failure_is_postcommit_warning_not_retry_failure(self):
+        with tempfile.TemporaryDirectory() as td:
+            target = Path(td) / 'new.txt'
+            real_unlink = os.unlink
+            def renameat2(*_args):
+                return -1
+            def unlink(path, *, dir_fd=None):
+                if dir_fd is not None and isinstance(path, str) and path.startswith('.graphium-save-'):
+                    raise OSError(errno.EIO, 'injected post-link cleanup failure')
+                if dir_fd is None:
+                    return real_unlink(path)
+                return real_unlink(path, dir_fd=dir_fd)
+            with patch.object(guarded_writer_module, '_RENAMEAT2', renameat2), patch(
+                'graphium.infrastructure.guarded_file_writer.ctypes.get_errno',
+                return_value=errno.ENOSYS,
+            ), patch(
+                'graphium.infrastructure.guarded_file_writer.os.unlink',
+                side_effect=unlink,
+            ):
+                writer = GuardedFileWriter()
+                result = writer.commit(writer.observe_target(str(target)), b'Body\n')
+            self.assertEqual(target.read_bytes(), b'Body\n')
+            self.assertTrue(any(('post-commit stage cleanup failed' in w for w in result.warnings)))
+            self.assertTrue(result.disposition.value.startswith('committed-'))
+            self.assertEqual(len(list(Path(td).glob('.graphium-save-*.tmp'))), 1)
     def test_competing_creation_before_late_revalidation_is_not_overwritten(self):
         with tempfile.TemporaryDirectory() as td:
             target = Path(td) / 'new.txt'
