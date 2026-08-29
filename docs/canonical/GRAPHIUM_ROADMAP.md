@@ -880,3 +880,25 @@ binary availability may be claimed before then.
 
 After public-surface PASS, Graphium Plus 0.0.1 may be marked CLOSED / CERTIFIED / PUBLISHED / PUBLIC. Graphium
 Ultra remains DEFINED / NOT OPENED and still requires separate explicit authorization.
+
+### Graphium Plus 0.0.1 — PUBLIC / RELEASED / post-release convergence authorized — 2026-08-29
+
+Graphium Plus 0.0.1 has completed public-surface closure, final Debian packaging, real T480 system-install smoke and
+GitHub Release publication. Release source authority is commit
+`3b97781b9713b76c0f51eb6e229323db2fd512a6`, tree
+`f185d453c13679b52e6c45ef6dc67d8279e8a7b7`; public tag `v0.0.1` points exactly to that commit. The final package
+is `graphium-plus_0.0.1-1_all.deb`, SHA-256
+`de2e371f7efb8b096be0f30af9c37dd536842ae48b25f21a3b499db72a33bf8f`. Reproducible build, co-installation with
+Graphium Core, real apt install, installed projection and user runtime smoke all passed. The public GitHub release
+and anonymous asset re-download/hash verification passed.
+
+The public README is complete for the 0.0.1 surface: red Plus identity, Graphium Core lineage, architecture and
+non-goals, install/use information, and the origin of the name — Latin `graphium`, a stylus/writing implement
+associated with wax-tablet writing.
+
+Only one governance/evidence convergence remains. It must preserve every released product/runtime/test/user-Help/
+README/icon/LICENSE byte and keep `v0.0.1` pinned to the release source commit. After that convergence, Plus 0.0.1
+is **CLOSED / CERTIFIED / PUBLISHED / PUBLIC / RELEASED / CANONICALLY CONVERGED** and its next action is handover,
+not another product patch.
+
+Graphium Ultra remains **DEFINED / NOT OPENED** and still requires separate explicit authorization.

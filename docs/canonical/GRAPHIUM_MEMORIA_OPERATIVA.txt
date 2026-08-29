@@ -11171,3 +11171,78 @@ access. If anonymous verification fails after visibility transition, the runner 
 
 NEXT_STEP=RUN_FAIL_CLOSED_GRAPHIUM_PLUS_0.0.1_GITHUB_PUBLIC_SURFACE_FINALIZER
 FINAL_PHASE=PLUS_0.0.1_PRODUCT_PUBLISHED_PRIVATE_PUBLIC_SURFACE_AUTHORIZED
+
+
+================================================================================
+2026-08-29 — GRAPHIUM PLUS 0.0.1 PUBLIC SURFACE + FINAL DEB + GITHUB RELEASE PASS
+================================================================================
+State: BINDING / CLOSED / CERTIFIED / PUBLISHED / PUBLIC / RELEASED
+
+Graphium Plus 0.0.1 has completed the entire first-release chain without any post-Candidate product mutation.
+Canonical released source authority:
+  LOCAL_REPOSITORY=/home/luciano/Projects/graphium-plus-work
+  BRANCH=main
+  REMOTE=https://github.com/leviagravia/graphium-plus.git
+  RELEASE_SOURCE_COMMIT=3b97781b9713b76c0f51eb6e229323db2fd512a6
+  RELEASE_SOURCE_TREE=f185d453c13679b52e6c45ef6dc67d8279e8a7b7
+  TAG=v0.0.1
+  RELEASE_URL=https://github.com/leviagravia/graphium-plus/releases/tag/v0.0.1
+  REPOSITORY_VISIBILITY=PUBLIC
+
+The GitHub public surface passed anonymous verification for repository metadata, README, the primary red Graphium
+Plus icon and the smaller original Graphium lineage icon. The README explicitly states the name origin: Latin
+`graphium`, a stylus/writing implement associated with writing on wax tablets. The public-surface commit is
+`3b97781b9713b76c0f51eb6e229323db2fd512a6`, tree `f185d453c13679b52e6c45ef6dc67d8279e8a7b7`.
+
+Final Debian artifact authority:
+  PACKAGE=graphium-plus
+  VERSION=0.0.1-1
+  ARCHITECTURE=all
+  FILE=graphium-plus_0.0.1-1_all.deb
+  SHA256=de2e371f7efb8b096be0f30af9c37dd536842ae48b25f21a3b499db72a33bf8f
+
+The final `.deb` passed reproducible-build verification, exact Debian product projection, package metadata checks,
+zero concrete-file collision with installed Graphium Core, real T480 apt installation, installed projection and
+user-confirmed runtime smoke. Graphium Core remained installed at version 0.0.16-2. The `_apt` local-file warning
+observed during installation is an ordinary local-file acquisition warning and did not prevent package installation.
+
+GitHub Release `v0.0.1` is PUBLIC and points exactly to release source commit
+`3b97781b9713b76c0f51eb6e229323db2fd512a6`. Release assets are:
+  graphium-plus_0.0.1-1_all.deb
+  SHA256SUMS.txt
+Anonymous release metadata/page checks passed; anonymous re-download of the `.deb` reproduced the exact frozen
+SHA-256 above, and the published `SHA256SUMS.txt` check passed. Local tag identity also passed and the canonical
+worktree remained CLEAN.
+
+The failed public-surface and release executions in the closure chain are classified harness-only where proven:
+- public-surface first run: INVALID HARNESS / PRE-STAGE (`README.md` misparsed as `EADME.md`);
+- public-surface reissue: CLI-COMPATIBILITY HARNESS FAIL only at the final visibility command, after exact surface
+  commit/push and before visibility transition; the later REST visibility-only step completed PASS;
+- first GitHub Release finalizer: INVALID HARNESS / PRE-MUTATION due incorrect `dpkg-query` status/version check;
+  the release reissue completed PASS.
+None of these events reopened Candidate R2, changed product/runtime bytes or consumed any additional attempt.
+
+Candidate history remains final:
+  CANDIDATE_R1=RETIRED_VALID_PRODUCT_FAIL
+  CANDIDATE_R2=CERTIFIED_FROZEN
+  ATTEMPTS_USED=2/2
+  ATTEMPTS_REMAINING=0/2
+  KNOWN_OPEN_PRODUCT_BLOCKERS=0
+
+This post-release convergence is governance/evidence only. It may change exactly:
+  docs/canonical/GRAPHIUM_MEMORIA_OPERATIVA.txt
+  docs/canonical/GRAPHIUM_PRODUCT_ARCHITECTURE_CONTRACT.md
+  docs/canonical/GRAPHIUM_ROADMAP.md
+  evidence/GRAPHIUM_PLUS_0.0.1_FINAL_RELEASE_RECEIPT_20260829.txt
+  evidence/SHA256SUMS.txt
+All product/runtime/test/user-Help/README/icon/LICENSE/installer/package source bytes remain exactly the released
+source at tag `v0.0.1`. The tag MUST remain pinned to `3b97781b9713b76c0f51eb6e229323db2fd512a6`; the governance
+convergence commit occurs later on `main` and must not move or recreate the release tag.
+
+After convergence PASS, Graphium Plus 0.0.1 is **CLOSED / CERTIFIED / PUBLISHED / PUBLIC / RELEASED /
+CANONICALLY CONVERGED**. No further 0.0.1 product work is authorized by this closure. The next action is a final
+self-contained new-chat handover bundle. Any future Plus feature/version line requires fresh source-first analysis
+and explicit authorization. Graphium Ultra remains DEFINED / NOT OPENED and requires separate explicit authorization.
+
+NEXT_STEP=RUN_POST_RELEASE_GOVERNANCE_CONVERGENCE_FINALIZER
+FINAL_PHASE=PLUS_0.0.1_RELEASED_POST_RELEASE_CONVERGENCE_AUTHORIZED

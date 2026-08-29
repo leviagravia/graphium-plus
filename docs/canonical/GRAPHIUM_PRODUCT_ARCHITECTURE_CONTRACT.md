@@ -2103,3 +2103,28 @@ with writing on wax tablets. This naming text is descriptive branding only and c
 A GitHub `v0.0.1` release must not claim or attach an installer/package until that release artifact is separately
 frozen. Repository visibility may become PUBLIC after exact Git/source identity, public-surface target, history
 hygiene, authenticated metadata and anonymous-read verification gates are satisfied.
+
+### Graphium Plus 0.0.1 final release and post-release convergence authority — 2026-08-29
+
+Graphium Plus 0.0.1 release source is frozen at commit
+`3b97781b9713b76c0f51eb6e229323db2fd512a6`, tree
+`f185d453c13679b52e6c45ef6dc67d8279e8a7b7`, public tag `v0.0.1`. The tag is immutable release authority for
+0.0.1 and MUST remain on that commit even if `main` later receives governance/evidence-only convergence commits.
+
+The final Debian distribution artifact is `graphium-plus_0.0.1-1_all.deb`, SHA-256
+`de2e371f7efb8b096be0f30af9c37dd536842ae48b25f21a3b499db72a33bf8f`. It is a separate co-installable Debian
+identity from Graphium Core and passed reproducible build, exact installed projection, zero concrete-file collision
+with installed Core, real T480 apt installation and user runtime smoke. Distribution certification does not create
+any new runtime authority.
+
+The public GitHub surface is part of distribution authority, not editor architecture. Its primary identity is the
+red Graphium Plus icon; the original Graphium icon is lineage attribution only. The README name-origin statement —
+Latin `graphium`, a stylus/writing implement associated with wax-tablet writing — is branding/documentation and has
+no runtime effect. GitHub Release `v0.0.1` attaches only the exact frozen `.deb` plus `SHA256SUMS.txt`; anonymous
+re-download/hash verification passed.
+
+Post-release canonical convergence may alter only the three canonical documents, additive
+`evidence/GRAPHIUM_PLUS_0.0.1_FINAL_RELEASE_RECEIPT_20260829.txt`, and regenerated `evidence/SHA256SUMS.txt`.
+`graphium/`, `graphium_plus/`, `bin/`, `data/`, `tests/`, `docs/user/`, `README.md`, `assets/`, `LICENSE` and all
+other released product/public-surface paths are protected and must remain byte/mode-identical to release source.
+No Candidate is reopened and no T480 functional retest is justified by governance-only convergence.
