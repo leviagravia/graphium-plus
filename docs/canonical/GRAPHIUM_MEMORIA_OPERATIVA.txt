@@ -11270,3 +11270,67 @@ Maintenance candidate accounting is a fresh line. Exact-source prequalification 
 
 NEXT_STEP=RUN_PLUS_0.0.2_MAINTENANCE_RELEASE_UPDATE
 FINAL_PHASE=PLUS_0.0.2_MAINTENANCE_RELEASE_UPDATE_AUTHORIZED
+
+
+================================================================================
+2026-08-29 — GRAPHIUM PLUS 0.0.2 MAINTENANCE RELEASE PASS + POST-RELEASE CONVERGENCE AUTHORITY
+================================================================================
+State: BINDING / RELEASED / POST-RELEASE CONVERGENCE AUTHORIZED
+
+Graphium Plus 0.0.2 maintenance release completed PASS. It preserves immutable 0.0.1 and carries the exact
+Graphium Core 0.0.17 guarded-save corrective into the derived Plus line without reopening Plus feature scope.
+
+Released source authority:
+  LOCAL_REPOSITORY=/home/luciano/Projects/graphium-plus-work
+  BRANCH=main
+  REMOTE=https://github.com/leviagravia/graphium-plus.git
+  RELEASE_SOURCE_COMMIT=302bae32f37cb7c5f9140389ff7510b5cedd6194
+  RELEASE_SOURCE_TREE=1f7b6b3967d9ee6d151670ad7fd3ef7ff1988b58
+  TAG=v0.0.2
+  RELEASE_URL=https://github.com/leviagravia/graphium-plus/releases/tag/v0.0.2
+  REPOSITORY_VISIBILITY=PUBLIC
+
+Final Debian artifact authority:
+  PACKAGE=graphium-plus
+  VERSION=0.0.2-1
+  ARCHITECTURE=all
+  FILE=graphium-plus_0.0.2-1_all.deb
+  SHA256=973c6ecef6c94a47deace671de3ad6a358474bf4325e05aaa1b4070ffa36ae11
+
+Exact maintenance qualification and desktop evidence:
+  GUARDED_WRITER=34/34 PASS
+  BEHAVIORAL=190/190 PASS
+  INTEGRATION_NON_HUNSPELL=171/171 PASS
+  RELEASE=62/62 PASS
+  TOTAL_VALID=457/457 PASS
+  USER_DESKTOP_VALIDATION=PASS
+  ABOUT_CORRECTED=PASS
+  PENDRIVE_SAVE=PASS
+  CANDIDATE_R1=CERTIFIED
+  ATTEMPTS_USED=1/2
+  ATTEMPTS_REMAINING=1/2
+
+The earlier empty confirmation input is INVALID_OPERATOR_INPUT_NOT_PRODUCT_FAIL. The transient runner marker that
+classified it as a retired product failure is VOID. The same Candidate R1 was subsequently certified from exact
+artifact/install identity plus explicit user desktop validation; no second Candidate attempt was consumed.
+
+GitHub Release v0.0.2 is public and passed authenticated and anonymous verification. Its `.deb` re-download matched
+the frozen SHA-256 and published SHA256SUMS. `v0.0.1` passed the immutable postcheck and remains pinned to its own
+historical release-source commit `3b97781b9713b76c0f51eb6e229323db2fd512a6`.
+
+Post-release convergence is governance/evidence only and may change exactly:
+  docs/canonical/GRAPHIUM_MEMORIA_OPERATIVA.txt
+  docs/canonical/GRAPHIUM_PRODUCT_ARCHITECTURE_CONTRACT.md
+  docs/canonical/GRAPHIUM_ROADMAP.md
+  evidence/GRAPHIUM_PLUS_0.0.2_FINAL_RELEASE_RECEIPT_20260829.txt
+  evidence/SHA256SUMS.txt
+
+All `graphium/`, `graphium_plus/`, `bin/`, `data/`, `tests/`, `docs/user/`, README, assets, LICENSE, launcher,
+installer and release-artifact source bytes are protected. Tag `v0.0.2` MUST remain pinned to
+`302bae32f37cb7c5f9140389ff7510b5cedd6194`; convergence advances `main` only.
+
+After convergence PASS, Graphium Plus 0.0.2 is CLOSED / CERTIFIED / PUBLISHED / PUBLIC / RELEASED /
+CANONICALLY CONVERGED. Any later product work requires a fresh maintenance/feature line and source-first audit.
+
+NEXT_STEP=RUN_PLUS_0.0.2_POST_RELEASE_CANONICAL_CONVERGENCE
+FINAL_PHASE=PLUS_0.0.2_RELEASED_POST_RELEASE_CONVERGENCE_AUTHORIZED

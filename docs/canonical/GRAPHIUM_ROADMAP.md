@@ -909,3 +909,15 @@ Graphium Ultra remains **DEFINED / NOT OPENED** and still requires separate expl
 0.0.1 remains immutable. The Plus 0.0.2 maintenance line carries only the exact Core-owned guarded-writer corrective, its permanent integration regression, the Plus serial version bump, matching release/help/README authority, and canonical evidence. No Plus feature scope is reopened. Exact-source prequalification must prove the corrected owner hashes and established Plus behavioral/integration/release suites. Candidate R1 has a fresh 2-attempt maintenance-line budget and needs no new physical FAT32 device run because the writer bytes are exact Core 0.0.17 bytes already proven on real FAT32/vfat and the persistence boundary is unchanged.
 
 After Candidate R1 system-install smoke PASS, publish exact source to `main`, create reproducible `graphium-plus_0.0.2-1_all.deb`, and create new public GitHub tag/release `v0.0.2`. Never move `v0.0.1` or replace its assets.
+
+### Graphium Plus 0.0.2 — released maintenance closure — 2026-08-29
+
+Graphium Plus 0.0.2 is **CERTIFIED / PUBLISHED / PUBLIC / RELEASED** at commit
+`302bae32f37cb7c5f9140389ff7510b5cedd6194`, tree `1f7b6b3967d9ee6d151670ad7fd3ef7ff1988b58`, tag `v0.0.2`.
+Final artifact: `graphium-plus_0.0.2-1_all.deb`, SHA-256
+`973c6ecef6c94a47deace671de3ad6a358474bf4325e05aaa1b4070ffa36ae11`.
+
+Qualification is 457/457 PASS; user desktop validation confirms About corrective and pendrive save. Candidate R1 is
+CERTIFIED with maintenance-line accounting 1/2 used, 1/2 remaining. `v0.0.1` remains immutable. The only pending
+0.0.2 action is governance/evidence-only post-release convergence; no product or release-tag mutation is permitted.
+After convergence, 0.0.2 is CANONICALLY CONVERGED and any subsequent work requires a fresh authorized line.

@@ -2137,3 +2137,22 @@ Graphium Plus 0.0.2 is a maintenance successor to immutable release 0.0.1. It do
 The EXPECTED_ABSENT namespace commit contract is therefore: fd-relative `renameat2(..., RENAME_NOREPLACE)` primary, hard-link+unlink only when no-replace is genuinely unsupported, no replacing/direct-write/exists-then-rename fallback, and post-link stage-unlink failure classified as post-commit warning-shaped state. No FAT32-specific product branch is permitted. Existing-target guarded atomic replacement remains unchanged.
 
 Plus-only toolbar/Workspace/document authorities remain byte-identical to 0.0.1. The only Plus runtime identity delta is `PLUS_PRODUCT_IDENTITY.version = 0.0.2`. The exact Core writer bytes already possess physical FAT32/vfat proof; derived-line certification adopts that proof while requiring exact-byte identity and permanent Plus tests. Release `v0.0.1` and its artifact remain immutable; publication of this maintenance source uses new tag `v0.0.2` and package version `0.0.2-1`.
+
+### Graphium Plus 0.0.2 final maintenance release and convergence authority — 2026-08-29
+
+Graphium Plus 0.0.2 is released at commit `302bae32f37cb7c5f9140389ff7510b5cedd6194`, tree
+`1f7b6b3967d9ee6d151670ad7fd3ef7ff1988b58`, public tag `v0.0.2`. The tag is immutable release authority and
+must remain on that commit after governance convergence advances `main`. The released Debian artifact is
+`graphium-plus_0.0.2-1_all.deb`, SHA-256
+`973c6ecef6c94a47deace671de3ad6a358474bf4325e05aaa1b4070ffa36ae11`.
+
+The maintenance product delta remains architecturally bounded to the exact Core 0.0.17 guarded-writer/test owner
+bytes, Plus version identity 0.0.2 and matching release/help/public documentation authority. Plus toolbar, Workspace,
+document lifecycle, appearance, spellcheck, desktop identity and installer architecture are unchanged. Real user
+validation confirms corrected About projection and successful pendrive save. The exact Core writer bytes retain the
+Core physical FAT32/vfat proof; Plus adds no filesystem-specific branch or second writer authority.
+
+Post-release convergence may alter only the three canonical documents, additive
+`evidence/GRAPHIUM_PLUS_0.0.2_FINAL_RELEASE_RECEIPT_20260829.txt`, and regenerated `evidence/SHA256SUMS.txt`.
+All product/runtime/test/user-Help/README/icon/LICENSE/installer bytes remain byte/mode-identical to release source.
+No Candidate is reopened. Release `v0.0.1` and its tag/assets remain immutable historical authority.
